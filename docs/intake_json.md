@@ -192,7 +192,12 @@ Each Intake request may specify a webhook URL and method to send status updates 
 | hook.method | HTTP method to be used for the webhook, must be either GET or POST | YES, if webhook is desired | string |         |
 
 
-The webhook payload will contain a JSON body with the following keys:
+The webhook payload will contain a JSON body with the following keys and header:
+
+| Header    | Value                                             |
+|-----------|---------------------------------------------------|
+| Signature | hash_hmac('sha256', 'payloadjson', 'webhook key') |
+
 
 ``` json
 {
@@ -206,11 +211,6 @@ Possible Intake statuses are:
 - Printing
 - Shipped
 
-Payload json 
-
-hook.uri (required if hook is set)
-
-hook.method (required if hook is set)
 Webhook
 Header 	Signature 	hash_hmac('sha256', 'payloadjson', 'webhook key')
 Body 	{"intake":"id","status":"status"}
