@@ -41,7 +41,7 @@ String GetBase64FileContent(string fileName, string path)
 
 !!! attention
     The maximum size of a JSON request is 4MB! If your payload exceeds this limit, 
-    the server will return an HTTP error 413 (entity/payload too large). If you want to send larger documents, please use a Multipart Intake request!
+    the server will return an HTTP error 413 (entity/payload too large). If you want to send larger documents, please use a [Multipart Intake request](intake_multipart.md)!
 
 ## JSON Request Structure
 ``` json
@@ -66,13 +66,18 @@ String GetBase64FileContent(string fileName, string path)
     "background" : {
         "name": "string",
         "mime-type": "mime-type",
-        "contents": "base64encoded content",
+        "contents": "base64encoded content"
     },
     "envelope": {
         "name": "string",
         "mime-type": "mime-type",
         "contents": "base64encoded content"
     },
+    "carrier": {
+        "name": "string",
+        "mime-type": "mime-type",
+        "contents": "base64encoded content"
+    }
     "address": {
         "firstname": "string",
         "lastname": "string",
@@ -147,6 +152,16 @@ Each Intake request may contain exactly one envelope.
 | envelope.mime-type | MIME type of the envelope. Currently only "application/pdf" is accepted | YES                    | string |         |
 | envelope.contents  | Base64-encoded contents of the envelope                                 | YES                    | string |         |
 
+### Carrier (optional) for C4 envelopes
+Each Intake request may contain exactly one carrier. An address carrier is only used when sending C4 envelopes, which use a separate sheet of paper to print the address on.
+
+| Key               | Description                                                            | Required              | Type   | Default |
+|-------------------|------------------------------------------------------------------------|-----------------------|--------|---------|
+| carrier.name      | Name of the address carrier                                            | YES, if using carrier | string |         |
+| carrier.mime-type | MIME type of the carrier. Currently only "application/pdf" is accepted | YES                   | string |         |
+| carrier.contents  | Base64-encoded contents of the carrier                                 | YES                   | string |         |
+
+
 ### Address (required)
 Each Intake request must contain exactly one recipient with the required address parts.
 
@@ -198,7 +213,7 @@ The webhook payload will contain a JSON body with the following keys and header:
 |-----------|---------------------------------------------------|
 | Signature | hash_hmac('sha256', 'payloadjson', 'webhook key') |
 
-
+Response body:
 ``` json
 {
     "intake": {id, integer},
@@ -211,16 +226,20 @@ Possible Intake statuses are:
 - Printing
 - Shipped
 
-Webhook
-Header 	Signature 	hash_hmac('sha256', 'payloadjson', 'webhook key')
-Body 	{"intake":"id","status":"status"}
-
-If signature equals hash_hmac('sha256','json response','webhook key') payload is valid.
+If signature equals `hash_hmac('sha256','json response','webhook key')` the payload is valid.
 ## JSON Request Response
-Success
-Status Code 	202 Accepted
-JSON body 	{"intake":integer, "cost":integer} (intake = id of intake request)
-Possible error codes
-422 	Unprocessable Entity 	Request is invalid.
-413 	Entity Too Large 	Request size too big (json max 4mb).
-401 	Unauthorized 	Access token invalid.
+
+### Success
+
+| Key              | Value                                  |
+|------------------|----------------------------------------|
+| HTTP status code | 202 ACCEPTED                           |
+| JSON body        | { "intake": integer, "cost": integer } |
+
+### Possible error codes
+
+| HTTP code | Description          | Reason                                                                  |
+|-----------|----------------------|-------------------------------------------------------------------------|
+| 422       | Unprocessable Entity | Request is invalid - either missing or incorrectly formatted parameters |
+| 413       | Entity Too Large     | Request size exceeds 4MB limit - use the Multipart method instead       |
+| 401       | Unauthorized         | Access token is not valid or expired - refer to the web portal          |

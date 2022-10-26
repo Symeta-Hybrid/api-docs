@@ -26,6 +26,6 @@ A resource request can be used to consult previously sent Intake requests.
 ## API base URL and versioning
 There is currently a single version available for the API. This is v1.
 
-Base URL for production: https://api.mailitwize.be/api/v1
+Base URL for PROD: https://api.mailitwize.be/api/v1
  
-Base URL for test: https://api-test.mailitwize.be/api/v1
+Base URL for UAT: https://api-test.mailitwize.be/api/v1
