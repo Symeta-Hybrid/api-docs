@@ -20,216 +20,185 @@ With the Multipart Request, the 4MB filesize limit does not apply. For the most 
 
 ## Multipart form-data Structure
 ``` form-data
-    document[name] => 'string',
-    document[mime-type] => 'mime-type',
-    document[contents] => 'contents', ! not base64encoded !
-    document[multiplex] => integer,
+document[name] => 'string',
+document[mime-type] => 'mime-type',
+document[contents] => file,
+document[multiplex] => boolean (default 1),
 
-    // attachments
+attachments[0][name] => 'string',
+attachments[0][mime-type] => 'mime-type',
+attachments[0][contents] => file,
 
-    attachments[0][name] => 'string',
-    attachments[0][mime-type] => 'mime-type',
-    attachments[0][contents] => 'content' ! not base64encoded !
-    attachments[0][multiplex] => integer
+attachments[1][name] => ...,
 
-    attachments[1][name] => ...,
+background[name] => 'string',
+background[mime-type] => 'mime-type',
+background[contents] => file,
 
-    // background
+envelope[name] => 'string',
+envelope[mime-type] => 'mime-type',
+envelope[contents] => file,
 
-    background[name] => 'string',
-    background[mime-type] => 'mime-type',
-    background[contents] => 'content' ! not base64encoded !
+address[firstname] => 'string',
+address[lastname] => 'string',
+address[fullname] => 'string',
+address[street] => 'string',
+address[houseNumber] => integer,
+address[houseNumberAlpha] => 'string',
+address[box] => 'string',
+address[unstructuredStreetNumberBox] => 'string',
+address[zip] => 'string',
+address[municipality] => 'string',
+address[countryIso2] => 'string max 2',
+address[company] => 'string',
+address[area] => 'string',
 
-    // envelope
+postalService[registered] => boolean,
+postalService[prior] => boolean,
+postalService[nonPrior] => boolean,
 
-    envelope[name] => 'string',
-    envelope[mime-type] => 'mime-type',
-    envelope[contents] => 'content' ! not base64encoded !
+correlation[costId] => 'string,optional',
+correlation[lang] => 'required, nl,en or fr',
+correlation[returnAddress] => 'optional string, single line return address',
 
-    // address
-
-    address[firstname] => 'string',
-    address[lastname] => 'string',
-    address[fullname] => 'string',
-    address[street] => 'string',
-    address[houseNumber] => integer,
-    address[houseNumberAlpha] => 'string',
-    address[box] => 'string',
-    address[unstructuredStreetNumberBox] => 'string',
-    address[zip] => 'string',
-    address[municipality] => 'string',
-    address[countryIso2] => 'string max 2',
-    address[company] => 'string',
-    address[area] => 'string',
-
-    // postalService
-
-    postalService[registered] => boolean,
-    postalService[prior] => boolean,
-    postalService[nonPrior] => boolean,
-
-    // email
-
-    email[registered] => boolean,
-    email[email] => 'string',
-
-    // correlation
-    correlation[costId] => 'string,optional',
-    correlation[lang] => 'required, nl,en or fr',
-    correlation[returnAddress] => 'optional string, single line return address'
-
-    // add request type multipart
-    requestType => 'multipart'
-
-]
+requestType => 'multipart'
 ```
 
-Multipart Form Data Values
-requestType (required)
+## Multipart Form Data Values
+### Request type (required)
 Add parameter requestType and set value as 'multipart' to indicate it is a multipart form.
 
-requestType (required, string value: multipart)
+| Key         | Description                       | Required          | Type   | Default |
+|-------------|-----------------------------------|-------------------|--------|---------|
+| requestType | Type of Intake request being sent | YES, if multipart | string |         |
 
-document (required)
-Bevat nodige data mbt het document, en bevat onderstaande componenten.
 
-document.name (required, string)
+### Document (required)
+Each Multipart Intake request must contain exactly one main document.
 
-Naam van het originele document inclusief file extensie
+| Key                  | Description                                                             | Required | Type        | Default |
+|----------------------|-------------------------------------------------------------------------|----------|-------------|---------|
+| document\[name]      | Name of the original document, including extension                      | YES      | string      |         |
+| document\[mime-type] | MIME type of the document. Currently only "application/pdf" is accepted | YES      | string      |         |
+| document\[contents]  | Document PDF file                                                       | YES      | file/binary |         |
+| document\[multiplex] | Print setting of the document. 0 = recto, 1 = recto/verso               | NO       | boolean     | 1       |
 
-document.mime-type (required, string)
+### Attachments (optional)
+Each Multipart Intake request may contain multiple attachments, using a consecutive numerical index (see JSON structure).
 
-Mime-type van document. Momenteel enkel application/pdf
+| Key                         | Description                                                               | Required                 | Type        | Default |
+|-----------------------------|---------------------------------------------------------------------------|--------------------------|-------------|---------|
+| attachments\[n]\[name]      | Name of the attachment                                                    | YES, if using attachment | string      |         |
+| attachments\[n]\[mime-type] | MIME type of the attachment. Currently only "application/pdf" is accepted | YES                      | string      |         |
+| attachments\[n]\[contents]  | Attachment PDF file                                                       | YES                      | file/binary |         |
+| attachments\[n]\[multiplex] | Print setting of the attachment. 0 = recto, 1 = recto/verso               | NO                       | boolean     | 1       |
 
-document.contents (required, file contents)
+### Background (optional)
+Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page of the main document.
 
-De content van het document.
+| Key                    | Description                                                               | Required                 | Type        | Default |
+|------------------------|---------------------------------------------------------------------------|--------------------------|-------------|---------|
+| background\[name]      | Name of the background                                                    | YES, if using background | string      |         |
+| background\[mime-type] | MIME type of the background. Currently only "application/pdf" is accepted | YES                      | string      |         |
+| background\[contents]  | Background PDF file                                                       | YES                      | file/binary |         |
 
-document.multiplex (optional, integer)
+### Envelope (optional)
+Each Multipart Intake request may contain exactly one envelope.
 
-Printwijze:
-0 = recto
-1 = recto / verso
+| Key                  | Description                                                             | Required               | Type        | Default |
+|----------------------|-------------------------------------------------------------------------|------------------------|-------------|---------|
+| envelope\[name]      | Name of the envelope                                                    | YES, if using envelope | string      |         |
+| envelope\[mime-type] | MIME type of the envelope. Currently only "application/pdf" is accepted | YES                    | string      |         |
+| envelope\[contents]  | Envelope PDF file                                                       | YES                    | file/binary |         |
 
-attachments (optional)
-Een intake request kan meerdere bijlagen bevatten met een opeenvolgende numerieke index (zie ook json structure)
+### Carrier (optional) for C4 envelopes
+Each Multipart Intake request may contain exactly one carrier. An address carrier is only used when sending C4 envelopes, which use a separate sheet of paper to print the address on.
 
-attachments.(index).name (string, required if attachments)
+| Key                 | Description                                                            | Required              | Type        | Default |
+|---------------------|------------------------------------------------------------------------|-----------------------|-------------|---------|
+| carrier\[name]      | Name of the address carrier                                            | YES, if using carrier | string      |         |
+| carrier\[mime-type] | MIME type of the carrier. Currently only "application/pdf" is accepted | YES                   | string      |         |
+| carrier\[contents]  | Address carrier PDF file                                               | YES                   | file/binary |         |
 
-Naam van het originele bestand inclusief extensie.
+### Address (required)
+Each Multipart Intake request must contain exactly one recipient with the required address parts.
 
-attachments.(index).mime-type (mime-type, required if attachments)
+| Key                                   | Description                                                             | Required                                                                    | Type   | Default |
+|---------------------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------|--------|---------|
+| address\[firstname]                   | Recipient's first name                                                  | YES, if address\[fullname] and address\[company] absent                     | string |         |
+| address\[lastname]                    | Recipient's last name                                                   | YES, if address\[fullname] and address\[company] absent                     | string |         |
+| address\[fullname]                    | Recipient's full name                                                   | YES, if address\[firstname], address.lastname and address\[company] absent  | string |         |
+| address\[company]                     | Company name                                                            | YES, if address\[firstname], address.lastname and address\[fullname] absent | string |         |
+| address\[street]                      | Street name without number                                              | YES, if address\[unstructuredStreetNumberBox] absent                        | string |         |
+| address\[houseNumber]                 | House number                                                            | YES, if address\[unstructuredStreetNumberBox] absent                        | string |         |
+| address\[houseNumberAlpha]            | House number alphanumeric, will be placed after houseNumber on envelope | NO                                                                          | string |         |
+| address\[box]                         | Box number                                                              | NO                                                                          | string |         |
+| address\[unstructuredStreetNumberBox] | Unstructured street, house number and box                               | YES, if address\[street] and address\[houseNumber] absent                   | string |         |
+| address\[zip]                         | Zip code                                                                | YES                                                                         | string |         |
+| address\[municipality]                | Municipality                                                            | YES                                                                         | string |         |
+| address\[countryIso2]                 | Country code, ISO 3611-2 format (2 characters)                          | YES                                                                         | string |         |
+| address\[area]                        | Area                                                                    | NO                                                                          | string |         |
 
-Mime-type van document. Momenteel enkel application/pdf
+### Correlation (required)
 
-attachments.(index).contents (required if attachments)
+| Key                         | Description                                        | Required | Type   | Default                                        |
+|-----------------------------|----------------------------------------------------|----------|--------|------------------------------------------------|
+| correlation\[costId]        | Cost ID, for internal reference                    | NO       | string |                                                |
+| correlation\[lang]          | Document's language, must be one of nl, fr, en, de | YES      | string |                                                |
+| correlation\[returnAddress] | Return address in case of undeliverable mail       | NO       | string | Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven |
 
-Content van bestand.
+### Postal service (optional, default bpost non-prior)
+Each Intake request may contain additional postal service instructions
 
-attachments.(index).multiplex (integer, optional, default = 1)
+| Key                        | Description                               | Required | Type    | Default |
+|----------------------------|-------------------------------------------|----------|---------|---------|
+| postalService\[registered] | Registered shipment with tracking (bpost) | NO       | boolean | 0       |
+| postalService\[prior]      | Prior shipment                            | NO       | boolean | 0       |
+| postalService\[nonPrior]   | Non-prior (standard) shipment             | NO       | boolean | 1       |
 
-Printwijze:
-0 = recto
-1 = recto / verso
+### hook (optional)
+Each Intake request may specify a webhook URL and method to send status updates to
 
-background (optional)
-Elke intake request kan maximaal 1 achtergrond bevatten. We plaatsen deze achtergrond enkel op de eerste pagina van het hoofddocument.
+| Key           | Description                                                        | Required                   | Type   | Default |
+|---------------|--------------------------------------------------------------------|----------------------------|--------|---------|
+| hook\[uri]    | URI where the webhook should be sent to                            | YES, if webhook is desired | string |         |
+| hook\[method] | HTTP method to be used for the webhook, must be either GET or POST | YES, if webhook is desired | string |         |
 
-background.name (string, required if background)
 
-Naam van het originele bestand inclusief extensie.
+The webhook payload will contain a JSON body with the following keys and header:
 
-background.mime-type (mime-type, required if background)
+| Header    | Value                                             |
+|-----------|---------------------------------------------------|
+| Signature | hash_hmac('sha256', 'payloadjson', 'webhook key') |
 
-Mime-type van document. Momenteel enkel application/pdf
+Response body:
+``` json
+{
+    "intake": {id, integer},
+    "status": {intake status, string},
+    "data": {currently not implemented, empty string},
+}
+```
+Possible Intake statuses are:
+- Processed
+- Printing
+- Shipped
 
-background.contents (required if background)
+If signature equals `hash_hmac('sha256','json response','webhook key')` the payload is valid.
 
-Content van bestand.
+## Multipart Intake Request Response
 
-envelope (optional)
-Elke intake request kan maximaal 1 envelop bedrukking bevatten.
+### Success
 
-envelope.name (string, required if envelope)
+| Key              | Value                                    |
+|------------------|------------------------------------------|
+| HTTP status code | 202 ACCEPTED                             |
+| JSON body        | `{ "intake": integer, "cost": integer }` |
 
-Naam van het originele bestand inclusief extensie.
+### Possible error codes
 
-envelope.mime-type (mime-type, required if envelope)
-
-Mime-type van document. Momenteel enkel application/pdf
-
-envelope.contents (required if envelope)
-
-Content van bestand.
-
-address (required)
-Elke intake request moet een adres component bezitten.
-
-address.firstname (string, required if no address.fullname and no address.company)
-
-address.lastname (string, required if no address.fullname and no address.company)
-
-address.fullname (string, required if no address.firstname and/or no address.lastname, and no address.company)
-
-address.street (string, required if no address.unstructuredStreetNumberBox)
-
-address.houseNumber (integer, required if no address.unstructuredStreetNumberBox)
-
-address.houseNumberAlpha (string, optional)
-
-address.box (string, optional)
-
-address.unstructuredStreetNumberBox (string, required if no address.street or no address.houseNumber)
-
-address.zip (string, required)
-
-address.municipality (string, required)
-
-address.countryIso2 (string, max two characters, required)
-
-address.company (string, required if no address.firstname or no address.lastname or no address.fullname)
-
-address.area (string, optional)
-
-correlation (required)
-correlation.costId (string, optional)
-
-correlation.lang (required, must be one of nl,fr,en,de)
-
-correlation.returnAddress (optional, ex. Death Star Inc, Darth Vader Avenue 1, 1111 Space)
-
-postalService (optional, default bpost non-prior)
-postalService.registered (optional, boolean, default 0)
-
-postalService.prior (optional,boolean, default 0)
-
-postalService.nonPrior (optional, boolean, default 1)
-
-email (optional)
-email.registered (optional, boolean, default 0)
-
-email.email (required if email or email.registered, string)
-
-hook (optional)
-To receive status updates about the intake processing you can add a webhook path.
-
-Payload json {"intake":"id","status":"status"}
-
-hook.uri (required if hook is set)
-
-hook.method (required if hook is set)
-
-Webhook
-Header	Signature	hash_hmac('sha256', 'payloadjson', 'webhook key')
-Body	{"intake":"id","status":"status"}
-Als signature gelijk is aan hash_hmac('sha256','json response','webhook key') payload is valid.
-
-Multipart Request Response
-Success
-Status Code	202 Accepted
-JSON body	{"intake":integer, "cost":integer} (intake = id van intake request)
-Errors
-422	Unprocessable Entity	Request voldoet niet aan structuur en waarden.
-413	Entity Too Large	Request size te groot.
-401	Unauthorized	Access token ongeldig of vervallen.
-Ook andere standaard errors zijn mogelijk vb 500 server error
+| HTTP code | Description          | Reason                                                                  |
+|-----------|----------------------|-------------------------------------------------------------------------|
+| 422       | Unprocessable Entity | Request is invalid - either missing or incorrectly formatted parameters |
+| 413       | Entity Too Large     | Request size exceeds limit                                              |
+| 401       | Unauthorized         | Access token is not valid or expired - refer to the web portal          |

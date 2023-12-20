@@ -15,7 +15,7 @@
 | Authorization | Bearer [token]   |
 
 ## Request body and document format
-All metadata and documents must be sent in a JSON format. The main document's content must be sent in a base-64 encoded string.
+All metadata and documents must be sent in a JSON format. PDF content must be sent in a base-64 encoded string.
 
 Examples for achieving the correct format:
 
@@ -41,7 +41,7 @@ String GetBase64FileContent(string fileName, string path)
 
 !!! attention
     The maximum size of a JSON request is 4MB! If your payload exceeds this limit, 
-    the server will return an HTTP error 413 (entity/payload too large). If you want to send larger documents, please use a [Multipart Intake request](intake_multipart.md)!
+    the server will return an HTTP error 413 (entity/payload too large). If you want to send larger documents, use the [Multipart Intake request](intake_multipart.md).
 
 ## JSON Request Structure
 ``` json
@@ -57,7 +57,6 @@ String GetBase64FileContent(string fileName, string path)
             "name" : "string",
             "mime-type": "mime-type",
             "contents": "base64encoded content",
-            "multiplex": boolean (default 1)
         },
         "1": {
             ...
@@ -119,7 +118,7 @@ Each Intake request must contain exactly one main document.
 
 | Key                | Description                                                             | Required | Type    | Default |
 |--------------------|-------------------------------------------------------------------------|----------|---------|---------|
-| document.name      | Name of the document.                                                   | YES      | string  |         |
+| document.name      | Name of the document                                                    | YES      | string  |         |
 | document.mime-type | MIME type of the document. Currently only "application/pdf" is accepted | YES      | string  |         |
 | document.contents  | Base64-encoded contents of the document                                 | YES      | string  |         |
 | document.multiplex | Print setting of the document. 0 = recto, 1 = recto/verso               | NO       | boolean | 1       |
