@@ -1,0 +1,1306 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Multipart Intake - Mail-IT-Wize API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#multipart-intake-request" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Mail-IT-Wize API" class="md-header__button md-logo" aria-label="Mail-IT-Wize API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mail-IT-Wize API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Multipart Intake
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Mail-IT-Wize API" class="md-nav__button md-logo" aria-label="Mail-IT-Wize API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Mail-IT-Wize API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Intakes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Intakes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Intakes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intake_json/" class="md-nav__link">
+        JSON Intake
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../estimate_json/" class="md-nav__link">
+        JSON Intake Estimate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Multipart Intake
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Multipart Intake
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#multipart-vs-json" class="md-nav__link">
+    Multipart vs JSON
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-and-method" class="md-nav__link">
+    Endpoint and method
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-header" class="md-nav__link">
+    Request header
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multipart-form-data-structure" class="md-nav__link">
+    Multipart form-data Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multipart-form-data-values" class="md-nav__link">
+    Multipart Form Data Values
+  </a>
+  
+    <nav class="md-nav" aria-label="Multipart Form Data Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-type-required" class="md-nav__link">
+    Request type (required)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-required" class="md-nav__link">
+    Document (required)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attachments-optional" class="md-nav__link">
+    Attachments (optional)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-optional" class="md-nav__link">
+    Background (optional)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#envelope-optional" class="md-nav__link">
+    Envelope (optional)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carrier-optional-for-c4-envelopes" class="md-nav__link">
+    Carrier (optional) for C4 envelopes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address-required" class="md-nav__link">
+    Address (required)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correlation-required" class="md-nav__link">
+    Correlation (required)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postal-service-optional-default-bpost-non-prior" class="md-nav__link">
+    Postal service (optional, default bpost non-prior)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hook-optional" class="md-nav__link">
+    Hook (optional)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multipart-intake-request-response" class="md-nav__link">
+    Multipart Intake Request Response
+  </a>
+  
+    <nav class="md-nav" aria-label="Multipart Intake Request Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#success" class="md-nav__link">
+    Success
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possible-error-codes" class="md-nav__link">
+    Possible error codes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../estimate_multipart/" class="md-nav__link">
+        Multipart Intake Estimate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resource_request/" class="md-nav__link">
+        Intake Resource
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webhooks/" class="md-nav__link">
+        Webhooks
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pods/" class="md-nav__link">
+        Proof of Delivery
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#multipart-vs-json" class="md-nav__link">
+    Multipart vs JSON
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-and-method" class="md-nav__link">
+    Endpoint and method
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-header" class="md-nav__link">
+    Request header
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multipart-form-data-structure" class="md-nav__link">
+    Multipart form-data Structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multipart-form-data-values" class="md-nav__link">
+    Multipart Form Data Values
+  </a>
+  
+    <nav class="md-nav" aria-label="Multipart Form Data Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-type-required" class="md-nav__link">
+    Request type (required)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-required" class="md-nav__link">
+    Document (required)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attachments-optional" class="md-nav__link">
+    Attachments (optional)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-optional" class="md-nav__link">
+    Background (optional)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#envelope-optional" class="md-nav__link">
+    Envelope (optional)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carrier-optional-for-c4-envelopes" class="md-nav__link">
+    Carrier (optional) for C4 envelopes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address-required" class="md-nav__link">
+    Address (required)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correlation-required" class="md-nav__link">
+    Correlation (required)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postal-service-optional-default-bpost-non-prior" class="md-nav__link">
+    Postal service (optional, default bpost non-prior)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hook-optional" class="md-nav__link">
+    Hook (optional)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multipart-intake-request-response" class="md-nav__link">
+    Multipart Intake Request Response
+  </a>
+  
+    <nav class="md-nav" aria-label="Multipart Intake Request Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#success" class="md-nav__link">
+    Success
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possible-error-codes" class="md-nav__link">
+    Possible error codes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="multipart-intake-request">Multipart Intake Request</h1>
+<h2 id="multipart-vs-json">Multipart vs JSON</h2>
+<p>Using a Multipart Request allows to upload larger documents to the API. However, we do advise to use the JSON Intake Request as much as possible and avoid large filesizes.
+With the Multipart Request, the 4MB filesize limit does not apply. For the most part, the requests are very similar.</p>
+<h2 id="endpoint-and-method">Endpoint and method</h2>
+<table>
+<thead>
+<tr>
+<th align="left">API version</th>
+<th align="left">v1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Endpoint</td>
+<td align="left"><code>base_url/api_version/intake/multipart</code></td>
+</tr>
+<tr>
+<td align="left">Method</td>
+<td align="left"><code>POST</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="request-header">Request header</h2>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accept</td>
+<td><code>application/json</code></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td><code>Bearer [token]</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="multipart-form-data-structure">Multipart form-data Structure</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>document[name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>document[mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>document[contents] =&gt; file,
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>document[multiplex] =&gt; boolean (default 1),
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>attachments[0][name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>attachments[0][mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>attachments[0][contents] =&gt; file,
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>attachments[1][name] =&gt; ...,
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>background[name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>background[mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>background[contents] =&gt; file,
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>envelope[name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>envelope[mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>envelope[contents] =&gt; file,
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>address[firstname] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>address[lastname] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>address[fullname] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>address[street] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>address[houseNumber] =&gt; integer,
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>address[houseNumberAlpha] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>address[box] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>address[unstructuredStreetNumberBox] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>address[zip] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>address[municipality] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>address[countryIso2] =&gt; &#39;string max 2&#39;,
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>address[company] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>address[area] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>postalService[registered] =&gt; boolean,
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>postalService[prior] =&gt; boolean,
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>postalService[nonPrior] =&gt; boolean,
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>correlation[costId] =&gt; &#39;string,optional&#39;,
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>correlation[lang] =&gt; &#39;required, nl,en or fr&#39;,
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>correlation[returnAddress] =&gt; &#39;optional string, single line return address&#39;,
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>requestType =&gt; &#39;multipart&#39;
+</code></pre></div>
+<h2 id="multipart-form-data-values">Multipart Form Data Values</h2>
+<h3 id="request-type-required">Request type (required)</h3>
+<p>Add parameter requestType and set value as 'multipart' to indicate it is a multipart form.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>requestType</td>
+<td>Type of Intake request being sent</td>
+<td>YES, if multipart</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="document-required">Document (required)</h3>
+<p>Each Multipart Intake request must contain exactly one main document.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>document[name]</td>
+<td>Name of the original document, including extension</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>document[mime-type]</td>
+<td>MIME type of the document. Currently only "application/pdf" is accepted</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>document[contents]</td>
+<td>Document PDF file</td>
+<td>YES</td>
+<td>file/binary</td>
+<td></td>
+</tr>
+<tr>
+<td>document[multiplex]</td>
+<td>Print setting of the document. 0 = recto, 1 = recto/verso</td>
+<td>NO</td>
+<td>boolean</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="attachments-optional">Attachments (optional)</h3>
+<p>Each Multipart Intake request may contain multiple attachments, using a consecutive numerical index (see JSON structure).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>attachments[n][name]</td>
+<td>Name of the attachment</td>
+<td>YES, if using attachment</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>attachments[n][mime-type]</td>
+<td>MIME type of the attachment. Currently only "application/pdf" is accepted</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>attachments[n][contents]</td>
+<td>Attachment PDF file</td>
+<td>YES</td>
+<td>file/binary</td>
+<td></td>
+</tr>
+<tr>
+<td>attachments[n][multiplex]</td>
+<td>Print setting of the attachment. 0 = recto, 1 = recto/verso</td>
+<td>NO</td>
+<td>boolean</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="background-optional">Background (optional)</h3>
+<p>Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page of the main document.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>background[name]</td>
+<td>Name of the background</td>
+<td>YES, if using background</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>background[mime-type]</td>
+<td>MIME type of the background. Currently only "application/pdf" is accepted</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>background[contents]</td>
+<td>Background PDF file</td>
+<td>YES</td>
+<td>file/binary</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="envelope-optional">Envelope (optional)</h3>
+<p>Each Multipart Intake request may contain exactly one envelope.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>envelope[name]</td>
+<td>Name of the envelope</td>
+<td>YES, if using envelope</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>envelope[mime-type]</td>
+<td>MIME type of the envelope. Currently only "application/pdf" is accepted</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>envelope[contents]</td>
+<td>Envelope PDF file</td>
+<td>YES</td>
+<td>file/binary</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="carrier-optional-for-c4-envelopes">Carrier (optional) for C4 envelopes</h3>
+<p>Each Multipart Intake request may contain exactly one carrier. An address carrier is only used when sending C4 envelopes, which use a separate sheet of paper to print the address on.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>carrier[name]</td>
+<td>Name of the address carrier</td>
+<td>YES, if using carrier</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>carrier[mime-type]</td>
+<td>MIME type of the carrier. Currently only "application/pdf" is accepted</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>carrier[contents]</td>
+<td>Address carrier PDF file</td>
+<td>YES</td>
+<td>file/binary</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="address-required">Address (required)</h3>
+<p>Each Multipart Intake request must contain exactly one recipient with the required address parts.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>address[firstname]</td>
+<td>Recipient's first name</td>
+<td>YES, if address[fullname] and address[company] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[lastname]</td>
+<td>Recipient's last name</td>
+<td>YES, if address[fullname] and address[company] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[fullname]</td>
+<td>Recipient's full name</td>
+<td>YES, if address[firstname], address.lastname and address[company] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[company]</td>
+<td>Company name</td>
+<td>YES, if address[firstname], address.lastname and address[fullname] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[street]</td>
+<td>Street name without number</td>
+<td>YES, if address[unstructuredStreetNumberBox] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[houseNumber]</td>
+<td>House number</td>
+<td>YES, if address[unstructuredStreetNumberBox] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[houseNumberAlpha]</td>
+<td>House number alphanumeric, will be placed after houseNumber on envelope</td>
+<td>NO</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[box]</td>
+<td>Box number</td>
+<td>NO</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[unstructuredStreetNumberBox]</td>
+<td>Unstructured street, house number and box</td>
+<td>YES, if address[street] and address[houseNumber] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[zip]</td>
+<td>Zip code</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[municipality]</td>
+<td>Municipality</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[countryIso2]</td>
+<td>Country code, ISO 3611-2 format (2 characters)</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[area]</td>
+<td>Area</td>
+<td>NO</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="correlation-required">Correlation (required)</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>correlation[costId]</td>
+<td>Cost ID, for internal reference</td>
+<td>NO</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>correlation[lang]</td>
+<td>Document's language, must be one of nl, fr, en, de</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>correlation[returnAddress]</td>
+<td>Return address in case of undeliverable mail</td>
+<td>NO</td>
+<td>string</td>
+<td>Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven</td>
+</tr>
+</tbody>
+</table>
+<h3 id="postal-service-optional-default-bpost-non-prior">Postal service (optional, default bpost non-prior)</h3>
+<p>Each Intake request may contain additional postal service instructions</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>postalService[registered]</td>
+<td>Registered shipment with tracking (bpost)</td>
+<td>NO</td>
+<td>boolean</td>
+<td>0</td>
+</tr>
+<tr>
+<td>postalService[prior]</td>
+<td>Prior shipment</td>
+<td>NO</td>
+<td>boolean</td>
+<td>0</td>
+</tr>
+<tr>
+<td>postalService[nonPrior]</td>
+<td>Non-prior (standard) shipment</td>
+<td>NO</td>
+<td>boolean</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hook-optional">Hook (optional)</h3>
+<p>Each Intake request may specify a webhook URL and method to send status updates to</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hook[uri]</td>
+<td>URI where the webhook should be sent to</td>
+<td>YES, if webhook is desired</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>hook[method]</td>
+<td>HTTP method to be used for the webhook, must be either GET or POST</td>
+<td>YES, if webhook is desired</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>For more detailed information on the webhook functionality, refer to the <a href="../webhooks/">Webhooks</a> page.</p>
+<h2 id="multipart-intake-request-response">Multipart Intake Request Response</h2>
+<h3 id="success">Success</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP status code</td>
+<td>202 ACCEPTED</td>
+</tr>
+<tr>
+<td>JSON body</td>
+<td><code>{ "intake": integer, "cost": integer }</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="possible-error-codes">Possible error codes</h3>
+<table>
+<thead>
+<tr>
+<th>HTTP code</th>
+<th>Description</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>422</td>
+<td>Unprocessable Entity</td>
+<td>Request is invalid - either missing or incorrectly formatted parameters</td>
+</tr>
+<tr>
+<td>413</td>
+<td>Entity Too Large</td>
+<td>Request size exceeds limit</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>Access token is not valid or expired - refer to the web portal</td>
+</tr>
+</tbody>
+</table>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../estimate_json/" class="md-footer__link md-footer__link--prev" aria-label="Previous: JSON Intake Estimate" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              JSON Intake Estimate
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../estimate_multipart/" class="md-footer__link md-footer__link--next" aria-label="Next: Multipart Intake Estimate" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Multipart Intake Estimate
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+    
+  </body>
+</html>
