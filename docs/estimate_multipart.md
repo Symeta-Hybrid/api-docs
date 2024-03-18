@@ -2,17 +2,17 @@
 
 ## Endpoint and method
 
-| API version | v1                                             |
-|:------------|:-----------------------------------------------|
-| Endpoint    | base_url/api_version/intake/estimate/multipart |
-| Method      | POST                                           |
+| API version | v1                                               |
+|:------------|:-------------------------------------------------|
+| Endpoint    | `base_url/api_version/intake/estimate/multipart` |
+| Method      | `POST`                                           |
 
 ## Request header
 
-| Header        | Value            |
-|---------------|------------------|
-| Accept        | application/json |
-| Authorization | Bearer [token]   |
+| Header        | Value              |
+|---------------|--------------------|
+| Accept        | `application/json` |
+| Authorization | `Bearer [token]`   |
 
 ## Request body and document format
 

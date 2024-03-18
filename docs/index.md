@@ -17,6 +17,8 @@ Access tokens are managed by the users, via the API's web portal. These tokens a
 
 Upon expiration, the API will return an "Unauthenticated" error upon subsequent requests with said token.
 
+An implementation for refreshing tokens/retrieving a new access token via the API itself is under construction.
+
 ## Components
 
 ### Intake request

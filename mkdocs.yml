@@ -9,3 +9,13 @@ markdown_extensions:
   - pymdownx.superfences
   - admonition
   - pymdownx.details
+nav:
+  - Introduction: index.md
+  - Intakes:
+      - JSON Intake: intake_json.md
+      - JSON Intake Estimate: estimate_json.md
+      - Multipart Intake: intake_multipart.md
+      - Multipart Intake Estimate: estimate_multipart.md
+      - Intake Resource: resource_request.md
+  - Webhooks: webhooks.md
+  - Proof of Delivery: pods.md

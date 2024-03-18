@@ -2,17 +2,17 @@
 
 ## Endpoint and method
 
-| API version | v1                          |
-|:------------|:----------------------------|
-| Endpoint    | base_url/api_version/intake |
-| Method      | POST                        |
+| API version | v1                            |
+|:------------|:------------------------------|
+| Endpoint    | `base_url/api_version/intake` |
+| Method      | `POST`                        |
 
 ## Request header
 
-| Header        | Value            |
-|---------------|------------------|
-| Accept        | application/json |
-| Authorization | Bearer [token]   |
+| Header        | Value              |
+|---------------|--------------------|
+| Accept        | `application/json` |
+| Authorization | `Bearer [token]`   |
 
 ## Request body and document format
 All metadata and documents must be sent in a JSON format. PDF content must be sent in a base-64 encoded string.
@@ -197,7 +197,7 @@ Each Intake request may contain additional postal service instructions
 | postalService.prior      | Prior shipment                            | NO       | boolean | 0       |
 | postalService.nonPrior   | Non-prior (standard) shipment             | NO       | boolean | 1       |
 
-### hook (optional)
+### Hook (optional)
 Each Intake request may specify a webhook URL and method to send status updates to
 
 | Key         | Description                                                        | Required                   | Type   | Default |
@@ -205,27 +205,8 @@ Each Intake request may specify a webhook URL and method to send status updates 
 | hook.uri    | URI where the webhook should be sent to                            | YES, if webhook is desired | string |         |
 | hook.method | HTTP method to be used for the webhook, must be either GET or POST | YES, if webhook is desired | string |         |
 
+For more detailed information on the webhook functionality, refer to the [Webhooks](webhooks.md) page.
 
-The webhook payload will contain a JSON body with the following keys and header:
-
-| Header    | Value                                             |
-|-----------|---------------------------------------------------|
-| Signature | hash_hmac('sha256', 'payloadjson', 'webhook key') |
-
-Response body:
-``` json
-{
-    "intake": {id, integer},
-    "status": {intake status, string},
-    "data": {currently not implemented, empty string},
-}
-```
-Possible Intake statuses are:
-- Processed
-- Printing
-- Shipped
-
-If signature equals `hash_hmac('sha256','json response','webhook key')` the payload is valid.
 ## JSON Request Response
 
 ### Success
