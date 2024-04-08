@@ -50,8 +50,7 @@ address[unstructuredStreetNumberBox] => 'string',
 address[zip] => 'string',
 address[municipality] => 'string',
 address[countryIso2] => 'string max 2',
-address[company] => 'string',
-address[area] => 'string',
+address[company] => 'string'
 
 postalService[registered] => boolean,
 postalService[prior] => boolean,
@@ -137,7 +136,6 @@ Each Multipart Intake request must contain exactly one recipient with the requir
 | address\[zip]                         | Zip code                                                                | YES                                                                         | string |         |
 | address\[municipality]                | Municipality                                                            | YES                                                                         | string |         |
 | address\[countryIso2]                 | Country code, ISO 3611-2 format (2 characters)                          | YES                                                                         | string |         |
-| address\[area]                        | Area                                                                    | NO                                                                          | string |         |
 
 ### Correlation (required)
 

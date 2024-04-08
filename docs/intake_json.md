@@ -89,13 +89,12 @@ String GetBase64FileContent(string fileName, string path)
         "zip": "string",
         "municipality": "string",
         "countryIso2": "string two letters",
-        "company": "string",
-        "area": "string"
+        "company": "string"
     },
     "correlation": {
         "costId": "optional,string",
         "lang": "string nl,fr,en,de",
-        "returnAddress: "string, single line address"
+        "returnAddress": "string, single line address"
     },
     "postalService": {
         "registered": boolean default 0,
@@ -178,7 +177,6 @@ Each Intake request must contain exactly one recipient with the required address
 | address.zip                         | Zip code                                                                | YES                                                                     | string |         |
 | address.municipality                | Municipality                                                            | YES                                                                     | string |         |
 | address.countryIso2                 | Country code, ISO 3611-2 format (2 characters)                          | YES                                                                     | string |         |
-| address.area                        | Area                                                                    | NO                                                                      | string |         |
 
 ### Correlation (required)
 
