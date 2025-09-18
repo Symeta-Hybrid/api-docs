@@ -16,6 +16,7 @@ nav:
       - JSON Intake Estimate: estimate_json.md
       - Multipart Intake: intake_multipart.md
       - Multipart Intake Estimate: estimate_multipart.md
+      - Bulk Intake: intake_bulk.md
       - Intake Resource: resource_request.md
   - Webhooks: webhooks.md
   - Proof of Delivery: pods.md
