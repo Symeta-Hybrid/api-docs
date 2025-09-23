@@ -1,5 +1,10 @@
 # Bulk Intake Request
 
+!!! warning
+    This API endpoint is still in development, and only available on our UAT environment.
+
+    As such, this documentation is subject to change in the final version.
+
 ## Endpoint and method
 
 | API version | v1                                 |

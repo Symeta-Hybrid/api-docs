@@ -42,4 +42,4 @@ Base URL for UAT: `https://api-test.mailitwize.be/api/v1`
 
 These docs serve as a general introduction and manual for usage of the API. 
 
-For more detailed specs on all available API functionality, we suggest taking a look at our [Swagger](https://symeta-hybrid.github.io/api-swagger/).
+For more detailed specs on all available API functionality, we suggest also taking a look at our [Swagger](https://symeta-hybrid.github.io/api-swagger/).

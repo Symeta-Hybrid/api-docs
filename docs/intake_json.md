@@ -19,27 +19,28 @@ All metadata and documents must be sent in a JSON format. PDF content must be se
 
 Examples for achieving the correct format:
 
-### PHP
-``` php
-<?php
-$doc = base64_encode(file_get_contents(‘document.pdf’));
-```
-### C\#
-``` c#
-String GetBase64FileContent(string fileName, string path)
-{
-    var file = Directory.GetFiles(path, $"{fileName}.*").FirstOrDefault();
-    if (file != null) {
-        Byte[] bytes = File.ReadAllBytes(file);
-        String base64String = Convert.ToBase64String(bytes);
-        return base64String;
+!!! example
+    ### PHP
+    ``` php
+    <?php
+    $doc = base64_encode(file_get_contents(‘document.pdf’));
+    ```
+    ### C\#
+    ``` c#
+    String GetBase64FileContent(string fileName, string path)
+    {
+        var file = Directory.GetFiles(path, $"{fileName}.*").FirstOrDefault();
+        if (file != null) {
+            Byte[] bytes = File.ReadAllBytes(file);
+            String base64String = Convert.ToBase64String(bytes);
+            return base64String;
+        }
+    
+        return null;
     }
+    ```
 
-    return null;
-}
-```
-
-!!! attention
+!!! warning
     The maximum size of a JSON request is 4MB! If your payload exceeds this limit, 
     the server will return an HTTP error 413 (entity/payload too large). If you want to send larger documents, use the [Multipart Intake request](intake_multipart.md).
 
@@ -209,10 +210,10 @@ For more detailed information on the webhook functionality, refer to the [Webhoo
 
 ### Success
 
-| Key              | Value                                  |
-|------------------|----------------------------------------|
-| HTTP status code | 202 ACCEPTED                           |
-| JSON body        | { "intake": integer, "cost": integer } |
+| Key              | Value                                    |
+|------------------|------------------------------------------|
+| HTTP status code | 202 ACCEPTED                             |
+| JSON body        | `{ "intake": integer, "cost": integer }` |
 
 ### Possible error codes
 

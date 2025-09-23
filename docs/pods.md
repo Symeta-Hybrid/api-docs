@@ -2,7 +2,7 @@
 
 ## Introduction
 
-For registered mail, we have implemented bpost's Proof of Delivery API.
+For registered mail, we have implemented bpost's Proof of Delivery (POD) API.
 This allows you to track your registered mail, and optionally download the POD PDF document.
 
 ## Endpoint and method

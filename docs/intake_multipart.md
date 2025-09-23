@@ -65,11 +65,16 @@ requestType => 'multipart'
 
 ## Multipart Form Data Values
 ### Request type (required)
+
+!!! warning
+    This parameter cannot be omitted. It is mandatory for multipart intakes.
+
+
 Add parameter requestType and set value as 'multipart' to indicate it is a multipart form.
 
-| Key         | Description                       | Required          | Type   | Default |
-|-------------|-----------------------------------|-------------------|--------|---------|
-| requestType | Type of Intake request being sent | YES, if multipart | string |         |
+| Key         | Description                       | Required | Type   | Default |
+|-------------|-----------------------------------|----------|--------|---------|
+| requestType | Type of Intake request being sent | YES      | string |         |
 
 
 ### Document (required)
@@ -93,7 +98,8 @@ Each Multipart Intake request may contain multiple attachments, using a consecut
 | attachments\[n]\[multiplex] | Print setting of the attachment. 0 = recto, 1 = recto/verso               | NO                       | boolean     | 1       |
 
 ### Background (optional)
-Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page of the main document.
+Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page 
+of the main document.
 
 | Key                    | Description                                                               | Required                 | Type        | Default |
 |------------------------|---------------------------------------------------------------------------|--------------------------|-------------|---------|
@@ -111,7 +117,8 @@ Each Multipart Intake request may contain exactly one envelope.
 | envelope\[contents]  | Envelope PDF file                                                       | YES                    | file/binary |         |
 
 ### Carrier (optional) for C4 envelopes
-Each Multipart Intake request may contain exactly one carrier. An address carrier is only used when sending C4 envelopes, which use a separate sheet of paper to print the address on.
+Each Multipart Intake request may contain exactly one carrier. An address carrier is only used when sending C4 
+envelopes, which use a separate sheet of paper to print the address on.
 
 | Key                 | Description                                                            | Required              | Type        | Default |
 |---------------------|------------------------------------------------------------------------|-----------------------|-------------|---------|

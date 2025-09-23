@@ -5,10 +5,10 @@ A resource request returns a data collection, formatted as JSON.
 ### Resource Request Header
 
 
-| Header        | Value            |
-|---------------|------------------|
+| Header        | Value              |
+|---------------|--------------------|
 | Accept        | `application/json` |
-| Authorization | Bearer \[token\] |
+| Authorization | Bearer \[token\]   |
 
 ## Available Resource Collections
 ### Intake Resource

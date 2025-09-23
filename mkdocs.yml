@@ -12,11 +12,15 @@ markdown_extensions:
 nav:
   - Introduction: index.md
   - Intakes:
-      - JSON Intake: intake_json.md
-      - JSON Intake Estimate: estimate_json.md
-      - Multipart Intake: intake_multipart.md
-      - Multipart Intake Estimate: estimate_multipart.md
-      - Bulk Intake: intake_bulk.md
+      - Estimate:
+        - JSON Intake Estimate: estimate_json.md
+        - Multipart Intake Estimate: estimate_multipart.md
+      - Create:
+        - JSON Intake: intake_json.md
+        - Multipart Intake: intake_multipart.md
+        - Bulk Intake: intake_bulk.md
       - Intake Resource: resource_request.md
+      - Intake Preview: intake_preview.md
+      - Intake Delete: intake_delete.md
   - Webhooks: webhooks.md
   - Proof of Delivery: pods.md
