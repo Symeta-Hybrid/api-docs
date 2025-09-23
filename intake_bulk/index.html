@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../intake_json/">
+        <link rel="prev" href="../intake_multipart/">
       
       
-        <link rel="next" href="../intake_bulk/">
+        <link rel="next" href="../resource_request/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Multipart Intake - Mail-IT-Wize API</title>
+        <title>Bulk Intake - Mail-IT-Wize API</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#multipart-intake-request" class="md-skip">
+        <a href="#bulk-intake-request" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Multipart Intake
+              Bulk Intake
             
           </span>
         </div>
@@ -408,6 +408,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../intake_multipart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multipart Intake
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -425,7 +448,7 @@
   
   
   <span class="md-ellipsis">
-    Multipart Intake
+    Bulk Intake
     
   </span>
   
@@ -438,7 +461,7 @@
   
   
   <span class="md-ellipsis">
-    Multipart Intake
+    Bulk Intake
     
   </span>
   
@@ -459,15 +482,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#multipart-vs-json" class="md-nav__link">
-    <span class="md-ellipsis">
-      Multipart vs JSON
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#endpoint-and-method" class="md-nav__link">
@@ -507,18 +521,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#request-type-required" class="md-nav__link">
+  <a href="#document-required" class="md-nav__link">
     <span class="md-ellipsis">
-      Request type (required)
+      Document (required)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#document-required" class="md-nav__link">
+  <a href="#address-required" class="md-nav__link">
     <span class="md-ellipsis">
-      Document (required)
+      Address (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-string-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Split string (required)
     </span>
   </a>
   
@@ -561,15 +584,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#address-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Address (required)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#correlation-required" class="md-nav__link">
     <span class="md-ellipsis">
       Correlation (required)
@@ -579,18 +593,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#postal-service-optional-default-bpost-non-prior" class="md-nav__link">
+  <a href="#postal-service" class="md-nav__link">
     <span class="md-ellipsis">
-      Postal service (optional, default bpost non-prior)
+      Postal service
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#hook-optional" class="md-nav__link">
+  <a href="#hook-required" class="md-nav__link">
     <span class="md-ellipsis">
-      Hook (optional)
+      Hook (required)
     </span>
   </a>
   
@@ -621,11 +635,77 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Webhooks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Webhooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-split-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document split result
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address-validation-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Address validation errors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#possible-error-codes" class="md-nav__link">
     <span class="md-ellipsis">
       Possible error codes
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possible-error-webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Possible error webhooks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Possible error webhooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pdf-document-is-not-readable" class="md-nav__link">
+    <span class="md-ellipsis">
+      PDF document is not readable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amount-of-split-documents-does-not-match-count_recipients" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amount of split documents does not match count_recipients
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -638,29 +718,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../intake_bulk/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Bulk Intake
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -821,15 +878,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#multipart-vs-json" class="md-nav__link">
-    <span class="md-ellipsis">
-      Multipart vs JSON
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#endpoint-and-method" class="md-nav__link">
     <span class="md-ellipsis">
       Endpoint and method
@@ -867,18 +915,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#request-type-required" class="md-nav__link">
+  <a href="#document-required" class="md-nav__link">
     <span class="md-ellipsis">
-      Request type (required)
+      Document (required)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#document-required" class="md-nav__link">
+  <a href="#address-required" class="md-nav__link">
     <span class="md-ellipsis">
-      Document (required)
+      Address (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-string-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Split string (required)
     </span>
   </a>
   
@@ -921,15 +978,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#address-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Address (required)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#correlation-required" class="md-nav__link">
     <span class="md-ellipsis">
       Correlation (required)
@@ -939,18 +987,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#postal-service-optional-default-bpost-non-prior" class="md-nav__link">
+  <a href="#postal-service" class="md-nav__link">
     <span class="md-ellipsis">
-      Postal service (optional, default bpost non-prior)
+      Postal service
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#hook-optional" class="md-nav__link">
+  <a href="#hook-required" class="md-nav__link">
     <span class="md-ellipsis">
-      Hook (optional)
+      Hook (required)
     </span>
   </a>
   
@@ -981,11 +1029,77 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Webhooks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Webhooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-split-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document split result
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address-validation-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Address validation errors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#possible-error-codes" class="md-nav__link">
     <span class="md-ellipsis">
       Possible error codes
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#possible-error-webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Possible error webhooks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Possible error webhooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pdf-document-is-not-readable" class="md-nav__link">
+    <span class="md-ellipsis">
+      PDF document is not readable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amount-of-split-documents-does-not-match-count_recipients" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amount of split documents does not match count_recipients
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1010,10 +1124,12 @@
 
 
 
-<h1 id="multipart-intake-request">Multipart Intake Request</h1>
-<h2 id="multipart-vs-json">Multipart vs JSON</h2>
-<p>Using a Multipart Request allows to upload larger documents to the API. However, we do advise to use the JSON Intake Request as much as possible and avoid large filesizes.
-With the Multipart Request, the 4MB filesize limit does not apply. For the most part, the requests are very similar.</p>
+<h1 id="bulk-intake-request">Bulk Intake Request</h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This API endpoint is still in development, and only available on our UAT environment.</p>
+<p>As such, this documentation is subject to change in the final version.</p>
+</div>
 <h2 id="endpoint-and-method">Endpoint and method</h2>
 <table>
 <thead>
@@ -1025,7 +1141,7 @@ With the Multipart Request, the 4MB filesize limit does not apply. For the most 
 <tbody>
 <tr>
 <td style="text-align: left;">Endpoint</td>
-<td style="text-align: left;"><code>base_url/api_version/intake/multipart</code></td>
+<td style="text-align: left;"><code>base_url/api_version/intake/bulk</code></td>
 </tr>
 <tr>
 <td style="text-align: left;">Method</td>
@@ -1058,72 +1174,42 @@ With the Multipart Request, the 4MB filesize limit does not apply. For the most 
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>document[contents] =&gt; file,
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>document[multiplex] =&gt; boolean (default 1),
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>attachments[0][name] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>attachments[0][mime-type] =&gt; &#39;mime-type&#39;,
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>attachments[0][contents] =&gt; file,
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>attachments[1][name] =&gt; ...,
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>background[name] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>background[mime-type] =&gt; &#39;mime-type&#39;,
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>background[contents] =&gt; file,
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>envelope[name] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>envelope[mime-type] =&gt; &#39;mime-type&#39;,
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>envelope[contents] =&gt; file,
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>address[firstname] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>address[lastname] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>address[fullname] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>address[street] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>address[houseNumber] =&gt; integer,
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>address[houseNumberAlpha] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>address[box] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>address[unstructuredStreetNumberBox] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>address[zip] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>address[municipality] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>address[countryIso2] =&gt; &#39;string max 2&#39;,
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>address[company] =&gt; &#39;string&#39;
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>postalService[registered] =&gt; boolean,
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>postalService[prior] =&gt; boolean,
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>postalService[nonPrior] =&gt; boolean,
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>correlation[costId] =&gt; &#39;string,optional&#39;,
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>correlation[lang] =&gt; &#39;required, nl,en or fr&#39;,
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>correlation[returnAddress] =&gt; &#39;optional string, single line return address&#39;,
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>requestType =&gt; &#39;multipart&#39;
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>address[coordinates][startX] =&gt; integer,
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>address[coordinates][startY] =&gt; integer,
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>address[coordinates][width] =&gt; integer,
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>address[coordinates][height] =&gt; integer,
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>splitString[coordinates][startX] =&gt; integer,
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>splitString[coordinates][startY] =&gt; integer,
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>splitString[coordinates][width] =&gt; integer,
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>splitString[coordinates][height] =&gt; integer,
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>splitString[text] =&gt; string,
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>attachments[0][name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>attachments[0][mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>attachments[0][contents] =&gt; file,
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>attachments[1][name] =&gt; ...,
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>background[name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>background[mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>background[contents] =&gt; file,
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>envelope[name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>envelope[mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>envelope[contents] =&gt; file,
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>postalService[registered] =&gt; boolean,
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>postalService[prior] =&gt; boolean,
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>postalService[nonPrior] =&gt; boolean,
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>correlation[costId] =&gt; &#39;string,optional&#39;,
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>correlation[lang] =&gt; &#39;required, nl,en or fr&#39;,
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>correlation[returnAddress] =&gt; &#39;optional string, single line return address&#39;,
 </code></pre></div>
 <h2 id="multipart-form-data-values">Multipart Form Data Values</h2>
-<h3 id="request-type-required">Request type (required)</h3>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This parameter cannot be omitted. It is mandatory for multipart intakes.</p>
-</div>
-<p>Add parameter requestType and set value as 'multipart' to indicate it is a multipart form.</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>requestType</td>
-<td>Type of Intake request being sent</td>
-<td>YES</td>
-<td>string</td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h3 id="document-required">Document (required)</h3>
-<p>Each Multipart Intake request must contain exactly one main document.</p>
+<p>Each Bulk Intake request must contain exactly one main document. The document is a PDF file that contains 1 or more recipients.</p>
 <table>
 <thead>
 <tr>
@@ -1165,8 +1251,105 @@ With the Multipart Request, the 4MB filesize limit does not apply. For the most 
 </tr>
 </tbody>
 </table>
+<h3 id="address-required">Address (required)</h3>
+<p>Each Bulk Intake request must contain exactly one address location.
+Coordinates must be specified in points (pts).
+An address must be present on each page that designates a new recipient, along with a split string (see below).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>address[coordinates][startX]</td>
+<td>Horizontal starting point of the address box</td>
+<td>YES</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>address[coordinates][startY]</td>
+<td>Vertical starting point of the address box</td>
+<td>YES</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>address[coordinates][width]</td>
+<td>Width of the address box</td>
+<td>YES</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>address[coordinates][height]</td>
+<td>Height of the address box</td>
+<td>YES</td>
+<td>integer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="split-string-required">Split string (required)</h3>
+<p>Each Bulk Intake request must contain exactly one split string location and text.
+Coordinates must be specified in points (pts).
+The text in splitString[text] must appear once, on each page that designates a new recipient.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>splitString[coordinates][startX]</td>
+<td>Horizontal starting point of the split string location</td>
+<td>YES</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>splitString[coordinates][startY]</td>
+<td>Vertical starting point of the split string location</td>
+<td>YES</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>splitString[coordinates][width]</td>
+<td>Width of the split string location</td>
+<td>YES</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>splitString[coordinates][height]</td>
+<td>Height of the split string location</td>
+<td>YES</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>splitString[text]</td>
+<td>The unique text per recipient to split the PDF document on</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="attachments-optional">Attachments (optional)</h3>
-<p>Each Multipart Intake request may contain multiple attachments, using a consecutive numerical index (see JSON structure).</p>
+<p>Each Bulk Intake request may contain multiple attachments, using a consecutive numerical index (see JSON structure).</p>
 <table>
 <thead>
 <tr>
@@ -1209,8 +1392,7 @@ With the Multipart Request, the 4MB filesize limit does not apply. For the most 
 </tbody>
 </table>
 <h3 id="background-optional">Background (optional)</h3>
-<p>Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page 
-of the main document.</p>
+<p>Each Bulk Intake request may contain exactly one background. The background will only be printed on the first page of the main document.</p>
 <table>
 <thead>
 <tr>
@@ -1246,7 +1428,7 @@ of the main document.</p>
 </tbody>
 </table>
 <h3 id="envelope-optional">Envelope (optional)</h3>
-<p>Each Multipart Intake request may contain exactly one envelope.</p>
+<p>Each Bulk Intake request may contain exactly one envelope.</p>
 <table>
 <thead>
 <tr>
@@ -1282,8 +1464,7 @@ of the main document.</p>
 </tbody>
 </table>
 <h3 id="carrier-optional-for-c4-envelopes">Carrier (optional) for C4 envelopes</h3>
-<p>Each Multipart Intake request may contain exactly one carrier. An address carrier is only used when sending C4 
-envelopes, which use a separate sheet of paper to print the address on.</p>
+<p>Each Bulk Intake request may contain exactly one carrier. An address carrier is only used when sending C4 envelopes, which use a separate sheet of paper to print the address on.</p>
 <table>
 <thead>
 <tr>
@@ -1318,106 +1499,8 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="address-required">Address (required)</h3>
-<p>Each Multipart Intake request must contain exactly one recipient with the required address parts.</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>address[firstname]</td>
-<td>Recipient's first name</td>
-<td>YES, if address[fullname] and address[company] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[lastname]</td>
-<td>Recipient's last name</td>
-<td>YES, if address[fullname] and address[company] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[fullname]</td>
-<td>Recipient's full name</td>
-<td>YES, if address[firstname], address.lastname and address[company] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[company]</td>
-<td>Company name</td>
-<td>YES, if address[firstname], address.lastname and address[fullname] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[street]</td>
-<td>Street name without number</td>
-<td>YES, if address[unstructuredStreetNumberBox] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[houseNumber]</td>
-<td>House number</td>
-<td>YES, if address[unstructuredStreetNumberBox] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[houseNumberAlpha]</td>
-<td>House number alphanumeric, will be placed after houseNumber on envelope</td>
-<td>NO</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[box]</td>
-<td>Box number</td>
-<td>NO</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[unstructuredStreetNumberBox]</td>
-<td>Unstructured street, house number and box</td>
-<td>YES, if address[street] and address[houseNumber] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[zip]</td>
-<td>Zip code</td>
-<td>YES</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[municipality]</td>
-<td>Municipality</td>
-<td>YES</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[countryIso2]</td>
-<td>Country code, ISO 3611-2 format (2 characters)</td>
-<td>YES</td>
-<td>string</td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h3 id="correlation-required">Correlation (required)</h3>
+<p>Each Bulk Intake request may contain additional </p>
 <table>
 <thead>
 <tr>
@@ -1452,8 +1535,8 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="postal-service-optional-default-bpost-non-prior">Postal service (optional, default bpost non-prior)</h3>
-<p>Each Intake request may contain additional postal service instructions</p>
+<h3 id="postal-service">Postal service</h3>
+<p>Each Bulk Intake request may contain additional postal service instructions</p>
 <table>
 <thead>
 <tr>
@@ -1488,8 +1571,9 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="hook-optional">Hook (optional)</h3>
-<p>Each Intake request may specify a webhook URL and method to send status updates to</p>
+<h3 id="hook-required">Hook (required)</h3>
+<p>Each Bulk Intake request must specify a webhook URL and method to send status 
+updates and possible address validation errors to</p>
 <table>
 <thead>
 <tr>
@@ -1520,24 +1604,71 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 <p>For more detailed information on the webhook functionality, refer to the <a href="../webhooks/">Webhooks</a> page.</p>
 <h2 id="multipart-intake-request-response">Multipart Intake Request Response</h2>
 <h3 id="success">Success</h3>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>HTTP status code</td>
-<td>202 ACCEPTED</td>
-</tr>
-<tr>
-<td>JSON body</td>
-<td><code>{ "intake": integer, "cost": integer }</code></td>
-</tr>
-</tbody>
-</table>
+<p>A successful request will receive the following JSON response (with an HTTP 200 status code):</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&quot;bulk_intake_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;received&quot;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">}</span>
+</code></pre></div>
+This indicates the request was well-formed. The file will then be further processed, and updates will be sent via webhooks.</p>
+<h3 id="webhooks">Webhooks</h3>
+<h4 id="document-split-result">Document split result</h4>
+<p>After a bulk PDF document has been split successfully, we will send back a webhook detailing how many recipients were parsed, and on which pages they were found.</p>
+<p>The cost of the entire bulk will also be included, in a <code>float</code> data type.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;bulk_intake_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;cost&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5.000&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;created_intakes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="nt">&quot;intake_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1948</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="nt">&quot;first_page&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">      </span><span class="nt">&quot;last_page&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="nt">&quot;total_recipients&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">}</span>
+</code></pre></div>
+<h4 id="address-validation-errors">Address validation errors</h4>
+<p>If any of the parsed addresses in a bulk intake fail validation, these will be sent in a bundled webhook.
+This webhook will contain the following:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;bulk_intake_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rejected&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="nt">&quot;first_page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="nt">&quot;last_page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="nt">&quot;errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="s2">&quot;houses&quot;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">      </span><span class="p">],</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">      </span><span class="nt">&quot;parsed_text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Kerkstraat 10\n9800 Deinze&quot;</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">      </span><span class="nt">&quot;first_page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">      </span><span class="nt">&quot;last_page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">      </span><span class="nt">&quot;errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">        </span><span class="s2">&quot;roads&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="s2">&quot;postcode&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">        </span><span class="s2">&quot;road&quot;</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">      </span><span class="p">],</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">      </span><span class="nt">&quot;parsed_text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John Doe\n Deinze&quot;</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">      </span><span class="nt">&quot;first_page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">      </span><span class="nt">&quot;last_page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">      </span><span class="nt">&quot;errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">        </span><span class="s2">&quot;city&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">        </span><span class="s2">&quot;postcode&quot;</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">      </span><span class="p">],</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">      </span><span class="nt">&quot;parsed_text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John Doe\nKerkstraat 25&quot;</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;address_validation_errors&quot;</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="p">}</span>
+</code></pre></div>
+In the <code>data</code> property, we will find all the addresses that failed. The webhook will always include which component of the address caused the failure.
+<code>parsedText</code> will always contain the raw text that was parsed on the document.</p>
+<p>Note: for documents that fail address validation, we will <strong>not</strong> persist the Intake model to the database. These are only kept in memory at runtime to provide feedback.</p>
 <h3 id="possible-error-codes">Possible error codes</h3>
 <table>
 <thead>
@@ -1551,7 +1682,7 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 <tr>
 <td>422</td>
 <td>Unprocessable Entity</td>
-<td>Request is invalid - either missing or incorrectly formatted parameters</td>
+<td>Request is invalid - either missing or incorrectly formatted parameters.<br/>Refer to validation errors for specifics.</td>
 </tr>
 <tr>
 <td>413</td>
@@ -1565,6 +1696,22 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="possible-error-webhooks">Possible error webhooks</h3>
+<h4 id="pdf-document-is-not-readable">PDF document is not readable</h4>
+<p>If the transferred PDF document cannot be read, this error will be returned via webhook.</p>
+<p>This can occur if the PDF file has been flattened/rasterized, or if the file format has been corrupted.</p>
+<h4 id="amount-of-split-documents-does-not-match-count_recipients">Amount of split documents does not match count_recipients</h4>
+<p>If the indicated expected amount of recipients does not match the amount of documents we have after splitting using the identifier, this error will be returned via webhook.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="nt">&quot;count_recipients&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="nt">&quot;split_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;indicatedCountNotEqualsSplitCount&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nt">&quot;error_message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Indicated number of recipients does not match the number of intakes. This usually indicates an issue with the splitting identifier.&quot;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">}</span>
+</code></pre></div>
 
 
 
