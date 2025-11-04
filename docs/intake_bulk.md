@@ -38,6 +38,8 @@ splitString[coordinates][width] => integer,
 splitString[coordinates][height] => integer,
 splitString[text] => string,
 
+count_recipients => integer,
+
 attachments[0][name] => 'string',
 attachments[0][mime-type] => 'mime-type',
 attachments[0][contents] => file,
@@ -96,6 +98,15 @@ The text in splitString[text] must appear once, on each page that designates a n
 | splitString\[coordinates][width]  | Width of the split string location                         | YES      | integer |         |
 | splitString\[coordinates][height] | Height of the split string location                        | YES      | integer |         |
 | splitString\[text]                | The unique text per recipient to split the PDF document on |          |         |         |
+
+### Count recipients (required)
+Each Bulk Intake request must contain the expected number of recipients. This field will be used to validate against the
+number of documents that were split based on the splitString parameters.
+
+| Key              | Description                                   | Required | Type    | Default |
+|------------------|-----------------------------------------------|----------|---------|---------|
+| count_recipients | Amount of expected recipients after splitting | Yes      | integer |         |
+
 
 ### Attachments (optional)
 Each Bulk Intake request may contain multiple attachments, using a consecutive numerical index (see JSON structure).
@@ -265,6 +276,7 @@ If the indicated expected amount of recipients does not match the amount of docu
 
 ```json
 {
+    "bulk_intake_id": 145,
     "status": "error",
     "data": {
         "count_recipients": 2,
