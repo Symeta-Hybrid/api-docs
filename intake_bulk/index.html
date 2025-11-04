@@ -548,6 +548,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#count-recipients-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Count recipients (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#attachments-optional" class="md-nav__link">
     <span class="md-ellipsis">
       Attachments (optional)
@@ -942,6 +951,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#count-recipients-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Count recipients (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#attachments-optional" class="md-nav__link">
     <span class="md-ellipsis">
       Attachments (optional)
@@ -1185,27 +1203,29 @@
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>splitString[coordinates][height] =&gt; integer,
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>splitString[text] =&gt; string,
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>attachments[0][name] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>attachments[0][mime-type] =&gt; &#39;mime-type&#39;,
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>attachments[0][contents] =&gt; file,
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>attachments[1][name] =&gt; ...,
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>count_recipients =&gt; integer,
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>attachments[0][name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>attachments[0][mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>attachments[0][contents] =&gt; file,
 <a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>background[name] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>background[mime-type] =&gt; &#39;mime-type&#39;,
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>background[contents] =&gt; file,
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>envelope[name] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>envelope[mime-type] =&gt; &#39;mime-type&#39;,
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>envelope[contents] =&gt; file,
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>postalService[registered] =&gt; boolean,
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>postalService[prior] =&gt; boolean,
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>postalService[nonPrior] =&gt; boolean,
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>correlation[costId] =&gt; &#39;string,optional&#39;,
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>correlation[lang] =&gt; &#39;required, nl,en or fr&#39;,
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>correlation[returnAddress] =&gt; &#39;optional string, single line return address&#39;,
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>attachments[1][name] =&gt; ...,
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>background[name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>background[mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>background[contents] =&gt; file,
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>envelope[name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>envelope[mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>envelope[contents] =&gt; file,
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>postalService[registered] =&gt; boolean,
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>postalService[prior] =&gt; boolean,
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>postalService[nonPrior] =&gt; boolean,
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>correlation[costId] =&gt; &#39;string,optional&#39;,
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>correlation[lang] =&gt; &#39;required, nl,en or fr&#39;,
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>correlation[returnAddress] =&gt; &#39;optional string, single line return address&#39;,
 </code></pre></div>
 <h2 id="multipart-form-data-values">Multipart Form Data Values</h2>
 <h3 id="document-required">Document (required)</h3>
@@ -1344,6 +1364,29 @@ The text in splitString[text] must appear once, on each page that designates a n
 <td>The unique text per recipient to split the PDF document on</td>
 <td></td>
 <td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="count-recipients-required">Count recipients (required)</h3>
+<p>Each Bulk Intake request must contain the expected number of recipients. This field will be used to validate against the
+number of documents that were split based on the splitString parameters.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count_recipients</td>
+<td>Amount of expected recipients after splitting</td>
+<td>Yes</td>
+<td>integer</td>
 <td></td>
 </tr>
 </tbody>
@@ -1703,14 +1746,15 @@ In the <code>data</code> property, we will find all the addresses that failed. T
 <h4 id="amount-of-split-documents-does-not-match-count_recipients">Amount of split documents does not match count_recipients</h4>
 <p>If the indicated expected amount of recipients does not match the amount of documents we have after splitting using the identifier, this error will be returned via webhook.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="nt">&quot;count_recipients&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="nt">&quot;split_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="p">},</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;indicatedCountNotEqualsSplitCount&quot;</span><span class="p">,</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nt">&quot;error_message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Indicated number of recipients does not match the number of intakes. This usually indicates an issue with the splitting identifier.&quot;</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">}</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nt">&quot;bulk_intake_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="nt">&quot;count_recipients&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="nt">&quot;split_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;indicatedCountNotEqualsSplitCount&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="nt">&quot;error_message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Indicated number of recipients does not match the number of intakes. This usually indicates an issue with the splitting identifier.&quot;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="p">}</span>
 </code></pre></div>
 
 
