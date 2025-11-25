@@ -97,7 +97,11 @@ The text in splitString[text] must appear once, on each page that designates a n
 | splitString\[coordinates][startY] | Vertical starting point of the split string location       | YES      | integer |         |
 | splitString\[coordinates][width]  | Width of the split string location                         | YES      | integer |         |
 | splitString\[coordinates][height] | Height of the split string location                        | YES      | integer |         |
-| splitString\[text]                | The unique text per recipient to split the PDF document on |          |         |         |
+| splitString\[text]                | The unique text per recipient to split the PDF document on |          | string  |         |
+
+!!! attention
+    If `splitString[text]` is not present, the text that is present at the given coordinates on the first page of the 
+    document will be set as `splitString[text]` and used to split the document.
 
 ### Count recipients (required)
 Each Bulk Intake request must contain the expected number of recipients. This field will be used to validate against the
