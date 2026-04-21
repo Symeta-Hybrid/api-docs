@@ -736,15 +736,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#multipart-vs-json" class="md-nav__link">
-    <span class="md-ellipsis">
-      Multipart vs JSON
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#endpoint-and-method" class="md-nav__link">
     <span class="md-ellipsis">
       Endpoint and method
@@ -800,6 +791,33 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#recipient-identification-number-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recipient identification number (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subject-for-ebox-message-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subject for eBox message (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Address (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#attachments-optional" class="md-nav__link">
     <span class="md-ellipsis">
       Attachments (optional)
@@ -830,33 +848,6 @@
   <a href="#carrier-optional-for-c4-envelopes" class="md-nav__link">
     <span class="md-ellipsis">
       Carrier (optional) for C4 envelopes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recipient-identification-number-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Recipient identification number (required)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#subject-for-ebox-message-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Subject for eBox message (required)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#address-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Address (required)
     </span>
   </a>
   
@@ -1031,15 +1022,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#multipart-vs-json" class="md-nav__link">
-    <span class="md-ellipsis">
-      Multipart vs JSON
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#endpoint-and-method" class="md-nav__link">
     <span class="md-ellipsis">
       Endpoint and method
@@ -1095,6 +1077,33 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#recipient-identification-number-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recipient identification number (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subject-for-ebox-message-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subject for eBox message (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Address (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#attachments-optional" class="md-nav__link">
     <span class="md-ellipsis">
       Attachments (optional)
@@ -1125,33 +1134,6 @@
   <a href="#carrier-optional-for-c4-envelopes" class="md-nav__link">
     <span class="md-ellipsis">
       Carrier (optional) for C4 envelopes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recipient-identification-number-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Recipient identification number (required)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#subject-for-ebox-message-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Subject for eBox message (required)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#address-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Address (required)
     </span>
   </a>
   
@@ -1248,9 +1230,14 @@
 
 
 <h1 id="ebox-enterprise-multipart-intake-request">eBox Enterprise Multipart Intake Request</h1>
-<h2 id="multipart-vs-json">Multipart vs JSON</h2>
-<p>Using a Multipart Request allows to upload larger documents to the API. However, we do advise to use the JSON Intake Request as much as possible and avoid large filesizes.
-With the Multipart Request, the 4MB filesize limit does not apply. For the most part, the requests are very similar.</p>
+<div class="admonition info">
+<p class="admonition-title">Eligibility and access</p>
+<p>If you wish to make use of our eBox Enterprise service, please contact us at <a href="mailto:support@mailitwize.be">support@mailitwize.be</a>.</p>
+<p>Before you can start using this endpoint to send messages to eBox a check needs to be done by the Belgian Social Security (the eBox enterprise service provider) 
+to determine if your organisation is eligible for sending eBox messages.</p>
+<p>If you are eligible, we will go through the process together to complete the audit process and enable eBox functionality.</p>
+<p>Do note that Citizen and Enterprise have different providers, and have separate procedures to be completed first.</p>
+</div>
 <h2 id="endpoint-and-method">Endpoint and method</h2>
 <table>
 <thead>
@@ -1295,48 +1282,53 @@ With the Multipart Request, the 4MB filesize limit does not apply. For the most 
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>document[contents] =&gt; file,
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>document[multiplex] =&gt; boolean (default 1),
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>attachments[0][name] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>attachments[0][mime-type] =&gt; &#39;mime-type&#39;,
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>attachments[0][contents] =&gt; file,
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>attachments[1][name] =&gt; ...,
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>background[name] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>background[mime-type] =&gt; &#39;mime-type&#39;,
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>background[contents] =&gt; file,
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>envelope[name] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>envelope[mime-type] =&gt; &#39;mime-type&#39;,
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>envelope[contents] =&gt; file,
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>address[firstname] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>address[lastname] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>address[fullname] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>address[street] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>address[houseNumber] =&gt; integer,
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>address[houseNumberAlpha] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>address[box] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>address[unstructuredStreetNumberBox] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>address[zip] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>address[municipality] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>address[countryIso2] =&gt; &#39;string max 2&#39;,
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>address[company] =&gt; &#39;string&#39;
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>postalService[registered] =&gt; boolean,
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>postalService[prior] =&gt; boolean,
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>postalService[nonPrior] =&gt; boolean,
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>hook[uri] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>hook[method] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>hook_uri =&gt; &#39;string&#39;,
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>hook_method =&gt; &#39;string&#39;,
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>correlation[costId] =&gt; &#39;string,optional&#39;,
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>correlation[lang] =&gt; &#39;required, nl,en or fr&#39;,
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>correlation[returnAddress] =&gt; &#39;optional string, single line return address&#39;,
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>requestType =&gt; &#39;multipart&#39;
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>recipient_identification_number =&gt; &#39;string, length 10&#39;,
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>subject_nl =&gt; &#39;string&#39;,
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>subject_en =&gt; &#39;string&#39;,
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>subject_fr =&gt; &#39;string&#39;,
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>address[firstname] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>address[lastname] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>address[fullname] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>address[street] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>address[houseNumber] =&gt; integer,
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>address[houseNumberAlpha] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>address[box] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>address[unstructuredStreetNumberBox] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>address[zip] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>address[municipality] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>address[countryIso2] =&gt; &#39;string max 2&#39;,
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>address[company] =&gt; &#39;string&#39;
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>attachments[0][name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>attachments[0][mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>attachments[0][contents] =&gt; file,
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>attachments[1][name] =&gt; ...,
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>background[name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>background[mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>background[contents] =&gt; file,
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>envelope[name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>envelope[mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>envelope[contents] =&gt; file,
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>postalService[registered] =&gt; boolean,
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>postalService[prior] =&gt; boolean,
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>postalService[nonPrior] =&gt; boolean,
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>hook[uri] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>hook[method] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>hook_uri =&gt; &#39;string&#39;,
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>hook_method =&gt; &#39;string&#39;,
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>correlation[costId] =&gt; &#39;string,optional&#39;,
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>correlation[lang] =&gt; &#39;required, nl,en or fr&#39;,
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>correlation[returnAddress] =&gt; &#39;optional string, single line return address&#39;,
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>requestType =&gt; &#39;multipart&#39;
 </code></pre></div>
 <h2 id="multipart-form-data-values">Multipart Form Data Values</h2>
 <h3 id="request-type-required">Request type (required)</h3>
@@ -1405,6 +1397,131 @@ With the Multipart Request, the 4MB filesize limit does not apply. For the most 
 <td>NO</td>
 <td>boolean</td>
 <td>1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recipient-identification-number-required">Recipient identification number (required)</h3>
+<p>Each Intake request must contain exactly one identification number. This is the company registration number of the recipient enterprise.
+The string provided must be exactly 10 characters, contain only numeric characters and starts with either a 0 or 1. This is not to be confused with the VAT number.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>recipient_identification_number</td>
+<td>Company registration number of the recipient enterprise</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="subject-for-ebox-message-required">Subject for eBox message (required)</h3>
+<p>Each Intake request must contain at least one localised subject.</p>
+<p>If multiple localisations are provided, the first one present will be chosen in this order: NL &gt; FR &gt; DE</p>
+<h3 id="address-required">Address (required)</h3>
+<p>Each Multipart Intake request must contain exactly one recipient with the required address parts.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>address[firstname]</td>
+<td>Recipient's first name</td>
+<td>YES, if address[fullname] and address[company] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[lastname]</td>
+<td>Recipient's last name</td>
+<td>YES, if address[fullname] and address[company] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[fullname]</td>
+<td>Recipient's full name</td>
+<td>YES, if address[firstname], address.lastname and address[company] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[company]</td>
+<td>Company name</td>
+<td>YES, if address[firstname], address.lastname and address[fullname] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[street]</td>
+<td>Street name without number</td>
+<td>YES, if address[unstructuredStreetNumberBox] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[houseNumber]</td>
+<td>House number</td>
+<td>YES, if address[unstructuredStreetNumberBox] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[houseNumberAlpha]</td>
+<td>House number alphanumeric, will be placed after houseNumber on envelope</td>
+<td>NO</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[box]</td>
+<td>Box number</td>
+<td>NO</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[unstructuredStreetNumberBox]</td>
+<td>Unstructured street, house number and box</td>
+<td>YES, if address[street] and address[houseNumber] absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[zip]</td>
+<td>Zip code</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[municipality]</td>
+<td>Municipality</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>address[countryIso2]</td>
+<td>Country code, ISO 3611-2 format (2 characters)</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1561,32 +1678,6 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="recipient-identification-number-required">Recipient identification number (required)</h3>
-<p>Each Intake request must contain exactly one identification number. This is the company registration number of the recipient enterprise.
-The string provided must be exactly 10 characters, contain only numeric characters and starts with either a 0 or 1. This is not to be confused with the VAT number.</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>recipient_identification_number</td>
-<td>Company registration number of the recipient enterprise</td>
-<td>YES</td>
-<td>string</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="subject-for-ebox-message-required">Subject for eBox message (required)</h3>
-<p>Each Intake request must contain at least one localised subject.</p>
-<p>If multiple localisations are provided, the first one present will be chosen in this order: NL &gt; FR &gt; DE</p>
 <table>
 <thead>
 <tr>
@@ -1616,105 +1707,6 @@ The string provided must be exactly 10 characters, contain only numeric characte
 <td>subject_de</td>
 <td>Message subject in German</td>
 <td>YES, if subject_nl AND subject_fr absent</td>
-<td>string</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="address-required">Address (required)</h3>
-<p>Each Multipart Intake request must contain exactly one recipient with the required address parts.</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>address[firstname]</td>
-<td>Recipient's first name</td>
-<td>YES, if address[fullname] and address[company] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[lastname]</td>
-<td>Recipient's last name</td>
-<td>YES, if address[fullname] and address[company] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[fullname]</td>
-<td>Recipient's full name</td>
-<td>YES, if address[firstname], address.lastname and address[company] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[company]</td>
-<td>Company name</td>
-<td>YES, if address[firstname], address.lastname and address[fullname] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[street]</td>
-<td>Street name without number</td>
-<td>YES, if address[unstructuredStreetNumberBox] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[houseNumber]</td>
-<td>House number</td>
-<td>YES, if address[unstructuredStreetNumberBox] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[houseNumberAlpha]</td>
-<td>House number alphanumeric, will be placed after houseNumber on envelope</td>
-<td>NO</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[box]</td>
-<td>Box number</td>
-<td>NO</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[unstructuredStreetNumberBox]</td>
-<td>Unstructured street, house number and box</td>
-<td>YES, if address[street] and address[houseNumber] absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[zip]</td>
-<td>Zip code</td>
-<td>YES</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[municipality]</td>
-<td>Municipality</td>
-<td>YES</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>address[countryIso2]</td>
-<td>Country code, ISO 3611-2 format (2 characters)</td>
-<td>YES</td>
 <td>string</td>
 <td></td>
 </tr>

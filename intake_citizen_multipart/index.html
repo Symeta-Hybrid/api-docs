@@ -667,15 +667,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#multipart-vs-json" class="md-nav__link">
-    <span class="md-ellipsis">
-      Multipart vs JSON
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#endpoint-and-method" class="md-nav__link">
     <span class="md-ellipsis">
       Endpoint and method
@@ -731,6 +722,33 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#recipient-identification-number-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recipient identification number (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subject-for-ebox-message-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subject for eBox message (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Address (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#attachments-optional" class="md-nav__link">
     <span class="md-ellipsis">
       Attachments (optional)
@@ -761,33 +779,6 @@
   <a href="#carrier-optional-for-c4-envelopes" class="md-nav__link">
     <span class="md-ellipsis">
       Carrier (optional) for C4 envelopes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recipient-identification-number-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Recipient identification number (required)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#subject-for-ebox-message-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Subject for eBox message (required)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#address-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Address (required)
     </span>
   </a>
   
@@ -1031,15 +1022,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#multipart-vs-json" class="md-nav__link">
-    <span class="md-ellipsis">
-      Multipart vs JSON
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#endpoint-and-method" class="md-nav__link">
     <span class="md-ellipsis">
       Endpoint and method
@@ -1095,6 +1077,33 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#recipient-identification-number-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recipient identification number (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subject-for-ebox-message-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subject for eBox message (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Address (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#attachments-optional" class="md-nav__link">
     <span class="md-ellipsis">
       Attachments (optional)
@@ -1125,33 +1134,6 @@
   <a href="#carrier-optional-for-c4-envelopes" class="md-nav__link">
     <span class="md-ellipsis">
       Carrier (optional) for C4 envelopes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recipient-identification-number-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Recipient identification number (required)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#subject-for-ebox-message-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Subject for eBox message (required)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#address-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Address (required)
     </span>
   </a>
   
@@ -1248,9 +1230,14 @@
 
 
 <h1 id="ebox-citizen-multipart-intake-request">eBox Citizen Multipart Intake Request</h1>
-<h2 id="multipart-vs-json">Multipart vs JSON</h2>
-<p>Using a Multipart Request allows to upload larger documents to the API. However, we do advise to use the JSON Intake Request as much as possible and avoid large filesizes.
-With the Multipart Request, the 4MB filesize limit does not apply. For the most part, the requests are very similar.</p>
+<div class="admonition info">
+<p class="admonition-title">Eligibility and access</p>
+<p>If you wish to make use of our eBox Citizen service, please contact us at <a href="mailto:support@mailitwize.be">support@mailitwize.be</a>.</p>
+<p>Before you can start using this endpoint to send messages to eBox a check needs to be done by BOSA (the eBox service provider) 
+to determine if your organisation is eligible for sending eBox messages.</p>
+<p>If you are eligible, we will go through the process together to complete the audit process and enable eBox functionality.</p>
+<p>Do note that Citizen and Enterprise have different providers, and have separate procedures to be completed first.</p>
+</div>
 <h2 id="endpoint-and-method">Endpoint and method</h2>
 <table>
 <thead>
@@ -1295,37 +1282,37 @@ With the Multipart Request, the 4MB filesize limit does not apply. For the most 
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>document[contents] =&gt; file,
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>document[multiplex] =&gt; boolean (default 1),
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>attachments[0][name] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>attachments[0][mime-type] =&gt; &#39;mime-type&#39;,
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>attachments[0][contents] =&gt; file,
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>attachments[1][name] =&gt; ...,
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>background[name] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>background[mime-type] =&gt; &#39;mime-type&#39;,
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>background[contents] =&gt; file,
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>envelope[name] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>envelope[mime-type] =&gt; &#39;mime-type&#39;,
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>envelope[contents] =&gt; file,
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>recipient_identification_number =&gt; &#39;string, length 11&#39;,
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>subject_nl&#39; =&gt; &#39;string&#39;,
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>subject_en&#39; =&gt; &#39;string&#39;,
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>subject_fr&#39; =&gt; &#39;string&#39;,
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>address[firstname] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>address[lastname] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>address[fullname] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>address[street] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>address[houseNumber] =&gt; integer,
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>address[houseNumberAlpha] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>address[box] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>address[unstructuredStreetNumberBox] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>address[zip] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>address[municipality] =&gt; &#39;string&#39;,
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>address[countryIso2] =&gt; &#39;string max 2&#39;,
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>address[company] =&gt; &#39;string&#39;
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>recipient_identification_number =&gt; &#39;string, length 11&#39;,
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>subject_nl =&gt; &#39;string&#39;,
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>subject_en =&gt; &#39;string&#39;,
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>subject_fr =&gt; &#39;string&#39;,
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>address[firstname] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>address[lastname] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>address[fullname] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>address[street] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>address[houseNumber] =&gt; integer,
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>address[houseNumberAlpha] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>address[box] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>address[unstructuredStreetNumberBox] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>address[zip] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>address[municipality] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>address[countryIso2] =&gt; &#39;string max 2&#39;,
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>address[company] =&gt; &#39;string&#39;
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>attachments[0][name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>attachments[0][mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>attachments[0][contents] =&gt; file,
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>attachments[1][name] =&gt; ...,
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>background[name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>background[mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>background[contents] =&gt; file,
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>envelope[name] =&gt; &#39;string&#39;,
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>envelope[mime-type] =&gt; &#39;mime-type&#39;,
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>envelope[contents] =&gt; file,
 <a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
 <a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>postalService[registered] =&gt; boolean,
 <a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>postalService[prior] =&gt; boolean,
@@ -1410,159 +1397,6 @@ With the Multipart Request, the 4MB filesize limit does not apply. For the most 
 <td>NO</td>
 <td>boolean</td>
 <td>1</td>
-</tr>
-</tbody>
-</table>
-<h3 id="attachments-optional">Attachments (optional)</h3>
-<p>Each Multipart Intake request may contain multiple attachments, using a consecutive numerical index (see JSON structure).</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>attachments[n][name]</td>
-<td>Name of the attachment</td>
-<td>YES, if using attachment</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>attachments[n][mime-type]</td>
-<td>MIME type of the attachment. Currently only "application/pdf" is accepted</td>
-<td>YES</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>attachments[n][contents]</td>
-<td>Attachment PDF file</td>
-<td>YES</td>
-<td>file/binary</td>
-<td></td>
-</tr>
-<tr>
-<td>attachments[n][multiplex]</td>
-<td>Print setting of the attachment. 0 = recto, 1 = recto/verso</td>
-<td>NO</td>
-<td>boolean</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<h3 id="background-optional">Background (optional)</h3>
-<p>Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page 
-of the main document.</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>background[name]</td>
-<td>Name of the background</td>
-<td>YES, if using background</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>background[mime-type]</td>
-<td>MIME type of the background. Currently only "application/pdf" is accepted</td>
-<td>YES</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>background[contents]</td>
-<td>Background PDF file</td>
-<td>YES</td>
-<td>file/binary</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="envelope-optional">Envelope (optional)</h3>
-<p>Each Multipart Intake request may contain exactly one envelope.</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>envelope[name]</td>
-<td>Name of the envelope</td>
-<td>YES, if using envelope</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>envelope[mime-type]</td>
-<td>MIME type of the envelope. Currently only "application/pdf" is accepted</td>
-<td>YES</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>envelope[contents]</td>
-<td>Envelope PDF file</td>
-<td>YES</td>
-<td>file/binary</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="carrier-optional-for-c4-envelopes">Carrier (optional) for C4 envelopes</h3>
-<p>Each Multipart Intake request may contain exactly one carrier. An address carrier is only used when sending C4 
-envelopes, which use a separate sheet of paper to print the address on.</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>carrier[name]</td>
-<td>Name of the address carrier</td>
-<td>YES, if using carrier</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>carrier[mime-type]</td>
-<td>MIME type of the carrier. Currently only "application/pdf" is accepted</td>
-<td>YES</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>carrier[contents]</td>
-<td>Address carrier PDF file</td>
-<td>YES</td>
-<td>file/binary</td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -1722,6 +1556,159 @@ decide which one to display based on the recipient's eBox locale settings.</p>
 <td>Country code, ISO 3611-2 format (2 characters)</td>
 <td>YES</td>
 <td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="attachments-optional">Attachments (optional)</h3>
+<p>Each Multipart Intake request may contain multiple attachments, using a consecutive numerical index (see JSON structure).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>attachments[n][name]</td>
+<td>Name of the attachment</td>
+<td>YES, if using attachment</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>attachments[n][mime-type]</td>
+<td>MIME type of the attachment. Currently only "application/pdf" is accepted</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>attachments[n][contents]</td>
+<td>Attachment PDF file</td>
+<td>YES</td>
+<td>file/binary</td>
+<td></td>
+</tr>
+<tr>
+<td>attachments[n][multiplex]</td>
+<td>Print setting of the attachment. 0 = recto, 1 = recto/verso</td>
+<td>NO</td>
+<td>boolean</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="background-optional">Background (optional)</h3>
+<p>Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page 
+of the main document.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>background[name]</td>
+<td>Name of the background</td>
+<td>YES, if using background</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>background[mime-type]</td>
+<td>MIME type of the background. Currently only "application/pdf" is accepted</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>background[contents]</td>
+<td>Background PDF file</td>
+<td>YES</td>
+<td>file/binary</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="envelope-optional">Envelope (optional)</h3>
+<p>Each Multipart Intake request may contain exactly one envelope.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>envelope[name]</td>
+<td>Name of the envelope</td>
+<td>YES, if using envelope</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>envelope[mime-type]</td>
+<td>MIME type of the envelope. Currently only "application/pdf" is accepted</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>envelope[contents]</td>
+<td>Envelope PDF file</td>
+<td>YES</td>
+<td>file/binary</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="carrier-optional-for-c4-envelopes">Carrier (optional) for C4 envelopes</h3>
+<p>Each Multipart Intake request may contain exactly one carrier. An address carrier is only used when sending C4 
+envelopes, which use a separate sheet of paper to print the address on.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>carrier[name]</td>
+<td>Name of the address carrier</td>
+<td>YES, if using carrier</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>carrier[mime-type]</td>
+<td>MIME type of the carrier. Currently only "application/pdf" is accepted</td>
+<td>YES</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>carrier[contents]</td>
+<td>Address carrier PDF file</td>
+<td>YES</td>
+<td>file/binary</td>
 <td></td>
 </tr>
 </tbody>
