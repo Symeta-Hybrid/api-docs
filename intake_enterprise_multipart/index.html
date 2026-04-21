@@ -773,15 +773,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#request-type-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Request type (required)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#document-required" class="md-nav__link">
     <span class="md-ellipsis">
       Document (required)
@@ -1059,15 +1050,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#request-type-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      Request type (required)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#document-required" class="md-nav__link">
     <span class="md-ellipsis">
       Document (required)
@@ -1236,7 +1218,7 @@
 <p>Before you can start using this endpoint to send messages to eBox a check needs to be done by the Belgian Social Security (the eBox enterprise service provider) 
 to determine if your organisation is eligible for sending eBox messages.</p>
 <p>If you are eligible, we will go through the process together to complete the audit process and enable eBox functionality.</p>
-<p>Do note that Citizen and Enterprise have different providers, and have separate procedures to be completed first.</p>
+<p>Do note that we have different partners for Citizen and Enterprise, and there are separate procedures to be completed.</p>
 </div>
 <h2 id="endpoint-and-method">Endpoint and method</h2>
 <table>
@@ -1327,36 +1309,8 @@ to determine if your organisation is eligible for sending eBox messages.</p>
 <a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>correlation[costId] =&gt; &#39;string,optional&#39;,
 <a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>correlation[lang] =&gt; &#39;required, nl,en or fr&#39;,
 <a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>correlation[returnAddress] =&gt; &#39;optional string, single line return address&#39;,
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>requestType =&gt; &#39;multipart&#39;
 </code></pre></div>
 <h2 id="multipart-form-data-values">Multipart Form Data Values</h2>
-<h3 id="request-type-required">Request type (required)</h3>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This parameter cannot be omitted. It is mandatory for multipart intakes.</p>
-</div>
-<p>Add parameter requestType and set value as 'multipart' to indicate it is a multipart form.</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>requestType</td>
-<td>Type of Intake request being sent</td>
-<td>YES</td>
-<td>string</td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h3 id="document-required">Document (required)</h3>
 <p>Each Multipart Intake request must contain exactly one main document.</p>
 <table>
@@ -1426,6 +1380,40 @@ The string provided must be exactly 10 characters, contain only numeric characte
 <h3 id="subject-for-ebox-message-required">Subject for eBox message (required)</h3>
 <p>Each Intake request must contain at least one localised subject.</p>
 <p>If multiple localisations are provided, the first one present will be chosen in this order: NL &gt; FR &gt; DE</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>subject_nl</td>
+<td>Message subject in Dutch</td>
+<td>YES, if subject_fr AND subject_de absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>subject_fr</td>
+<td>Message subject in French</td>
+<td>YES, if subject_nl AND subject_de absent</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>subject_de</td>
+<td>Message subject in German</td>
+<td>YES, if subject_nl AND subject_fr absent</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="address-required">Address (required)</h3>
 <p>Each Multipart Intake request must contain exactly one recipient with the required address parts.</p>
 <table>
@@ -1526,7 +1514,7 @@ The string provided must be exactly 10 characters, contain only numeric characte
 </tbody>
 </table>
 <h3 id="attachments-optional">Attachments (optional)</h3>
-<p>Each Multipart Intake request may contain multiple attachments, using a consecutive numerical index (see JSON structure).</p>
+<p>Each Multipart Intake request may contain multiple attachments, using a consecutive numerical index.</p>
 <table>
 <thead>
 <tr>
@@ -1678,40 +1666,6 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tr>
 </tbody>
 </table>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>subject_nl</td>
-<td>Message subject in Dutch</td>
-<td>YES, if subject_fr AND subject_de absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>subject_fr</td>
-<td>Message subject in French</td>
-<td>YES, if subject_nl AND subject_de absent</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>subject_de</td>
-<td>Message subject in German</td>
-<td>YES, if subject_nl AND subject_fr absent</td>
-<td>string</td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h3 id="postal-service-optional-default-bpost-non-prior">Postal service (optional, default bpost non-prior)</h3>
 <p>Each Intake request may contain additional postal service instructions</p>
 <table>
@@ -1859,7 +1813,7 @@ These updates relate to the eBox message processing by BOSA.</p>
 </tr>
 <tr>
 <td>JSON body</td>
-<td><code>{ "intake": integer, "cost": integer }</code></td>
+<td><code>{ "intake": integer, "cost": integer, "message": string }</code></td>
 </tr>
 </tbody>
 </table>
