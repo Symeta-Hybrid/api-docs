@@ -68,6 +68,10 @@ The payloads are as follows, for each status:
 ```
 
 ### Returned
+
+This webhook is not automatically enabled. If you wish to have this activated for your intakes, please
+contact us at [support@mailitwize.be](mailto:support@mailitwize.be).
+
 ``` json
 {
     "intake": 158056,

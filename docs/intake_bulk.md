@@ -149,15 +149,6 @@ Each Bulk Intake request may contain exactly one carrier. An address carrier is 
 | carrier\[mime-type] | MIME type of the carrier. Currently only "application/pdf" is accepted | YES                   | string      |         |
 | carrier\[contents]  | Address carrier PDF file                                               | YES                   | file/binary |         |
 
-### Correlation (required)
-Each Bulk Intake request may contain additional 
-
-| Key                         | Description                                        | Required | Type   | Default                                        |
-|-----------------------------|----------------------------------------------------|----------|--------|------------------------------------------------|
-| correlation\[costId]        | Cost ID, for internal reference                    | NO       | string |                                                |
-| correlation\[lang]          | Document's language, must be one of nl, fr, en, de | YES      | string |                                                |
-| correlation\[returnAddress] | Return address in case of undeliverable mail       | NO       | string | Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven |
-
 ### Postal service
 Each Bulk Intake request may contain additional postal service instructions
 
@@ -177,6 +168,15 @@ updates and possible address validation errors to
 | hook\[method] | HTTP method to be used for the webhook, must be either GET or POST | YES, if webhook is desired | string |         |
 
 For more detailed information on the webhook functionality, refer to the [Webhooks](webhooks.md) page.
+
+### Correlation (required)
+Each Bulk Intake request may contain additional
+
+| Key                         | Description                                        | Required | Type   | Default                                        |
+|-----------------------------|----------------------------------------------------|----------|--------|------------------------------------------------|
+| correlation\[costId]        | Cost ID, for internal reference                    | NO       | string |                                                |
+| correlation\[lang]          | Document's language, must be one of nl, fr, en, de | YES      | string |                                                |
+| correlation\[returnAddress] | Return address in case of undeliverable mail       | NO       | string | Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven |
 
 ## Multipart Intake Request Response
 

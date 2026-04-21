@@ -102,10 +102,6 @@ Examples for achieving the correct format:
         "prior": boolean default 0,
         "nonPrior": boolean default 0,
     },
-    "email": {
-        "registered": boolean default 0,
-        "email": "string email"
-    },
     "hook": {
         "uri": "Full webhook path",
         "method": "POST or GET"
@@ -179,14 +175,6 @@ Each Intake request must contain exactly one recipient with the required address
 | address.municipality                | Municipality                                                            | YES                                                                     | string |         |
 | address.countryIso2                 | Country code, ISO 3611-2 format (2 characters)                          | YES                                                                     | string |         |
 
-### Correlation (required)
-
-| Key                       | Description                                        | Required | Type   | Default                                        |
-|---------------------------|----------------------------------------------------|----------|--------|------------------------------------------------|
-| correlation.costId        | Cost ID, for internal reference                    | NO       | string |                                                |
-| correlation.lang          | Document's language, must be one of nl, fr, en, de | YES      | string |                                                |
-| correlation.returnAddress | Return address in case of undeliverable mail       | NO       | string | Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven |
-
 ### Postal service (optional, default bpost non-prior)
 Each Intake request may contain additional postal service instructions
 
@@ -205,6 +193,14 @@ Each Intake request may specify a webhook URL and method to send status updates 
 | hook.method | HTTP method to be used for the webhook, must be either GET or POST | YES, if webhook is desired | string |         |
 
 For more detailed information on the webhook functionality, refer to the [Webhooks](webhooks.md) page.
+
+### Correlation (required)
+
+| Key                       | Description                                        | Required | Type   | Default                                        |
+|---------------------------|----------------------------------------------------|----------|--------|------------------------------------------------|
+| correlation.costId        | Cost ID, for internal reference                    | NO       | string |                                                |
+| correlation.lang          | Document's language, must be one of nl, fr, en, de | YES      | string |                                                |
+| correlation.returnAddress | Return address in case of undeliverable mail       | NO       | string | Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven |
 
 ## JSON Request Response
 

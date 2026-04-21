@@ -22,5 +22,10 @@ nav:
       - Intake Resource: resource_request.md
       - Intake Preview: intake_preview.md
       - Intake Delete: intake_delete.md
+  - eBox:
+      - Citizen:
+          - Multipart Intake: intake_citizen_multipart.md
+      - Enterprise:
+          - Multipart Intake: intake_enterprise_multipart.md
   - Webhooks: webhooks.md
   - Proof of Delivery: pods.md

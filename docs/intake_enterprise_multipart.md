@@ -1,4 +1,4 @@
-# Multipart Intake Request
+# eBox Enterprise Multipart Intake Request
 ## Multipart vs JSON
 Using a Multipart Request allows to upload larger documents to the API. However, we do advise to use the JSON Intake Request as much as possible and avoid large filesizes.
 With the Multipart Request, the 4MB filesize limit does not apply. For the most part, the requests are very similar.
@@ -58,6 +58,9 @@ postalService[nonPrior] => boolean,
 
 hook[uri] => 'string',
 hook[method] => 'string',
+
+hook_uri => 'string',
+hook_method => 'string',
 
 correlation[costId] => 'string,optional',
 correlation[lang] => 'required, nl,en or fr',
@@ -129,6 +132,25 @@ envelopes, which use a separate sheet of paper to print the address on.
 | carrier\[mime-type] | MIME type of the carrier. Currently only "application/pdf" is accepted | YES                   | string      |         |
 | carrier\[contents]  | Address carrier PDF file                                               | YES                   | file/binary |         |
 
+### Recipient identification number (required)
+Each Intake request must contain exactly one identification number. This is the company registration number of the recipient enterprise.
+The string provided must be exactly 10 characters, contain only numeric characters and starts with either a 0 or 1. This is not to be confused with the VAT number.
+
+| Key                             | Description                                             | Required | Type   | Default |
+|---------------------------------|---------------------------------------------------------|----------|--------|---------|
+| recipient_identification_number | Company registration number of the recipient enterprise | YES      | string |         |
+
+### Subject for eBox message (required)
+Each Intake request must contain at least one localised subject.
+
+If multiple localisations are provided, the first one present will be chosen in this order: NL > FR > DE
+
+| Key        | Description               | Required                                 | Type   | Default |
+|------------|---------------------------|------------------------------------------|--------|---------|
+| subject_nl | Message subject in Dutch  | YES, if subject_fr AND subject_de absent | string |         |
+| subject_fr | Message subject in French | YES, if subject_nl AND subject_de absent | string |         |
+| subject_de | Message subject in German | YES, if subject_nl AND subject_fr absent | string |         |
+
 ### Address (required)
 Each Multipart Intake request must contain exactly one recipient with the required address parts.
 
@@ -164,6 +186,15 @@ Each Intake request may specify a webhook URL and method to send status updates 
 | hook\[uri]    | URI where the webhook should be sent to                            | YES, if webhook is desired | string |         |
 | hook\[method] | HTTP method to be used for the webhook, must be either GET or POST | YES, if webhook is desired | string |         |
 
+### eBox Hook (optional)
+Each Intake request may specify an eBox webhook URL and method to send status updates to.
+These updates relate to the eBox message processing by BOSA.
+
+| Key         | Description                                                        | Required                   | Type   | Default |
+|-------------|--------------------------------------------------------------------|----------------------------|--------|---------|
+| hook_uri    | URI where the webhook should be sent to                            | YES, if webhook is desired | string |         |
+| hook_method | HTTP method to be used for the webhook, must be either GET or POST | YES, if webhook is desired | string |         |
+
 For more detailed information on the webhook functionality, refer to the [Webhooks](webhooks.md) page.
 
 ### Correlation (required)
@@ -185,8 +216,8 @@ For more detailed information on the webhook functionality, refer to the [Webhoo
 
 ### Possible error codes
 
-| HTTP code | Description          | Reason                                                                  |
-|-----------|----------------------|-------------------------------------------------------------------------|
-| 422       | Unprocessable Entity | Request is invalid - either missing or incorrectly formatted parameters |
-| 413       | Entity Too Large     | Request size exceeds limit                                              |
-| 401       | Unauthorized         | Access token is not valid or expired - refer to the web portal          |
+| HTTP code | Description           | Reason                                                                   |
+|-----------|-----------------------|--------------------------------------------------------------------------|
+| 422       | Unprocessable Entity  | Request is invalid - either missing or incorrectly formatted parameters  |
+| 400       | No eBox configuration | There was no valid eBox configuration found associated with your account |
+| 401       | Unauthorized          | Access token is not valid or expired - refer to the web portal           |
