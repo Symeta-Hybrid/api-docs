@@ -63,6 +63,8 @@ correlation[costId] => 'string,optional',
 correlation[lang] => 'required, nl,en or fr',
 correlation[returnAddress] => 'optional string, single line return address',
 
+duplicityCheck => 'boolean, optional'
+
 requestType => 'multipart'
 ```
 
@@ -173,6 +175,17 @@ For more detailed information on the webhook functionality, refer to the [Webhoo
 | correlation\[costId]        | Cost ID, for internal reference                    | NO       | string |                                                |
 | correlation\[lang]          | Document's language, must be one of nl, fr, en, de | YES      | string |                                                |
 | correlation\[returnAddress] | Return address in case of undeliverable mail       | NO       | string | Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven |
+
+### Duplicity check (optional)
+Each Intake request may specify whether a duplicity check should be run.
+
+The check will determine if another Intake exists with the same document name. If attachments are present, the names of these will also be considered in the check.
+
+If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the duplicate(s).
+
+| Key            | Description                                     | Required | Type          | Default |
+|----------------|-------------------------------------------------|----------|---------------|---------|
+| duplicityCheck | Whether or not a duplicity check should be done | NO       | string 'true' |         |
 
 ## Multipart Intake Request Response
 
