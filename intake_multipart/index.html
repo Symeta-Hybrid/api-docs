@@ -596,6 +596,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#duplicity-check-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicity check (optional)
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1139,6 +1148,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#duplicity-check-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicity check (optional)
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1279,7 +1297,9 @@ With the Multipart Request, the 4MB filesize limit does not apply. For the most 
 <a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>correlation[lang] =&gt; &#39;required, nl,en or fr&#39;,
 <a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>correlation[returnAddress] =&gt; &#39;optional string, single line return address&#39;,
 <a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>requestType =&gt; &#39;multipart&#39;
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>duplicityCheck =&gt; &#39;boolean, optional&#39;
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>requestType =&gt; &#39;multipart&#39;
 </code></pre></div>
 <h2 id="multipart-form-data-values">Multipart Form Data Values</h2>
 <h3 id="request-type-required">Request type (required)</h3>
@@ -1701,6 +1721,30 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 <td>NO</td>
 <td>string</td>
 <td>Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven</td>
+</tr>
+</tbody>
+</table>
+<h3 id="duplicity-check-optional">Duplicity check (optional)</h3>
+<p>Each Intake request may specify whether a duplicity check should be run.</p>
+<p>The check will determine if another Intake exists with the same document name. If attachments are present, the names of these will also be considered in the check.</p>
+<p>If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the duplicate(s).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>duplicityCheck</td>
+<td>Whether or not a duplicity check should be done</td>
+<td>NO</td>
+<td>string 'true'</td>
+<td></td>
 </tr>
 </tbody>
 </table>

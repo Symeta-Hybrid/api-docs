@@ -880,6 +880,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#duplicity-check-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicity check (optional)
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1157,6 +1166,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#duplicity-check-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicity check (optional)
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1309,6 +1327,8 @@ to determine if your organisation is eligible for sending eBox messages.</p>
 <a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>correlation[costId] =&gt; &#39;string,optional&#39;,
 <a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>correlation[lang] =&gt; &#39;required, nl,en or fr&#39;,
 <a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>correlation[returnAddress] =&gt; &#39;optional string, single line return address&#39;,
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>duplicityCheck =&gt; &#39;boolean, optional&#39;
 </code></pre></div>
 <h2 id="multipart-form-data-values">Multipart Form Data Values</h2>
 <h3 id="document-required">Document (required)</h3>
@@ -1794,6 +1814,30 @@ These updates relate to the eBox message processing by BOSA.</p>
 <td>NO</td>
 <td>string</td>
 <td>Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven</td>
+</tr>
+</tbody>
+</table>
+<h3 id="duplicity-check-optional">Duplicity check (optional)</h3>
+<p>Each Intake request may specify whether a duplicity check should be run.</p>
+<p>The check will determine if another Intake exists with the same document name. If attachments are present, the names of these will also be considered in the check.</p>
+<p>If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the duplicate(s).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>duplicityCheck</td>
+<td>Whether or not a duplicity check should be done</td>
+<td>NO</td>
+<td>string 'true'</td>
+<td></td>
 </tr>
 </tbody>
 </table>
