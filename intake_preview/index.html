@@ -562,6 +562,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#pdf-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      PDF response
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possible-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Possible errors
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -881,6 +899,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#pdf-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      PDF response
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possible-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Possible errors
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -928,7 +964,7 @@
 <tbody>
 <tr>
 <td>Accept</td>
-<td><code>application/json</code></td>
+<td><code>application/json</code> or <code>application/pdf</code></td>
 </tr>
 <tr>
 <td>Authorization</td>
@@ -936,6 +972,9 @@
 </tr>
 </tbody>
 </table>
+<p>The <code>Accept</code> header determines the response format: <code>application/json</code> returns a summary with the PDF embedded as
+base64, while <code>application/pdf</code> returns the raw PDF file directly. Any value other than <code>application/pdf</code> is
+treated as <code>application/json</code>.</p>
 <h2 id="json-response">JSON response</h2>
 <p>The API will return a JSON response containing the following properties, where <code>previewBase64</code> contains the final 
 composed PDF file's contents, in a base-64 encoded format.
@@ -946,6 +985,36 @@ composed PDF file's contents, in a base-64 encoded format.
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">&quot;totalPages&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;18&quot;</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
 </code></pre></div></p>
+<h2 id="pdf-response">PDF response</h2>
+<p>If the request was sent with an <code>Accept: application/pdf</code> header, the API returns the composed PDF file directly,
+along with a <code>Content-Type: application/pdf</code> header, instead of the JSON response above.</p>
+<h2 id="possible-errors">Possible errors</h2>
+<table>
+<thead>
+<tr>
+<th>HTTP code</th>
+<th>Description</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>Access token is not valid or expired - refer to the web portal</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>The Intake does not belong to the authenticated user</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>The Intake file could not be found - it may still be processing</td>
+</tr>
+</tbody>
+</table>
 
 
 
