@@ -51,3 +51,11 @@ There are 2 endpoints available for the POD's: retrieving POD information and do
 #### Response
 
 The POD document will be returned as `binary`, with an `application/pdf` header.
+
+## Possible errors
+
+Both POD endpoints can return:
+
+| HTTP code | Description  | Reason                                                           |
+|-----------|--------------|-------------------------------------------------------------------|
+| 403       | Forbidden    | The Intake does not belong to the authenticated user               |

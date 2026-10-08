@@ -1,10 +1,5 @@
 # Bulk Intake Request
 
-!!! warning
-    This API endpoint is still in development, and only available on our UAT environment.
-
-    As such, this documentation is subject to change in the final version.
-
 ## Endpoint and method
 
 | API version | v1                                 |
@@ -27,15 +22,15 @@ document[mime-type] => 'mime-type',
 document[contents] => file,
 document[multiplex] => boolean (default 1),
 
-address[coordinates][startX] => integer,
-address[coordinates][startY] => integer,
-address[coordinates][width] => integer,
-address[coordinates][height] => integer,
+address[coordinates][startX] => number,
+address[coordinates][startY] => number,
+address[coordinates][width] => number,
+address[coordinates][height] => number,
 
-splitString[coordinates][startX] => integer,
-splitString[coordinates][startY] => integer,
-splitString[coordinates][width] => integer,
-splitString[coordinates][height] => integer,
+splitString[coordinates][startX] => number,
+splitString[coordinates][startY] => number,
+splitString[coordinates][width] => number,
+splitString[coordinates][height] => number,
 splitString[text] => string,
 
 count_recipients => integer,
@@ -54,12 +49,16 @@ envelope[name] => 'string',
 envelope[mime-type] => 'mime-type',
 envelope[contents] => file,
 
+carrier[name] => 'string',
+carrier[mime-type] => 'mime-type',
+carrier[contents] => file,
+
 postalService[registered] => boolean,
 postalService[prior] => boolean,
 postalService[nonPrior] => boolean,
 
 correlation[costId] => 'string,optional',
-correlation[lang] => 'required, nl,en or fr',
+correlation[lang] => 'required, nl, fr, de or en',
 correlation[returnAddress] => 'optional string, single line return address',
 ```
 
@@ -81,10 +80,10 @@ An address must be present on each page that designates a new recipient, along w
 
 | Key                           | Description                                  | Required | Type    | Default |
 |-------------------------------|----------------------------------------------|----------|---------|---------|
-| address\[coordinates][startX] | Horizontal starting point of the address box | YES      | integer |         |
-| address\[coordinates][startY] | Vertical starting point of the address box   | YES      | integer |         |
-| address\[coordinates][width]  | Width of the address box                     | YES      | integer |         |
-| address\[coordinates][height] | Height of the address box                    | YES      | integer |         |
+| address\[coordinates][startX] | Horizontal starting point of the address box | YES      | number  |         |
+| address\[coordinates][startY] | Vertical starting point of the address box   | YES      | number  |         |
+| address\[coordinates][width]  | Width of the address box, must be greater than 1                     | YES      | number  |         |
+| address\[coordinates][height] | Height of the address box, must be greater than 1                    | YES      | number  |         |
 
 ### Split string (required)
 Each Bulk Intake request must contain exactly one split string location and text.
@@ -93,10 +92,10 @@ The text in splitString[text] must appear once, on each page that designates a n
 
 | Key                               | Description                                                | Required | Type    | Default |
 |-----------------------------------|------------------------------------------------------------|----------|---------|---------|
-| splitString\[coordinates][startX] | Horizontal starting point of the split string location     | YES      | integer |         |
-| splitString\[coordinates][startY] | Vertical starting point of the split string location       | YES      | integer |         |
-| splitString\[coordinates][width]  | Width of the split string location                         | YES      | integer |         |
-| splitString\[coordinates][height] | Height of the split string location                        | YES      | integer |         |
+| splitString\[coordinates][startX] | Horizontal starting point of the split string location     | YES      | number  |         |
+| splitString\[coordinates][startY] | Vertical starting point of the split string location       | YES      | number  |         |
+| splitString\[coordinates][width]  | Width of the split string location, must be greater than 1                         | YES      | number  |         |
+| splitString\[coordinates][height] | Height of the split string location, must be greater than 1                        | YES      | number  |         |
 | splitString\[text]                | The unique text per recipient to split the PDF document on |          | string  |         |
 
 !!! attention
@@ -120,7 +119,8 @@ Each Bulk Intake request may contain multiple attachments, using a consecutive n
 | attachments\[n]\[name]      | Name of the attachment                                                    | YES, if using attachment | string      |         |
 | attachments\[n]\[mime-type] | MIME type of the attachment. Currently only "application/pdf" is accepted | YES                      | string      |         |
 | attachments\[n]\[contents]  | Attachment PDF file                                                       | YES                      | file/binary |         |
-| attachments\[n]\[multiplex] | Print setting of the attachment. 0 = recto, 1 = recto/verso               | NO                       | boolean     | 1       |
+
+Attachments are always printed recto/verso.
 
 ### Background (optional)
 Each Bulk Intake request may contain exactly one background. The background will only be printed on the first page of the main document.
@@ -164,13 +164,13 @@ updates and possible address validation errors to
 
 | Key           | Description                                                        | Required                   | Type   | Default |
 |---------------|--------------------------------------------------------------------|----------------------------|--------|---------|
-| hook\[uri]    | URI where the webhook should be sent to                            | YES, if webhook is desired | string |         |
-| hook\[method] | HTTP method to be used for the webhook, must be either GET or POST | YES, if webhook is desired | string |         |
+| hook\[uri]    | URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
+| hook\[method] | HTTP method to be used for the webhook, must be either GET or POST (case-insensitive) | YES, if webhook is desired | string |         |
 
 For more detailed information on the webhook functionality, refer to the [Webhooks](webhooks.md) page.
 
 ### Correlation (required)
-Each Bulk Intake request may contain additional
+Each Bulk Intake request must contain correlation data. Only the document language is required.
 
 | Key                         | Description                                        | Required | Type   | Default                                        |
 |-----------------------------|----------------------------------------------------|----------|--------|------------------------------------------------|
@@ -178,7 +178,7 @@ Each Bulk Intake request may contain additional
 | correlation\[lang]          | Document's language, must be one of nl, fr, en, de | YES      | string |                                                |
 | correlation\[returnAddress] | Return address in case of undeliverable mail       | NO       | string | Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven |
 
-## Multipart Intake Request Response
+## Bulk Intake Request Response
 
 ### Success
 A successful request will receive the following JSON response (with an HTTP 200 status code):
@@ -254,7 +254,7 @@ This webhook will contain the following:
 }
 ```
 In the `data` property, we will find all the addresses that failed. The webhook will always include which component of the address caused the failure.
-`parsedText` will always contain the raw text that was parsed on the document.
+`parsed_text` will always contain the raw text that was parsed on the document.
 
 Note: for documents that fail address validation, we will **not** persist the Intake model to the database. These are only kept in memory at runtime to provide feedback.
 
@@ -274,6 +274,28 @@ If the transferred PDF document cannot be read, this error will be returned via 
 
 This can occur if the PDF file has been flattened/rasterized, or if the file format has been corrupted.
 
+```json
+{
+    "bulk_intake_id": 145,
+    "status": "error",
+    "code": "pdfFileNotReadable",
+    "error_message": "The provided PDF file could not be parsed. Verify the file is not corrupted."
+}
+```
+
+#### Split text is empty
+
+If no text is found at the split coordinates on the first page, processing is halted and this error will be returned via webhook.
+
+```json
+{
+    "bulk_intake_id": 145,
+    "status": "error",
+    "code": "splitTextEmpty",
+    "error_message": "Split text at the given coordinates was empty. Processing was halted."
+}
+```
+
 #### Amount of split documents does not match count_recipients
 
 If the indicated expected amount of recipients does not match the amount of documents we have after splitting using the identifier, this error will be returned via webhook.
@@ -290,3 +312,22 @@ If the indicated expected amount of recipients does not match the amount of docu
     "error_message": "Indicated number of recipients does not match the number of intakes. This usually indicates an issue with the splitting identifier."
 }
 ```
+
+#### Amount of split documents does not match created intakes
+
+If the number of split documents does not match the number of intakes created from them, this error will be returned via webhook.
+
+```json
+{
+    "bulk_intake_id": 145,
+    "status": "error",
+    "data": {
+        "intakes_count": 5,
+        "split_count": 6
+    },
+    "code": "splitCountNotEqualsDocuments",
+    "error_message": "Number of documents does not match the number of expected recipients. This usually indicates an issue with the splitting identifier."
+}
+```
+
+All error webhooks share the same structure: `bulk_intake_id`, `status` (always `error`), `code`, `error_message` and, for some codes, `data`.

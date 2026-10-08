@@ -13,10 +13,10 @@
 
 ## Endpoint and method
 
-| API version | v1                                      |
-|:------------|:----------------------------------------|
-| Endpoint    | `base_url/api_version/intake/multipart` |
-| Method      | `POST`                                  |
+| API version | v1                                                      |
+|:------------|:--------------------------------------------------------|
+| Endpoint    | `base_url/api_version/intake/ebox-enterprise/multipart` |
+| Method      | `POST`                                                  |
 
 ## Request header
 
@@ -65,6 +65,10 @@ envelope[name] => 'string',
 envelope[mime-type] => 'mime-type',
 envelope[contents] => file,
 
+carrier[name] => 'string',
+carrier[mime-type] => 'mime-type',
+carrier[contents] => file,
+
 postalService[registered] => boolean,
 postalService[prior] => boolean,
 postalService[nonPrior] => boolean,
@@ -76,10 +80,10 @@ hook_uri => 'string',
 hook_method => 'string',
 
 correlation[costId] => 'string,optional',
-correlation[lang] => 'required, nl,en or fr',
+correlation[lang] => 'required, nl, fr, de or en',
 correlation[returnAddress] => 'optional string, single line return address',
 
-duplicityCheck => 'boolean, optional'
+duplicityCheck => "string 'true', optional"
 ```
 
 ## Multipart Form Data Values
@@ -139,7 +143,8 @@ Each Multipart Intake request may contain multiple attachments, using a consecut
 | attachments\[n]\[name]      | Name of the attachment                                                    | YES, if using attachment | string      |         |
 | attachments\[n]\[mime-type] | MIME type of the attachment. Currently only "application/pdf" is accepted | YES                      | string      |         |
 | attachments\[n]\[contents]  | Attachment PDF file                                                       | YES                      | file/binary |         |
-| attachments\[n]\[multiplex] | Print setting of the attachment. 0 = recto, 1 = recto/verso               | NO                       | boolean     | 1       |
+
+Attachments are always printed recto/verso.
 
 ### Background (optional)
 Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page 
@@ -184,8 +189,8 @@ Each Intake request may specify a webhook URL and method to send status updates 
 
 | Key           | Description                                                        | Required                   | Type   | Default |
 |---------------|--------------------------------------------------------------------|----------------------------|--------|---------|
-| hook\[uri]    | URI where the webhook should be sent to                            | YES, if webhook is desired | string |         |
-| hook\[method] | HTTP method to be used for the webhook, must be either GET or POST | YES, if webhook is desired | string |         |
+| hook\[uri]    | URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
+| hook\[method] | HTTP method to be used for the webhook, must be either GET or POST (case-insensitive) | YES, if webhook is desired | string |         |
 
 ### eBox Hook (optional)
 Each Intake request may specify an eBox webhook URL and method to send status updates to.
@@ -193,8 +198,8 @@ These updates relate to the eBox message processing by BOSA.
 
 | Key         | Description                                                        | Required                   | Type   | Default |
 |-------------|--------------------------------------------------------------------|----------------------------|--------|---------|
-| hook_uri    | URI where the webhook should be sent to                            | YES, if webhook is desired | string |         |
-| hook_method | HTTP method to be used for the webhook, must be either GET or POST | YES, if webhook is desired | string |         |
+| hook_uri    | URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
+| hook_method | HTTP method to be used for the webhook, must be either GET or POST (case-insensitive) | YES, if webhook is desired | string |         |
 
 For more detailed information on the webhook functionality, refer to the [Webhooks](webhooks.md) page.
 
@@ -221,10 +226,12 @@ If any duplicates are found, a validation error will be returned with a message 
 
 ### Success
 
-| Key              | Value                                                       |
-|------------------|-------------------------------------------------------------|
-| HTTP status code | 202 ACCEPTED                                                |
-| JSON body        | `{ "intake": integer, "cost": integer, "message": string }` |
+| Key              | Value                                                      |
+|------------------|------------------------------------------------------------|
+| HTTP status code | 200 OK                                                     |
+| JSON body        | `{ "intake": integer, "cost": string, "message": string }` |
+
+`cost` is the cost of the Intake as a decimal string (e.g. `"1.25"`), and `message` is the unique identifier (GUID) of the eBox message.
 
 ### Possible error codes
 

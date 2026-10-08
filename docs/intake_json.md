@@ -1,5 +1,8 @@
 # JSON Intake request
 
+!!! tip
+    We recommend the [Multipart Intake Request](intake_multipart.md) for new integrations. It avoids base64 encoding and is not bound by the 4MB request size limit.
+
 ## Endpoint and method
 
 | API version | v1                            |
@@ -51,18 +54,18 @@ Examples for achieving the correct format:
         "name": "string",
         "mime-type": "mime-type",
         "contents": "base64encoded document content",
-        "multiplex": boolean (default 1),
+        "multiplex": boolean (default 1)
     },
     "attachments": {
         "0": {
             "name" : "string",
             "mime-type": "mime-type",
-            "contents": "base64encoded content",
+            "contents": "base64encoded content"
         },
         "1": {
             ...
         }
-    },  
+    },
     "background" : {
         "name": "string",
         "mime-type": "mime-type",
@@ -77,7 +80,7 @@ Examples for achieving the correct format:
         "name": "string",
         "mime-type": "mime-type",
         "contents": "base64encoded content"
-    }
+    },
     "address": {
         "firstname": "string",
         "lastname": "string",
@@ -85,7 +88,7 @@ Examples for achieving the correct format:
         "street": "string",
         "houseNumber": integer,
         "houseNumberAlpha": "string",
-        "box": "string"
+        "box": "string",
         "unstructuredStreetNumberBox": "string",
         "zip": "string",
         "municipality": "string",
@@ -95,7 +98,7 @@ Examples for achieving the correct format:
     "postalService": {
         "registered": boolean default 0,
         "prior": boolean default 0,
-        "nonPrior": boolean default 0,
+        "nonPrior": boolean default 0
     },
     "hook": {
         "uri": "Full webhook path",
@@ -106,7 +109,7 @@ Examples for achieving the correct format:
         "lang": "string nl,fr,en,de",
         "returnAddress": "string, single line address"
     },
-    "duplicityCheck": "boolean, optional"
+    "duplicityCheck": "string 'true', optional"
 }
 ```
 ## JSON Request Values
@@ -128,7 +131,8 @@ Each Intake request may contain multiple attachments, using a consecutive numeri
 | attachments.{n}.name      | Name of the attachment                                                    | YES, if using attachment | string  |         |
 | attachments.{n}.mime-type | MIME type of the attachment. Currently only "application/pdf" is accepted | YES                      | string  |         |
 | attachments.{n}.contents  | Base64-encoded contents of the attachment                                 | YES                      | string  |         |
-| attachments.{n}.multiplex | Print setting of the attachment. 0 = recto, 1 = recto/verso               | NO                       | boolean | 1       |
+
+Attachments are always printed recto/verso.
 
 ### Background (optional)
 Each Intake request may contain exactly 1 background. The background will only be printed on the first page of the main document.
@@ -190,8 +194,8 @@ Each Intake request may specify a webhook URL and method to send status updates 
 
 | Key         | Description                                                        | Required                   | Type   | Default |
 |-------------|--------------------------------------------------------------------|----------------------------|--------|---------|
-| hook.uri    | URI where the webhook should be sent to                            | YES, if webhook is desired | string |         |
-| hook.method | HTTP method to be used for the webhook, must be either GET or POST | YES, if webhook is desired | string |         |
+| hook.uri    | URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
+| hook.method | HTTP method to be used for the webhook, must be either GET or POST (case-insensitive) | YES, if webhook is desired | string |         |
 
 For more detailed information on the webhook functionality, refer to the [Webhooks](webhooks.md) page.
 

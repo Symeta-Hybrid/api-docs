@@ -1,7 +1,7 @@
 # Multipart Intake Request
 ## Multipart vs JSON
-Using a Multipart Request allows to upload larger documents to the API. However, we do advise to use the JSON Intake Request as much as possible and avoid large filesizes.
-With the Multipart Request, the 4MB filesize limit does not apply. For the most part, the requests are very similar.
+The Multipart Intake Request is the recommended way to submit intakes. Files are uploaded as-is, without base64 encoding, and the 4MB request size limit of the JSON Intake Request does not apply.
+For the most part, the requests are very similar.
 
 ## Endpoint and method
 
@@ -39,6 +39,10 @@ envelope[name] => 'string',
 envelope[mime-type] => 'mime-type',
 envelope[contents] => file,
 
+carrier[name] => 'string',
+carrier[mime-type] => 'mime-type',
+carrier[contents] => file,
+
 address[firstname] => 'string',
 address[lastname] => 'string',
 address[fullname] => 'string',
@@ -60,10 +64,10 @@ hook[uri] => 'string',
 hook[method] => 'string',
 
 correlation[costId] => 'string,optional',
-correlation[lang] => 'required, nl,en or fr',
+correlation[lang] => 'required, nl, fr, de or en',
 correlation[returnAddress] => 'optional string, single line return address',
 
-duplicityCheck => 'boolean, optional'
+duplicityCheck => "string 'true', optional"
 
 requestType => 'multipart'
 ```
@@ -100,7 +104,8 @@ Each Multipart Intake request may contain multiple attachments, using a consecut
 | attachments\[n]\[name]      | Name of the attachment                                                    | YES, if using attachment | string      |         |
 | attachments\[n]\[mime-type] | MIME type of the attachment. Currently only "application/pdf" is accepted | YES                      | string      |         |
 | attachments\[n]\[contents]  | Attachment PDF file                                                       | YES                      | file/binary |         |
-| attachments\[n]\[multiplex] | Print setting of the attachment. 0 = recto, 1 = recto/verso               | NO                       | boolean     | 1       |
+
+Attachments are always printed recto/verso.
 
 ### Background (optional)
 Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page 
@@ -163,8 +168,8 @@ Each Intake request may specify a webhook URL and method to send status updates 
 
 | Key           | Description                                                        | Required                   | Type   | Default |
 |---------------|--------------------------------------------------------------------|----------------------------|--------|---------|
-| hook\[uri]    | URI where the webhook should be sent to                            | YES, if webhook is desired | string |         |
-| hook\[method] | HTTP method to be used for the webhook, must be either GET or POST | YES, if webhook is desired | string |         |
+| hook\[uri]    | URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
+| hook\[method] | HTTP method to be used for the webhook, must be either GET or POST (case-insensitive) | YES, if webhook is desired | string |         |
 
 For more detailed information on the webhook functionality, refer to the [Webhooks](webhooks.md) page.
 

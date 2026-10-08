@@ -39,4 +39,5 @@ If the file is successfully deleted, the API will return the following response,
 |-----------|----------------------|---------------------------------------------------------------------------|
 | 422       | Unprocessable Entity | Request could not be fulfilled.<br/>Refer to error message for specifics. |
 | 401       | Unauthorized         | Access token is not valid or expired - refer to the web portal            |
+| 403       | Forbidden            | The Intake does not belong to the authenticated user                      |
 | 400       | Bad Request          | Confirmation hash does not match                                          |

@@ -11,13 +11,15 @@ markdown_extensions:
   - pymdownx.details
 nav:
   - Introduction: index.md
+  - Health Check: health.md
+  - Token Lifetime: token_lifetime.md
   - Intakes:
       - Estimate:
-        - JSON Intake Estimate: estimate_json.md
         - Multipart Intake Estimate: estimate_multipart.md
+        - JSON Intake Estimate: estimate_json.md
       - Create:
-        - JSON Intake: intake_json.md
         - Multipart Intake: intake_multipart.md
+        - JSON Intake: intake_json.md
         - Bulk Intake: intake_bulk.md
       - Intake Resource: resource_request.md
       - Intake Preview: intake_preview.md

@@ -29,10 +29,11 @@ composed PDF file's contents, in a base-64 encoded format.
     "totalPages": "18"
 }
 ```
+`attachmentPages` and `documentPages` are integers. `totalPages` is returned as a string.
 
 ## PDF response
 If the request was sent with an `Accept: application/pdf` header, the API returns the composed PDF file directly,
-along with a `Content-Type: application/pdf` header, instead of the JSON response above.
+along with a `Content-Type: application/pdf` header and a `Content-Disposition: inline; filename="{id}.pdf"` header, instead of the JSON response above.
 
 ## Possible errors
 

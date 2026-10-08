@@ -9,7 +9,7 @@ Our API can be divided into 2 large components: sending documents along with met
 ## Authentication and security
 
 All HTTP requests and responses use SSL. Any API requests sent over unencrypted HTTP will **not** be honoured. These requests will not receive any response, and will time out.
-For authentication, we use an implementation of OAuth2.
+For authentication, we use bearer tokens. Send your access token in the `Authorization: Bearer [token]` header of every request.
 
 ### Managing access tokens
 
@@ -24,7 +24,7 @@ An implementation for refreshing tokens/retrieving a new access token via the AP
 ### Intake request
 Contains the main document, background (optional), envelope (optional), attachments (optional) together with all required metadata (address, recipient, document name, ...)
 
-*Important: each intake request contains exactly 1 main document and 1 recipient. Bulk sending in a single request is currently **not** supported.*
+*Important: each intake request contains exactly 1 main document and 1 recipient. To send one PDF to multiple recipients in a single request, use the [Bulk Intake](intake_bulk.md) request.*
 
 ### Resource request
 A resource request can be used to consult previously sent Intake requests.
