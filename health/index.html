@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../intake_enterprise_multipart/">
+        <link rel="prev" href="..">
       
       
-        <link rel="next" href="../pods/">
+        <link rel="next" href="../token_lifetime/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Webhooks - Mail-IT-Wize API</title>
+        <title>Health Check - Mail-IT-Wize API</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#webhooks" class="md-skip">
+        <a href="#health-check-request" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Webhooks
+              Health Check
             
           </span>
         </div>
@@ -220,10 +220,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../health/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Health Check
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -239,6 +266,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-and-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint and method
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request header
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON response
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possible-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Possible errors
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -882,37 +973,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Webhooks
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../webhooks/" class="md-nav__link">
         
   
   
@@ -928,98 +992,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Introduction
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Structure
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#processed" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Processed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#printing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Printing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#shipped" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Shipped
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#returned" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Returned
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1078,10 +1050,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
+  <a href="#endpoint-and-method" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Introduction
+        Endpoint and method
       
     </span>
   </a>
@@ -1089,63 +1061,35 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#structure" class="md-nav__link">
+  <a href="#request-header" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Structure
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#processed" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Processed
+        Request header
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#printing" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#json-response" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Printing
+        JSON response
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#shipped" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#possible-errors" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Shipped
+        Possible errors
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#returned" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Returned
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1166,31 +1110,27 @@
 
 
 
-<h1 id="webhooks">Webhooks</h1>
-<h2 id="introduction">Introduction</h2>
-<p>Once an Intake has been accepted by the API, it will receive status updates via webhooks.</p>
-<p>Currently, there are 4 possible status updates:</p>
-<ul>
-<li>Processed (Intake received successfully, currently being processed by our server)</li>
-<li>Printing (Intake processed and put on the print queue)</li>
-<li>Shipped (Intake printed and delivered to bpost for mail delivery)</li>
-<li>Returned (Postal item was returned to Symeta Hybrid)</li>
-</ul>
-<p>These webhooks will be sent to the URI you specify in the Intake, as well as using the specified method (hook.uri and hook.method).</p>
-<p>To make use of webhooks, you will need to generate a webhook key in the API interface first.
-This key can then be used to verify the contents of the webhook's payload as follows.</p>
-<p>Calculate the SHA-256 hash of the JSON payload, using the webhook key as key. If this hash matches the hash that is sent in the header value, the payload is valid.</p>
-<p>For example, in PHP:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">&lt;?php</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">$hash</span> <span class="o">=</span> <span class="nb">hash_hmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nv">$jsonPayload</span><span class="p">,</span> <span class="nv">$webhookKey</span><span class="p">);</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$hash</span> <span class="o">===</span> <span class="nv">$responseHeader</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="c1">// Payload contents verified</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="c1">// ...</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
-</code></pre></div></p>
-<h2 id="structure">Structure</h2>
-<p>Each webhook will be sent as an <code>application/json</code> payload.</p>
-<p>The webhook payload will contain a JSON body with the following keys and header:</p>
+<h1 id="health-check-request">Health check request</h1>
+<h2 id="endpoint-and-method">Endpoint and method</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">API version</th>
+<th style="text-align: left;">v1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Endpoint</td>
+<td style="text-align: left;"><code>base_url/api_version/health</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Method</td>
+<td style="text-align: left;"><code>GET</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="request-header">Request header</h2>
 <table>
 <thead>
 <tr>
@@ -1200,51 +1140,48 @@ This key can then be used to verify the contents of the webhook's payload as fol
 </thead>
 <tbody>
 <tr>
-<td>Signature</td>
-<td>SHA-256 hash</td>
+<td>Accept</td>
+<td><code>application/json</code></td>
 </tr>
 </tbody>
 </table>
-<p>The payloads are as follows, for each status:</p>
-<h3 id="processed">Processed</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">"intake"</span><span class="p">:</span><span class="w"> </span><span class="mi">158056</span><span class="p">,</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Processed"</span><span class="p">,</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="printing">Printing</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nt">"intake"</span><span class="p">:</span><span class="w"> </span><span class="mi">158056</span><span class="p">,</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Printing"</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="shipped">Shipped</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">"intake"</span><span class="p">:</span><span class="w"> </span><span class="mi">158056</span><span class="p">,</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shipped"</span><span class="p">,</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="nt">"bpost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JJBEA000000000000012345"</span><span class="p">,</span><span class="w"> </span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="nt">"shipping_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15-03-2024"</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="p">},</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"status_update"</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="returned">Returned</h3>
-<p>This webhook is not automatically enabled. If you wish to have this activated for your intakes, please
-contact us at <a href="mailto:support@mailitwize.be">support@mailitwize.be</a>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nt">"intake"</span><span class="p">:</span><span class="w"> </span><span class="mi">158056</span><span class="p">,</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Returned"</span><span class="p">,</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="nt">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JJBEA000000000000012345"</span><span class="p">,</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="nt">"reasonCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S11"</span><span class="p">,</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="nt">"reasonDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ontvangt de briefwisseling niet op aangeduid adres"</span><span class="p">,</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="nt">"scanned_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-03-17 12:00:00"</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="p">},</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"status_update"</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">}</span>
-</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This endpoint is publicly available and does not require an access token.</p>
+</div>
+<h2 id="json-response">JSON response</h2>
+<p>If the API is available, it will return the following response, along with an HTTP 200 status code:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
+</code></pre></div></p>
+<h2 id="possible-errors">Possible errors</h2>
+<table>
+<thead>
+<tr>
+<th>HTTP code</th>
+<th>Description</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td>The API is currently down for maintenance</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>The API is experiencing technical issues</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+<td>Request limit of 6000 requests per minute has been exceeded</td>
+</tr>
+</tbody>
+</table>
 
 
 
