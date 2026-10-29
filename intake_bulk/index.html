@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -1246,6 +1246,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../company_customers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Company Customers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../webhooks/" class="md-nav__link">
         
   
@@ -1727,12 +1754,14 @@
 <a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>postalService[nonPrior] =&gt; boolean,
 <a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
 <a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>correlation[costId] =&gt; 'string,optional',
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>correlation[lang] =&gt; 'required, nl, fr, de or en',
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>correlation[returnAddress] =&gt; 'optional string, single line return address',
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>correlation[customerIdentifier] =&gt; 'string,optional',
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>correlation[lang] =&gt; 'required, nl, fr, de or en',
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>correlation[returnAddress] =&gt; 'optional string, single line return address',
 </code></pre></div>
 <h2 id="multipart-form-data-values">Multipart Form Data Values</h2>
 <h3 id="document-required">Document (required)</h3>
-<p>Each Bulk Intake request must contain exactly one main document. The document is a PDF file that contains 1 or more recipients.</p>
+<p>Each Bulk Intake request must contain exactly one main document. The document is a PDF file that contains 1 or more
+recipients.</p>
 <table>
 <thead>
 <tr>
@@ -1775,9 +1804,8 @@
 </tbody>
 </table>
 <h3 id="address-required">Address (required)</h3>
-<p>Each Bulk Intake request must contain exactly one address location.
-Coordinates must be specified in points (pts).
-An address must be present on each page that designates a new recipient, along with a split string (see below).</p>
+<p>Each Bulk Intake request must contain exactly one address location. Coordinates must be specified in points (pts). An
+address must be present on each page that designates a new recipient, along with a split string (see below).</p>
 <table>
 <thead>
 <tr>
@@ -1820,9 +1848,8 @@ An address must be present on each page that designates a new recipient, along w
 </tbody>
 </table>
 <h3 id="split-string-required">Split string (required)</h3>
-<p>Each Bulk Intake request must contain exactly one split string location and text.
-Coordinates must be specified in points (pts).
-The text in splitString[text] must appear once, on each page that designates a new recipient.</p>
+<p>Each Bulk Intake request must contain exactly one split string location and text. Coordinates must be specified in
+points (pts). The text in splitString[text] must appear once, on each page that designates a new recipient.</p>
 <table>
 <thead>
 <tr>
@@ -1873,7 +1900,7 @@ The text in splitString[text] must appear once, on each page that designates a n
 </table>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>If <code>splitString[text]</code> is not present, the text that is present at the given coordinates on the first page of the 
+<p>If <code>splitString[text]</code> is not present, the text that is present at the given coordinates on the first page of the
 document will be set as <code>splitString[text]</code> and used to split the document.</p>
 </div>
 <h3 id="count-recipients-required">Count recipients (required)</h3>
@@ -1937,7 +1964,8 @@ number of documents that were split based on the splitString parameters.</p>
 </table>
 <p>Attachments are always printed recto/verso.</p>
 <h3 id="background-optional">Background (optional)</h3>
-<p>Each Bulk Intake request may contain exactly one background. The background will only be printed on the first page of the main document.</p>
+<p>Each Bulk Intake request may contain exactly one background. The background will only be printed on the first page of
+the main document.</p>
 <table>
 <thead>
 <tr>
@@ -2009,7 +2037,8 @@ number of documents that were split based on the splitString parameters.</p>
 </tbody>
 </table>
 <h3 id="carrier-optional-for-c4-envelopes">Carrier (optional) for C4 envelopes</h3>
-<p>Each Bulk Intake request may contain exactly one carrier. An address carrier is only used when sending C4 envelopes, which use a separate sheet of paper to print the address on.</p>
+<p>Each Bulk Intake request may contain exactly one carrier. An address carrier is only used when sending C4 envelopes,
+which use a separate sheet of paper to print the address on.</p>
 <table>
 <thead>
 <tr>
@@ -2081,8 +2110,8 @@ number of documents that were split based on the splitString parameters.</p>
 </tbody>
 </table>
 <h3 id="hook-required">Hook (required)</h3>
-<p>Each Bulk Intake request must specify a webhook URL and method to send status 
-updates and possible address validation errors to</p>
+<p>Each Bulk Intake request must specify a webhook URL and method to send status updates and possible address validation
+errors to</p>
 <table>
 <thead>
 <tr>
@@ -2097,14 +2126,14 @@ updates and possible address validation errors to</p>
 <tr>
 <td>hook[uri]</td>
 <td>URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see <a href="../webhooks/">Webhooks</a>), otherwise a 422 <code>No webhook key found, please set one in your dashboard.</code> is returned</td>
-<td>YES, if webhook is desired</td>
+<td>YES</td>
 <td>string</td>
 <td></td>
 </tr>
 <tr>
 <td>hook[method]</td>
-<td>HTTP method to be used for the webhook, must be either GET or POST (case-insensitive)</td>
-<td>YES, if webhook is desired</td>
+<td>HTTP method to be used for the webhook: <code>get</code>, <code>post</code>, <code>GET</code> or <code>POST</code></td>
+<td>YES</td>
 <td>string</td>
 <td></td>
 </tr>
@@ -2127,6 +2156,13 @@ updates and possible address validation errors to</p>
 <tr>
 <td>correlation[costId]</td>
 <td>Cost ID, for internal reference</td>
+<td>NO</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>correlation[customerIdentifier]</td>
+<td>Identifier of the <a href="../company_customers/">company customer</a> the Intake is sent for</td>
 <td>NO</td>
 <td>string</td>
 <td></td>
@@ -2155,27 +2191,48 @@ updates and possible address validation errors to</p>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"received"</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">}</span>
 </code></pre></div>
-This indicates the request was well-formed. The file will then be further processed, and updates will be sent via webhooks.</p>
+This indicates the request was well-formed. The file will then be further processed, and updates will be sent via
+webhooks.</p>
 <h3 id="webhooks">Webhooks</h3>
 <h4 id="document-split-result">Document split result</h4>
-<p>After a bulk PDF document has been split successfully, we will send back a webhook detailing how many recipients were parsed, and on which pages they were found.</p>
-<p>The cost of the entire bulk will also be included, in a <code>float</code> data type.</p>
+<p>After a bulk PDF document has been split successfully, we will send back a webhook detailing how many recipients were
+parsed, on which pages they were found, and the address that was read for each of them.</p>
+<p>The cost of the entire bulk is included in <code>cost</code>, as a decimal string with 3 decimals. For partner companies, the cost
+at partner rates is included as well, in <code>partner_pricing</code> (a number).</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">"bulk_intake_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.000"</span><span class="p">,</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">"created_intakes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="nt">"intake_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1948</span><span class="p">,</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="nt">"first_page"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">      </span><span class="nt">"last_page"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="p">],</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="nt">"total_recipients"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">}</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="nt">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kerkstraat"</span><span class="p">,</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="nt">"number_alpha"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="nt">"box"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="nt">"unstructured_street"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">        </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9800"</span><span class="p">,</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span><span class="nt">"municipality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deinze"</span><span class="p">,</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">        </span><span class="nt">"country_iso2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE"</span><span class="p">,</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span><span class="nt">"country_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">      </span><span class="nt">"first_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">      </span><span class="nt">"intake_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1948</span><span class="p">,</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">      </span><span class="nt">"last_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"split"</span><span class="p">,</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">  </span><span class="nt">"total_recipients"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="p">}</span>
 </code></pre></div>
+<p>Every created Intake then goes through the regular process, and sends its own <a href="../webhooks/#intake-status-updates">Intake status
+updates</a> (<code>Processed</code>, <code>Printing</code>, <code>Shipped</code>, ...) to the same <code>hook[uri]</code>.</p>
 <h4 id="address-validation-errors">Address validation errors</h4>
-<p>If any of the parsed addresses in a bulk intake fail validation, these will be sent in a bundled webhook.
-This webhook will contain the following:</p>
+<p>If any of the parsed addresses in a bulk intake fail validation, these will be sent in a bundled webhook. This webhook
+will contain the following:</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">"bulk_intake_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rejected"</span><span class="p">,</span>
@@ -2186,34 +2243,49 @@ This webhook will contain the following:</p>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="s2">"houses"</span>
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">      </span><span class="p">],</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">      </span><span class="nt">"parsed_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kerkstraat 10\n9800 Deinze"</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="p">},</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">      </span><span class="nt">"first_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">      </span><span class="nt">"last_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">      </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">        </span><span class="s2">"roads"</span><span class="p">,</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="s2">"postcode"</span><span class="p">,</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">        </span><span class="s2">"road"</span>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">      </span><span class="p">],</span>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">      </span><span class="nt">"parsed_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe\n Deinze"</span>
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="p">},</span>
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">      </span><span class="nt">"first_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">      </span><span class="nt">"last_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">      </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">        </span><span class="s2">"city"</span><span class="p">,</span>
-<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">        </span><span class="s2">"postcode"</span>
-<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">      </span><span class="p">],</span>
-<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">      </span><span class="nt">"parsed_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe\nKerkstraat 25"</span>
-<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">  </span><span class="p">],</span>
-<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"address_validation_errors"</span>
-<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="p">}</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">      </span><span class="nt">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">          </span><span class="s2">"You must enter a recipient."</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">        </span><span class="p">],</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">        </span><span class="nt">"errorCodes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">          </span><span class="s2">"housesRequired"</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="p">]</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">      </span><span class="nt">"parsed_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kerkstraat 10\n9800 Deinze"</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">      </span><span class="nt">"first_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">      </span><span class="nt">"last_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">      </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">        </span><span class="s2">"city"</span><span class="p">,</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">        </span><span class="s2">"postcode"</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">      </span><span class="p">],</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">      </span><span class="nt">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">        </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">        </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">          </span><span class="s2">"You must enter a city."</span><span class="p">,</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">          </span><span class="s2">"You must enter a zip code."</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">        </span><span class="p">],</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">        </span><span class="nt">"errorCodes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">          </span><span class="s2">"cityRequired"</span><span class="p">,</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="w">          </span><span class="s2">"postcodeRequired"</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="w">        </span><span class="p">]</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="w">      </span><span class="nt">"parsed_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe\nKerkstraat 25"</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"address_validation_errors"</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="p">}</span>
 </code></pre></div>
-In the <code>data</code> property, we will find all the addresses that failed. The webhook will always include which component of the address caused the failure.
-<code>parsed_text</code> will always contain the raw text that was parsed on the document.</p>
-<p>Note: for documents that fail address validation, we will <strong>not</strong> persist the Intake model to the database. These are only kept in memory at runtime to provide feedback.</p>
+In the <code>data</code> property, we will find all the addresses that failed. The webhook will always include which component of
+the address caused the failure. <code>parsed_text</code> will always contain the raw text that was parsed on the document.</p>
+<p><code>messages</code> holds a readable message for each error (and any warnings). When a required address component is missing,
+<code>messages.errorCodes</code> also holds a code per missing component: <code>housesRequired</code>, <code>roadRequired</code>, <code>house_numberRequired</code>,
+<code>cityRequired</code> or <code>postcodeRequired</code>. When no address could be read at all, <code>errors</code> is <code>["address"]</code>, <code>errorCodes</code> is
+<code>["addressRequired"]</code> and <code>parsed_text</code> is empty.</p>
+<p>Note: for documents that fail address validation, we will <strong>not</strong> persist the Intake model to the database. These are
+only kept in memory at runtime to provide feedback.</p>
 <h3 id="possible-error-codes">Possible error codes</h3>
 <table>
 <thead>
@@ -2253,7 +2325,8 @@ In the <code>data</code> property, we will find all the addresses that failed. T
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
 </code></pre></div>
 <h4 id="split-text-is-empty">Split text is empty</h4>
-<p>If no text is found at the split coordinates on the first page, processing is halted and this error will be returned via webhook.</p>
+<p>If no text is found at the split coordinates on the first page, processing is halted and this error will be returned via
+webhook.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nt">"bulk_intake_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span>
@@ -2262,7 +2335,8 @@ In the <code>data</code> property, we will find all the addresses that failed. T
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">}</span>
 </code></pre></div>
 <h4 id="amount-of-split-documents-does-not-match-count_recipients">Amount of split documents does not match count_recipients</h4>
-<p>If the indicated expected amount of recipients does not match the amount of documents we have after splitting using the identifier, this error will be returned via webhook.</p>
+<p>If the indicated expected amount of recipients does not match the amount of documents we have after splitting using the
+identifier, this error will be returned via webhook.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nt">"bulk_intake_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span>
@@ -2275,7 +2349,8 @@ In the <code>data</code> property, we will find all the addresses that failed. T
 <a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">}</span>
 </code></pre></div>
 <h4 id="amount-of-split-documents-does-not-match-created-intakes">Amount of split documents does not match created intakes</h4>
-<p>If the number of split documents does not match the number of intakes created from them, this error will be returned via webhook.</p>
+<p>If the number of split documents does not match the number of intakes created from them, this error will be returned via
+webhook.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="nt">"bulk_intake_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span>
@@ -2287,7 +2362,8 @@ In the <code>data</code> property, we will find all the addresses that failed. T
 <a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="nt">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Number of documents does not match the number of expected recipients. This usually indicates an issue with the splitting identifier."</span>
 <a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="p">}</span>
 </code></pre></div>
-<p>All error webhooks share the same structure: <code>bulk_intake_id</code>, <code>status</code> (always <code>error</code>), <code>code</code>, <code>error_message</code> and, for some codes, <code>data</code>.</p>
+<p>All error webhooks share the same structure: <code>bulk_intake_id</code>, <code>status</code> (always <code>error</code>), <code>code</code>, <code>error_message</code> and,
+for some codes, <code>data</code>.</p>
 
 
 
@@ -2337,10 +2413,10 @@ In the <code>data</code> property, we will find all the addresses that failed. T
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -989,6 +989,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#read-deadline-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read deadline (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customer-identifier-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customer identifier (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#correlation-required" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1157,6 +1179,33 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../company_customers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Company Customers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1408,6 +1457,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#read-deadline-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read deadline (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customer-identifier-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customer identifier (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#correlation-required" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1493,11 +1564,14 @@
 <h1 id="ebox-citizen-multipart-intake-request">eBox Citizen Multipart Intake Request</h1>
 <div class="admonition info">
 <p class="admonition-title">Eligibility and access</p>
-<p>If you wish to make use of our eBox Citizen service, please contact us at <a href="mailto:support@mailitwize.be">support@mailitwize.be</a>.</p>
-<p>Before you can start using this endpoint to send messages to eBox a check needs to be done by BOSA (our eBox Citizen partner) 
-to determine if your organisation is eligible for sending eBox messages.</p>
-<p>If you are eligible, we will go through the process together to complete the audit process and enable eBox functionality.</p>
-<p>Do note that we have different partners for Citizen and Enterprise, and there are separate procedures to be completed.</p>
+<p>If you wish to make use of our eBox Citizen service, please contact us at
+<a href="mailto:support@mailitwize.be">support@mailitwize.be</a>.</p>
+<p>Before you can start using this endpoint to send messages to eBox a check needs to be done by BOSA (our eBox Citizen
+partner) to determine if your organisation is eligible for sending eBox messages.</p>
+<p>If you are eligible, we will go through the process together to complete the audit process and enable eBox
+functionality.</p>
+<p>Do note that we have different partners for Citizen and Enterprise, and there are separate procedures to be
+completed.</p>
 </div>
 <h2 id="endpoint-and-method">Endpoint and method</h2>
 <table>
@@ -1589,11 +1663,16 @@ to determine if your organisation is eligible for sending eBox messages.</p>
 <a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>hook_uri =&gt; 'Full webhook path for eBox updates',
 <a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>hook_method =&gt; 'POST or GET for eBox updates',
 <a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>correlation[costId] =&gt; 'string,optional',
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>correlation[lang] =&gt; 'required, nl, fr, de or en',
-<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>correlation[returnAddress] =&gt; 'optional string, single line return address',
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>fallback_days =&gt; 'integer, optional, days to read the message before it falls back to paper',
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>customer_identifier =&gt; 'string, optional',
 <a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
-<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>duplicityCheck =&gt; "string 'true', optional"
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>correlation[costId] =&gt; 'string,optional',
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>correlation[customerIdentifier] =&gt; 'string, optional, equal to customer_identifier when both are sent',
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>correlation[lang] =&gt; 'required, nl, fr, de or en',
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>correlation[returnAddress] =&gt; 'optional string, single line return address',
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>duplicityCheck =&gt; "string 'true', optional"
 </code></pre></div>
 <h2 id="multipart-form-data-values">Multipart Form Data Values</h2>
 <h3 id="document-required">Document (required)</h3>
@@ -1640,8 +1719,9 @@ to determine if your organisation is eligible for sending eBox messages.</p>
 </tbody>
 </table>
 <h3 id="recipient-identification-number-required">Recipient identification number (required)</h3>
-<p>Each Intake request must contain exactly one identification number. This is the national registration number of the recipient.
-The string provided must contain only numeric characters and adhere to the standards of the Belgian national registration number.</p>
+<p>Each Intake request must contain exactly one identification number. This is the national registration number of the
+recipient. The string provided must contain only numeric characters and adhere to the standards of the Belgian national
+registration number.</p>
 <table>
 <thead>
 <tr>
@@ -1664,8 +1744,8 @@ The string provided must contain only numeric characters and adhere to the stand
 </table>
 <h3 id="subject-for-ebox-message-required">Subject for eBox message (required)</h3>
 <p>Each Intake request must contain at least one localised subject.</p>
-<p>Multiple subject localisations can be provided. These will be included in the eBox message. The eBox Portal will
-decide which one to display based on the recipient's eBox locale settings.</p>
+<p>Multiple subject localisations can be provided. These will be included in the eBox message. The eBox Portal will decide
+which one to display based on the recipient's eBox locale settings.</p>
 <table>
 <thead>
 <tr>
@@ -1837,8 +1917,8 @@ decide which one to display based on the recipient's eBox locale settings.</p>
 </table>
 <p>Attachments are always printed recto/verso.</p>
 <h3 id="background-optional">Background (optional)</h3>
-<p>Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page 
-of the main document.</p>
+<p>Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page of
+the main document.</p>
 <table>
 <thead>
 <tr>
@@ -1910,7 +1990,7 @@ of the main document.</p>
 </tbody>
 </table>
 <h3 id="carrier-optional-for-c4-envelopes">Carrier (optional) for C4 envelopes</h3>
-<p>Each Multipart Intake request may contain exactly one carrier. An address carrier is only used when sending C4 
+<p>Each Multipart Intake request may contain exactly one carrier. An address carrier is only used when sending C4
 envelopes, which use a separate sheet of paper to print the address on.</p>
 <table>
 <thead>
@@ -2004,16 +2084,17 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tr>
 <tr>
 <td>hook[method]</td>
-<td>HTTP method to be used for the webhook, must be either GET or POST (case-insensitive)</td>
-<td>YES, if webhook is desired</td>
+<td>HTTP method to be used for the webhook: <code>get</code>, <code>post</code>, <code>GET</code> or <code>POST</code></td>
+<td>NO</td>
 <td>string</td>
-<td></td>
+<td>POST</td>
 </tr>
 </tbody>
 </table>
 <h3 id="ebox-hook-optional">eBox Hook (optional)</h3>
-<p>Each Intake request may specify an eBox webhook URL and method to send status updates to.
-These updates relate to the eBox message processing by BOSA.</p>
+<p>Each Intake request may specify an eBox webhook URL and method to send eBox status updates to: whether the message was
+offered, delivered and read, or fell back to paper. These are separate from the Intake status updates sent to
+<code>hook[uri]</code>, which only start once a message falls back to paper and its Intake is printed.</p>
 <table>
 <thead>
 <tr>
@@ -2034,14 +2115,68 @@ These updates relate to the eBox message processing by BOSA.</p>
 </tr>
 <tr>
 <td>hook_method</td>
-<td>HTTP method to be used for the webhook, must be either GET or POST (case-insensitive)</td>
-<td>YES, if webhook is desired</td>
+<td>HTTP method to be used for the webhook: <code>get</code>, <code>post</code>, <code>GET</code> or <code>POST</code></td>
+<td>NO</td>
+<td>string</td>
+<td>POST</td>
+</tr>
+</tbody>
+</table>
+<p>For more detailed information on eBox status updates, refer to the <a href="../webhooks/#ebox-status-updates">Webhooks</a> page.</p>
+<h3 id="read-deadline-optional">Read deadline (optional)</h3>
+<p>Each Intake request may specify how many days the recipient has to read the message. If the message has been delivered
+but is not read within that time, it falls back to paper: the Intake is printed and posted, and a <code>fallback</code> webhook
+with reason <code>messageExpired</code> is sent (see <a href="../webhooks/#fallback">Fallback</a>).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fallback_days</td>
+<td>Number of days, counted from the request, to read the message before it falls back to paper. <code>0</code> means no deadline</td>
+<td>NO</td>
+<td>integer</td>
+<td>Set by your eBox configuration</td>
+</tr>
+</tbody>
+</table>
+<p>When omitted, the deadline from your eBox configuration is used; if that has none either, the message has no deadline
+and never falls back for not being read. <code>0</code> turns the deadline off for this message, even when your eBox configuration
+has one. The deadline is returned as <code>must_be_read_by</code> in the <code>offered</code> webhook.</p>
+<h3 id="customer-identifier-optional">Customer identifier (optional)</h3>
+<p>Each Intake request may specify the <a href="../company_customers/">company customer</a> the eBox message is sent for, with
+<code>customer_identifier</code>. It is the same as <code>correlation[customerIdentifier]</code>; when both are sent, they must be equal.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>customer_identifier</td>
+<td>Identifier of the company customer the eBox message is sent for</td>
+<td>NO</td>
 <td>string</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p>For more detailed information on the webhook functionality, refer to the <a href="../webhooks/">Webhooks</a> page.</p>
+<p>The eBox configuration linked to that customer is then used. If there is none, a 400 <code>No eBox configuration could be
+found</code> is returned. When omitted, the eBox configuration of your company is used. An identifier that is not one of your
+company's customers returns a 422 for <code>correlation.customerIdentifier</code>. See <a href="../company_customers/#ebox">Company
+Customers</a> for details.</p>
 <h3 id="correlation-required">Correlation (required)</h3>
 <table>
 <thead>
@@ -2057,6 +2192,13 @@ These updates relate to the eBox message processing by BOSA.</p>
 <tr>
 <td>correlation[costId]</td>
 <td>Cost ID, for internal reference</td>
+<td>NO</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>correlation[customerIdentifier]</td>
+<td>Same as <code>customer_identifier</code>, see <a href="#customer-identifier-optional">Customer identifier</a></td>
 <td>NO</td>
 <td>string</td>
 <td></td>
@@ -2079,8 +2221,10 @@ These updates relate to the eBox message processing by BOSA.</p>
 </table>
 <h3 id="duplicity-check-optional">Duplicity check (optional)</h3>
 <p>Each Intake request may specify whether a duplicity check should be run.</p>
-<p>The check will determine if another Intake exists with the same document name. If attachments are present, the names of these will also be considered in the check.</p>
-<p>If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the duplicate(s).</p>
+<p>The check will determine if another Intake exists with the same document name. If attachments are present, the names of
+these will also be considered in the check.</p>
+<p>If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the
+duplicate(s).</p>
 <table>
 <thead>
 <tr>
@@ -2121,7 +2265,8 @@ These updates relate to the eBox message processing by BOSA.</p>
 </tr>
 </tbody>
 </table>
-<p><code>cost</code> is the cost of the Intake as a decimal string (e.g. <code>"1.25"</code>), and <code>message</code> is the unique identifier (GUID) of the eBox message.</p>
+<p><code>cost</code> is the cost of the Intake as a decimal string (e.g. <code>"1.25"</code>), and <code>message</code> is the unique identifier (GUID) of
+the eBox message.</p>
 <h3 id="possible-error-codes">Possible error codes</h3>
 <table>
 <thead>
@@ -2198,10 +2343,10 @@ These updates relate to the eBox message processing by BOSA.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

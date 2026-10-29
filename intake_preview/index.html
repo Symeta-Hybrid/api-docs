@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -989,6 +989,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../company_customers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Company Customers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../webhooks/" class="md-nav__link">
         
   
@@ -1174,10 +1201,10 @@
 </tbody>
 </table>
 <p>The <code>Accept</code> header determines the response format: <code>application/json</code> returns a summary with the PDF embedded as
-base64, while <code>application/pdf</code> returns the raw PDF file directly. Any value other than <code>application/pdf</code> is
-treated as <code>application/json</code>.</p>
+base64, while <code>application/pdf</code> returns the raw PDF file directly. Any value other than <code>application/pdf</code> is treated as
+<code>application/json</code>.</p>
 <h2 id="json-response">JSON response</h2>
-<p>The API will return a JSON response containing the following properties, where <code>previewBase64</code> contains the final 
+<p>The API will return a JSON response containing the following properties, where <code>previewBase64</code> contains the final
 composed PDF file's contents, in a base-64 encoded format.
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">"attachmentPages"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
@@ -1188,8 +1215,9 @@ composed PDF file's contents, in a base-64 encoded format.
 </code></pre></div>
 <code>attachmentPages</code> and <code>documentPages</code> are integers. <code>totalPages</code> is returned as a string.</p>
 <h2 id="pdf-response">PDF response</h2>
-<p>If the request was sent with an <code>Accept: application/pdf</code> header, the API returns the composed PDF file directly,
-along with a <code>Content-Type: application/pdf</code> header and a <code>Content-Disposition: inline; filename="{id}.pdf"</code> header, instead of the JSON response above.</p>
+<p>If the request was sent with an <code>Accept: application/pdf</code> header, the API returns the composed PDF file directly, along
+with a <code>Content-Type: application/pdf</code> header and a <code>Content-Disposition: inline; filename="{id}.pdf"</code> header, instead
+of the JSON response above.</p>
 <h2 id="possible-errors">Possible errors</h2>
 <table>
 <thead>
@@ -1266,10 +1294,10 @@ along with a <code>Content-Type: application/pdf</code> header and a <code>Conte
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

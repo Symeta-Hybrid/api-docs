@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -1030,6 +1030,33 @@
   
   
     <li class="md-nav__item">
+      <a href="company_customers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Company Customers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="webhooks/" class="md-nav__link">
         
   
@@ -1222,29 +1249,38 @@
 
 <h1 id="introduction">Introduction</h1>
 <h2 id="purpose">Purpose</h2>
-<p>Apart from our Mail-IT-Wize web application, we also offer a RESTful API which provides endpoints for processing, printing documents and envelopes, and finally sending the document to your recipient. The API also has options in place for handling return mail.</p>
-<p>Our API can be divided into 2 large components: sending documents along with metadata (Intake request) and consulting previously sent documents (Resource request).</p>
+<p>Apart from our Mail-IT-Wize web application, we also offer a RESTful API which provides endpoints for processing,
+printing documents and envelopes, and finally sending the document to your recipient. The API also has options in place
+for handling return mail.</p>
+<p>Our API can be divided into 2 large components: sending documents along with metadata (Intake request) and consulting
+previously sent documents (Resource request).</p>
 <h2 id="authentication-and-security">Authentication and security</h2>
-<p>All HTTP requests and responses use SSL. Any API requests sent over unencrypted HTTP will <strong>not</strong> be honoured. These requests will not receive any response, and will time out.
-For authentication, we use bearer tokens. Send your access token in the <code>Authorization: Bearer [token]</code> header of every request.</p>
+<p>All HTTP requests and responses use SSL. Any API requests sent over unencrypted HTTP will <strong>not</strong> be honoured. These
+requests will not receive any response, and will time out. For authentication, we use bearer tokens. Send your access
+token in the <code>Authorization: Bearer [token]</code> header of every request.</p>
 <h3 id="managing-access-tokens">Managing access tokens</h3>
-<p>Access tokens are managed by the users, via the API's web portal. These tokens always have a lifetime of 365 days, and are linked to one specific user.</p>
+<p>Access tokens are managed by the users, via the API's web portal. These tokens always have a lifetime of 365 days, and
+are linked to one specific user.</p>
 <p>Upon expiration, the API will return an "Unauthenticated" error upon subsequent requests with said token.</p>
 <p>An implementation for refreshing tokens/retrieving a new access token via the API itself is under construction.</p>
 <h2 id="components">Components</h2>
 <h3 id="intake-request">Intake request</h3>
-<p>Contains the main document, background (optional), envelope (optional), attachments (optional) together with all required metadata (address, recipient, document name, ...)</p>
-<p><em>Important: each intake request contains exactly 1 main document and 1 recipient. To send one PDF to multiple recipients in a single request, use the <a href="intake_bulk/">Bulk Intake</a> request.</em></p>
+<p>Contains the main document, background (optional), envelope (optional), attachments (optional) together with all
+required metadata (address, recipient, document name, ...)</p>
+<p><em>Important: each intake request contains exactly 1 main document and 1 recipient. To send one PDF to multiple recipients
+in a single request, use the <a href="intake_bulk/">Bulk Intake</a> request.</em></p>
 <h3 id="resource-request">Resource request</h3>
 <p>A resource request can be used to consult previously sent Intake requests.</p>
 <h2 id="api-base-url-and-versioning">API base URL and versioning</h2>
 <p>There is currently a single version available for the API in both UAT and PROD. This is v1.</p>
-<p>If a new version is introduced, the previous one will remain active for backwards compatibility. All API users will be notified of new releases.</p>
+<p>If a new version is introduced, the previous one will remain active for backwards compatibility. All API users will be
+notified of new releases.</p>
 <p>Base URL for PROD: <code>https://api.mailitwize.be/api/v1</code></p>
 <p>Base URL for UAT: <code>https://api-test.mailitwize.be/api/v1</code></p>
 <h2 id="technical-specification">Technical specification</h2>
-<p>These docs serve as a general introduction and manual for usage of the API. </p>
-<p>For more detailed specs on all available API functionality, we suggest also taking a look at our <a href="https://symeta-hybrid.github.io/api-swagger/">Swagger</a>.</p>
+<p>These docs serve as a general introduction and manual for usage of the API.</p>
+<p>For more detailed specs on all available API functionality, we suggest also taking a look at our
+<a href="https://symeta-hybrid.github.io/api-swagger/">Swagger</a>.</p>
 
 
 
@@ -1294,10 +1330,10 @@ For authentication, we use bearer tokens. Send your access token in the <code>Au
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>
