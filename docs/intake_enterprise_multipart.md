@@ -2,14 +2,18 @@
 
 !!! info "Eligibility and access"
 
-    If you wish to make use of our eBox Enterprise service, please contact us at [support@mailitwize.be](mailto:support@mailitwize.be).
+    If you wish to make use of our eBox Enterprise service, please contact us at
+    [support@mailitwize.be](mailto:support@mailitwize.be).
 
-    Before you can start using this endpoint to send messages to eBox a check needs to be done by the Belgian Social Security (the eBox enterprise service provider) 
-    to determine if your organisation is eligible for sending eBox messages.
-    
-    If you are eligible, we will go through the process together to complete the audit process and enable eBox functionality.
+    Before you can start using this endpoint to send messages to eBox a check needs to be done by the Belgian Social
+    Security (the eBox enterprise service provider) to determine if your organisation is eligible for sending eBox
+    messages.
 
-    Do note that we have different partners for Citizen and Enterprise, and there are separate procedures to be completed.
+    If you are eligible, we will go through the process together to complete the audit process and enable eBox
+    functionality.
+
+    Do note that we have different partners for Citizen and Enterprise, and there are separate procedures to be
+    completed.
 
 ## Endpoint and method
 
@@ -76,10 +80,15 @@ postalService[nonPrior] => boolean,
 hook[uri] => 'string',
 hook[method] => 'string',
 
-hook_uri => 'string',
-hook_method => 'string',
+hook_uri => 'Full webhook path for eBox updates',
+hook_method => 'POST or GET for eBox updates',
+
+fallback_days => 'integer, optional, days to read the message before it falls back to paper',
+
+customer_identifier => 'string, optional',
 
 correlation[costId] => 'string,optional',
+correlation[customerIdentifier] => 'string, optional, equal to customer_identifier when both are sent',
 correlation[lang] => 'required, nl, fr, de or en',
 correlation[returnAddress] => 'optional string, single line return address',
 
@@ -99,8 +108,9 @@ Each Multipart Intake request must contain exactly one main document.
 | document\[multiplex] | Print setting of the document. 0 = recto, 1 = recto/verso               | NO       | boolean     | 1       |
 
 ### Recipient identification number (required)
-Each Intake request must contain exactly one identification number. This is the company registration number of the recipient enterprise.
-The string provided must be exactly 10 characters, contain only numeric characters and starts with either a 0 or 1. This is not to be confused with the VAT number.
+Each Intake request must contain exactly one identification number. This is the company registration number of the
+recipient enterprise. The string provided must be exactly 10 characters, contain only numeric characters and starts with
+either a 0 or 1. This is not to be confused with the VAT number.
 
 | Key                             | Description                                             | Required | Type   | Default |
 |---------------------------------|---------------------------------------------------------|----------|--------|---------|
@@ -147,8 +157,8 @@ Each Multipart Intake request may contain multiple attachments, using a consecut
 Attachments are always printed recto/verso.
 
 ### Background (optional)
-Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page 
-of the main document.
+Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page of
+the main document.
 
 | Key                    | Description                                                               | Required                 | Type        | Default |
 |------------------------|---------------------------------------------------------------------------|--------------------------|-------------|---------|
@@ -166,7 +176,7 @@ Each Multipart Intake request may contain exactly one envelope.
 | envelope\[contents]  | Envelope PDF file                                                       | YES                    | file/binary |         |
 
 ### Carrier (optional) for C4 envelopes
-Each Multipart Intake request may contain exactly one carrier. An address carrier is only used when sending C4 
+Each Multipart Intake request may contain exactly one carrier. An address carrier is only used when sending C4
 envelopes, which use a separate sheet of paper to print the address on.
 
 | Key                 | Description                                                            | Required              | Type        | Default |
@@ -187,36 +197,66 @@ Each Intake request may contain additional postal service instructions
 ### Hook (optional)
 Each Intake request may specify a webhook URL and method to send status updates to
 
-| Key           | Description                                                        | Required                   | Type   | Default |
-|---------------|--------------------------------------------------------------------|----------------------------|--------|---------|
+| Key           | Description                                                                                                                                                                                               | Required                   | Type   | Default |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|--------|---------|
 | hook\[uri]    | URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
-| hook\[method] | HTTP method to be used for the webhook, must be either GET or POST (case-insensitive) | YES, if webhook is desired | string |         |
+| hook\[method] | HTTP method to be used for the webhook: `get`, `post`, `GET` or `POST`                                                                                                                                    | NO                         | string | POST    |
 
 ### eBox Hook (optional)
-Each Intake request may specify an eBox webhook URL and method to send status updates to.
-These updates relate to the eBox message processing by BOSA.
+Each Intake request may specify an eBox webhook URL and method to send eBox status updates to: whether the message was
+offered, delivered and read, or fell back to paper. These are separate from the Intake status updates sent to
+`hook[uri]`, which only start once a message falls back to paper and its Intake is printed.
 
-| Key         | Description                                                        | Required                   | Type   | Default |
-|-------------|--------------------------------------------------------------------|----------------------------|--------|---------|
+| Key         | Description                                                                                                                                                                                               | Required                   | Type   | Default |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|--------|---------|
 | hook_uri    | URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
-| hook_method | HTTP method to be used for the webhook, must be either GET or POST (case-insensitive) | YES, if webhook is desired | string |         |
+| hook_method | HTTP method to be used for the webhook: `get`, `post`, `GET` or `POST`                                                                                                                                    | NO                         | string | POST    |
 
-For more detailed information on the webhook functionality, refer to the [Webhooks](webhooks.md) page.
+For more detailed information on eBox status updates, refer to the [Webhooks](webhooks.md#ebox-status-updates) page.
+
+### Read deadline (optional)
+Each Intake request may specify how many days the recipient has to read the message. If the message has been delivered
+but is not read within that time, it falls back to paper: the Intake is printed and posted, and a `fallback` webhook
+with reason `messageExpired` is sent (see [Fallback](webhooks.md#fallback)).
+
+| Key           | Description                                                                                                        | Required | Type    | Default                        |
+|---------------|--------------------------------------------------------------------------------------------------------------------|----------|---------|--------------------------------|
+| fallback_days | Number of days, counted from the request, to read the message before it falls back to paper. `0` means no deadline | NO       | integer | Set by your eBox configuration |
+
+When omitted, the deadline from your eBox configuration is used; if that has none either, the message has no deadline
+and never falls back for not being read. `0` turns the deadline off for this message, even when your eBox configuration
+has one. The deadline is returned as `must_be_read_by` in the `offered` webhook.
+
+### Customer identifier (optional)
+Each Intake request may specify the [company customer](company_customers.md) the eBox message is sent for, with
+`customer_identifier`. It is the same as `correlation[customerIdentifier]`; when both are sent, they must be equal.
+
+| Key                 | Description                                                     | Required | Type   | Default |
+|---------------------|-----------------------------------------------------------------|----------|--------|---------|
+| customer_identifier | Identifier of the company customer the eBox message is sent for | NO       | string |         |
+
+The eBox configuration linked to that customer is then used. If there is none, a 400 `No eBox configuration could be
+found` is returned. When omitted, the eBox configuration of your company is used. An identifier that is not one of your
+company's customers returns a 422 for `correlation.customerIdentifier`. See [Company
+Customers](company_customers.md#ebox) for details.
 
 ### Correlation (required)
 
-| Key                         | Description                                        | Required | Type   | Default                                        |
-|-----------------------------|----------------------------------------------------|----------|--------|------------------------------------------------|
-| correlation\[costId]        | Cost ID, for internal reference                    | NO       | string |                                                |
-| correlation\[lang]          | Document's language, must be one of nl, fr, en, de | YES      | string |                                                |
-| correlation\[returnAddress] | Return address in case of undeliverable mail       | NO       | string | Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven |
+| Key                              | Description                                                                             | Required | Type   | Default                                        |
+|----------------------------------|-----------------------------------------------------------------------------------------|----------|--------|------------------------------------------------|
+| correlation\[costId]             | Cost ID, for internal reference                                                         | NO       | string |                                                |
+| correlation\[customerIdentifier] | Same as `customer_identifier`, see [Customer identifier](#customer-identifier-optional) | NO       | string |                                                |
+| correlation\[lang]               | Document's language, must be one of nl, fr, en, de                                      | YES      | string |                                                |
+| correlation\[returnAddress]      | Return address in case of undeliverable mail                                            | NO       | string | Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven |
 
 ### Duplicity check (optional)
 Each Intake request may specify whether a duplicity check should be run.
 
-The check will determine if another Intake exists with the same document name. If attachments are present, the names of these will also be considered in the check.
+The check will determine if another Intake exists with the same document name. If attachments are present, the names of
+these will also be considered in the check.
 
-If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the duplicate(s).
+If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the
+duplicate(s).
 
 | Key            | Description                                     | Required | Type          | Default |
 |----------------|-------------------------------------------------|----------|---------------|---------|
@@ -231,7 +271,8 @@ If any duplicates are found, a validation error will be returned with a message 
 | HTTP status code | 200 OK                                                     |
 | JSON body        | `{ "intake": integer, "cost": string, "message": string }` |
 
-`cost` is the cost of the Intake as a decimal string (e.g. `"1.25"`), and `message` is the unique identifier (GUID) of the eBox message.
+`cost` is the cost of the Intake as a decimal string (e.g. `"1.25"`), and `message` is the unique identifier (GUID) of
+the eBox message.
 
 ### Possible error codes
 

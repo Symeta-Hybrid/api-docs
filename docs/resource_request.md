@@ -63,6 +63,6 @@ With the Intake ID received when submitting an Intake, you can retrieve all info
 
 #### Possible errors
 
-| HTTP code | Description  | Reason                                                           |
-|-----------|--------------|-------------------------------------------------------------------|
-| 403       | Forbidden    | The Intake does not belong to the authenticated user               |
+| HTTP code | Description | Reason                                               |
+|-----------|-------------|------------------------------------------------------|
+| 403       | Forbidden   | The Intake does not belong to the authenticated user |

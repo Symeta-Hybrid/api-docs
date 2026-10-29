@@ -26,8 +26,8 @@ If the API is available, it will return the following response, along with an HT
 
 ## Possible errors
 
-| HTTP code | Description           | Reason                                                       |
-|-----------|-----------------------|--------------------------------------------------------------|
-| 503       | Service Unavailable   | The API is currently down for maintenance                    |
-| 500       | Internal Server Error | The API is experiencing technical issues                     |
-| 429       | Too Many Requests     | Request limit of 6000 requests per minute has been exceeded  |
+| HTTP code | Description           | Reason                                                      |
+|-----------|-----------------------|-------------------------------------------------------------|
+| 503       | Service Unavailable   | The API is currently down for maintenance                   |
+| 500       | Internal Server Error | The API is experiencing technical issues                    |
+| 429       | Too Many Requests     | Request limit of 6000 requests per minute has been exceeded |

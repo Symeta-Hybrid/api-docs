@@ -2,12 +2,13 @@
 
 ## Introduction
 
-For registered mail, we have implemented bpost's Proof of Delivery (POD) API.
-This allows you to track your registered mail, and optionally download the POD PDF document.
+For registered mail, we have implemented bpost's Proof of Delivery (POD) API. This allows you to track your registered
+mail, and optionally download the POD PDF document.
 
 ## Endpoint and method
 
-There are 2 endpoints available for the POD's: retrieving POD information and downloading the POD document (if available).
+There are 2 endpoints available for the POD's: retrieving POD information and downloading the POD document (if
+available).
 
 ### Request POD information
 
@@ -56,6 +57,6 @@ The POD document will be returned as `binary`, with an `application/pdf` header.
 
 Both POD endpoints can return:
 
-| HTTP code | Description  | Reason                                                           |
-|-----------|--------------|-------------------------------------------------------------------|
-| 403       | Forbidden    | The Intake does not belong to the authenticated user               |
+| HTTP code | Description | Reason                                               |
+|-----------|-------------|------------------------------------------------------|
+| 403       | Forbidden   | The Intake does not belong to the authenticated user |

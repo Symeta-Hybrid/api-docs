@@ -1,7 +1,8 @@
 # Multipart Intake Request
 ## Multipart vs JSON
-The Multipart Intake Request is the recommended way to submit intakes. Files are uploaded as-is, without base64 encoding, and the 4MB request size limit of the JSON Intake Request does not apply.
-For the most part, the requests are very similar.
+The Multipart Intake Request is the recommended way to submit intakes. Files are uploaded as-is, without base64
+encoding, and the 4MB request size limit of the JSON Intake Request does not apply. For the most part, the requests are
+very similar.
 
 ## Endpoint and method
 
@@ -64,6 +65,7 @@ hook[uri] => 'string',
 hook[method] => 'string',
 
 correlation[costId] => 'string,optional',
+correlation[customerIdentifier] => 'string,optional',
 correlation[lang] => 'required, nl, fr, de or en',
 correlation[returnAddress] => 'optional string, single line return address',
 
@@ -97,7 +99,8 @@ Each Multipart Intake request must contain exactly one main document.
 | document\[multiplex] | Print setting of the document. 0 = recto, 1 = recto/verso               | NO       | boolean     | 1       |
 
 ### Attachments (optional)
-Each Multipart Intake request may contain multiple attachments, using a consecutive numerical index (see JSON structure).
+Each Multipart Intake request may contain multiple attachments, using a consecutive numerical index (see JSON
+structure).
 
 | Key                         | Description                                                               | Required                 | Type        | Default |
 |-----------------------------|---------------------------------------------------------------------------|--------------------------|-------------|---------|
@@ -108,8 +111,8 @@ Each Multipart Intake request may contain multiple attachments, using a consecut
 Attachments are always printed recto/verso.
 
 ### Background (optional)
-Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page 
-of the main document.
+Each Multipart Intake request may contain exactly 1 background. The background will only be printed on the first page of
+the main document.
 
 | Key                    | Description                                                               | Required                 | Type        | Default |
 |------------------------|---------------------------------------------------------------------------|--------------------------|-------------|---------|
@@ -127,7 +130,7 @@ Each Multipart Intake request may contain exactly one envelope.
 | envelope\[contents]  | Envelope PDF file                                                       | YES                    | file/binary |         |
 
 ### Carrier (optional) for C4 envelopes
-Each Multipart Intake request may contain exactly one carrier. An address carrier is only used when sending C4 
+Each Multipart Intake request may contain exactly one carrier. An address carrier is only used when sending C4
 envelopes, which use a separate sheet of paper to print the address on.
 
 | Key                 | Description                                                            | Required              | Type        | Default |
@@ -166,27 +169,30 @@ Each Intake request may contain additional postal service instructions
 ### Hook (optional)
 Each Intake request may specify a webhook URL and method to send status updates to
 
-| Key           | Description                                                        | Required                   | Type   | Default |
-|---------------|--------------------------------------------------------------------|----------------------------|--------|---------|
+| Key           | Description                                                                                                                                                                                               | Required                   | Type   | Default |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|--------|---------|
 | hook\[uri]    | URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
-| hook\[method] | HTTP method to be used for the webhook, must be either GET or POST (case-insensitive) | YES, if webhook is desired | string |         |
+| hook\[method] | HTTP method to be used for the webhook: `get`, `post`, `GET` or `POST`                                                                                                                                    | NO                         | string | POST    |
 
 For more detailed information on the webhook functionality, refer to the [Webhooks](webhooks.md) page.
 
 ### Correlation (required)
 
-| Key                         | Description                                        | Required | Type   | Default                                        |
-|-----------------------------|----------------------------------------------------|----------|--------|------------------------------------------------|
-| correlation\[costId]        | Cost ID, for internal reference                    | NO       | string |                                                |
-| correlation\[lang]          | Document's language, must be one of nl, fr, en, de | YES      | string |                                                |
-| correlation\[returnAddress] | Return address in case of undeliverable mail       | NO       | string | Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven |
+| Key                              | Description                                                                       | Required | Type   | Default                                        |
+|----------------------------------|-----------------------------------------------------------------------------------|----------|--------|------------------------------------------------|
+| correlation\[costId]             | Cost ID, for internal reference                                                   | NO       | string |                                                |
+| correlation\[customerIdentifier] | Identifier of the [company customer](company_customers.md) the Intake is sent for | NO       | string |                                                |
+| correlation\[lang]               | Document's language, must be one of nl, fr, en, de                                | YES      | string |                                                |
+| correlation\[returnAddress]      | Return address in case of undeliverable mail                                      | NO       | string | Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven |
 
 ### Duplicity check (optional)
 Each Intake request may specify whether a duplicity check should be run.
 
-The check will determine if another Intake exists with the same document name. If attachments are present, the names of these will also be considered in the check.
+The check will determine if another Intake exists with the same document name. If attachments are present, the names of
+these will also be considered in the check.
 
-If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the duplicate(s).
+If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the
+duplicate(s).
 
 | Key            | Description                                     | Required | Type          | Default |
 |----------------|-------------------------------------------------|----------|---------------|---------|

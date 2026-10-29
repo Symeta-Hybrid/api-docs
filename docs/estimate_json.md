@@ -16,6 +16,6 @@
 
 ## Request body and document format
 
-The request body and format for an Estimate request are the exact same as the JSON Intake Request. 
+The request body and format for an Estimate request are the exact same as the JSON Intake Request.
 
 Please refer to the [JSON Intake documentation](intake_json.md).

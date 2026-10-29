@@ -1,7 +1,8 @@
 # JSON Intake request
 
 !!! tip
-    We recommend the [Multipart Intake Request](intake_multipart.md) for new integrations. It avoids base64 encoding and is not bound by the 4MB request size limit.
+    We recommend the [Multipart Intake Request](intake_multipart.md) for new integrations. It avoids base64 encoding and
+    is not bound by the 4MB request size limit.
 
 ## Endpoint and method
 
@@ -44,8 +45,9 @@ Examples for achieving the correct format:
     ```
 
 !!! warning
-    The maximum size of a JSON request is 4MB! If your payload exceeds this limit, 
-    the server will return an HTTP error 413 (entity/payload too large). If you want to send larger documents, use the [Multipart Intake request](intake_multipart.md).
+    The maximum size of a JSON request is 4MB! If your payload exceeds this limit, the server will return an HTTP error
+    413 (entity/payload too large). If you want to send larger documents, use the [Multipart Intake
+    request](intake_multipart.md).
 
 ## JSON Request Structure
 ``` json
@@ -106,6 +108,7 @@ Examples for achieving the correct format:
     },
     "correlation": {
         "costId": "optional,string",
+        "customerIdentifier": "optional,string",
         "lang": "string nl,fr,en,de",
         "returnAddress": "string, single line address"
     },
@@ -126,16 +129,17 @@ Each Intake request must contain exactly one main document.
 ### Attachments (optional)
 Each Intake request may contain multiple attachments, using a consecutive numerical index (see JSON structure).
 
-| Key                       | Description                                                               | Required                 | Type    | Default |
-|---------------------------|---------------------------------------------------------------------------|--------------------------|---------|---------|
-| attachments.{n}.name      | Name of the attachment                                                    | YES, if using attachment | string  |         |
-| attachments.{n}.mime-type | MIME type of the attachment. Currently only "application/pdf" is accepted | YES                      | string  |         |
-| attachments.{n}.contents  | Base64-encoded contents of the attachment                                 | YES                      | string  |         |
+| Key                       | Description                                                               | Required                 | Type   | Default |
+|---------------------------|---------------------------------------------------------------------------|--------------------------|--------|---------|
+| attachments.{n}.name      | Name of the attachment                                                    | YES, if using attachment | string |         |
+| attachments.{n}.mime-type | MIME type of the attachment. Currently only "application/pdf" is accepted | YES                      | string |         |
+| attachments.{n}.contents  | Base64-encoded contents of the attachment                                 | YES                      | string |         |
 
 Attachments are always printed recto/verso.
 
 ### Background (optional)
-Each Intake request may contain exactly 1 background. The background will only be printed on the first page of the main document.
+Each Intake request may contain exactly 1 background. The background will only be printed on the first page of the main
+document.
 
 | Key                  | Description                                                               | Required                 | Type   | Default |
 |----------------------|---------------------------------------------------------------------------|--------------------------|--------|---------|
@@ -153,7 +157,8 @@ Each Intake request may contain exactly one envelope.
 | envelope.contents  | Base64-encoded contents of the envelope                                 | YES                    | string |         |
 
 ### Carrier (optional) for C4 envelopes
-Each Intake request may contain exactly one carrier. An address carrier is only used when sending C4 envelopes, which use a separate sheet of paper to print the address on.
+Each Intake request may contain exactly one carrier. An address carrier is only used when sending C4 envelopes, which
+use a separate sheet of paper to print the address on.
 
 | Key               | Description                                                            | Required              | Type   | Default |
 |-------------------|------------------------------------------------------------------------|-----------------------|--------|---------|
@@ -192,27 +197,30 @@ Each Intake request may contain additional postal service instructions
 ### Hook (optional)
 Each Intake request may specify a webhook URL and method to send status updates to
 
-| Key         | Description                                                        | Required                   | Type   | Default |
-|-------------|--------------------------------------------------------------------|----------------------------|--------|---------|
+| Key         | Description                                                                                                                                                                                               | Required                   | Type   | Default |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|--------|---------|
 | hook.uri    | URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
-| hook.method | HTTP method to be used for the webhook, must be either GET or POST (case-insensitive) | YES, if webhook is desired | string |         |
+| hook.method | HTTP method to be used for the webhook: `get`, `post`, `GET` or `POST`                                                                                                                                    | NO                         | string | POST    |
 
 For more detailed information on the webhook functionality, refer to the [Webhooks](webhooks.md) page.
 
 ### Correlation (required)
 
-| Key                       | Description                                        | Required | Type   | Default                                        |
-|---------------------------|----------------------------------------------------|----------|--------|------------------------------------------------|
-| correlation.costId        | Cost ID, for internal reference                    | NO       | string |                                                |
-| correlation.lang          | Document's language, must be one of nl, fr, en, de | YES      | string |                                                |
-| correlation.returnAddress | Return address in case of undeliverable mail       | NO       | string | Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven |
+| Key                            | Description                                                                       | Required | Type   | Default                                        |
+|--------------------------------|-----------------------------------------------------------------------------------|----------|--------|------------------------------------------------|
+| correlation.costId             | Cost ID, for internal reference                                                   | NO       | string |                                                |
+| correlation.customerIdentifier | Identifier of the [company customer](company_customers.md) the Intake is sent for | NO       | string |                                                |
+| correlation.lang               | Document's language, must be one of nl, fr, en, de                                | YES      | string |                                                |
+| correlation.returnAddress      | Return address in case of undeliverable mail                                      | NO       | string | Symeta Hybrid, Interleuvenlaan 50, 3001 Leuven |
 
 ### Duplicity check (optional)
-Each Intake request may specify whether a duplicity check should be run. 
+Each Intake request may specify whether a duplicity check should be run.
 
-The check will determine if another Intake exists with the same document name. If attachments are present, the names of these will also be considered in the check.
+The check will determine if another Intake exists with the same document name. If attachments are present, the names of
+these will also be considered in the check.
 
-If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the duplicate(s).
+If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the
+duplicate(s).
 
 | Key            | Description                                     | Required | Type          | Default |
 |----------------|-------------------------------------------------|----------|---------------|---------|

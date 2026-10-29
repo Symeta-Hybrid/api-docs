@@ -29,5 +29,6 @@ nav:
           - Multipart Intake: intake_citizen_multipart.md
       - Enterprise:
           - Multipart Intake: intake_enterprise_multipart.md
+  - Company Customers: company_customers.md
   - Webhooks: webhooks.md
   - Proof of Delivery: pods.md

@@ -15,7 +15,8 @@
 | Authorization | `Bearer [token]`   |
 
 ## JSON response
-The API will return the expiration date of the token used in the request as a JSON string, along with an HTTP 200 status code:
+The API will return the expiration date of the token used in the request as a JSON string, along with an HTTP 200 status
+code:
 ```json
 "2027-10-07T09:30:00.000000Z"
 ```
