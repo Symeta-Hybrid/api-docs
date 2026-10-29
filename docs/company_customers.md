@@ -48,7 +48,8 @@ eBox messages are sent with an eBox configuration that we set up for you. If you
 customers, each customer can have its own eBox configuration, which we link to the customer once it is approved.
 
 The eBox requests also accept the identifier as `customer_identifier`. It is the same as
-`correlation[customerIdentifier]`, and either one may be used. When both are sent, they must be equal.
+`correlation[customerIdentifier]`, and either one may be used. When both are sent, they must be equal apart from case
+(`ACME` and `acme` match).
 
 When a customer is specified, the eBox configuration linked to that customer is used. When no customer is specified,
 your company's own eBox configuration is used, never one linked to a customer.
@@ -61,7 +62,7 @@ in `customer_identifier`.
 
 ## Possible errors
 
-| HTTP code | Description           | Reason                                                                                                         |
-|-----------|-----------------------|----------------------------------------------------------------------------------------------------------------|
-| 422       | Unprocessable Entity  | `correlation.customerIdentifier` is not one of your company's customers, or differs from `customer_identifier` |
-| 400       | No eBox configuration | eBox only: no eBox configuration is linked to the customer, for example because it is not approved yet         |
+| HTTP code | Description           | Reason                                                                                                                         |
+|-----------|-----------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| 422       | Unprocessable Entity  | `correlation.customerIdentifier` is not one of your company's customers, or differs from `customer_identifier` apart from case |
+| 400       | No eBox configuration | eBox only: no eBox configuration is linked to the customer, for example because it is not approved yet                         |

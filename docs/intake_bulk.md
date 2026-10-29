@@ -296,6 +296,10 @@ the address caused the failure. `parsed_text` will always contain the raw text t
 `cityRequired` or `postcodeRequired`. When no address could be read at all, `errors` is `["address"]`, `errorCodes` is
 `["addressRequired"]` and `parsed_text` is empty.
 
+The first line of the address (the recipient) may be at most 50 bytes long. An accented character such as `é` counts as
+2 bytes. A longer line gives error `house`, with the message `The addressee is limited to 50 characters.` and no code in
+`messages.errorCodes`.
+
 Note: for documents that fail address validation, we will **not** persist the Intake model to the database. These are
 only kept in memory at runtime to provide feedback.
 

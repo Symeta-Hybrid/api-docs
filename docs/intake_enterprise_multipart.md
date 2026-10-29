@@ -39,7 +39,6 @@ document[multiplex] => boolean (default 1),
 
 recipient_identification_number => 'string, length 10',
 subject_nl => 'string',
-subject_en => 'string',
 subject_fr => 'string',
 
 address[firstname] => 'string',
@@ -77,6 +76,8 @@ postalService[registered] => boolean,
 postalService[prior] => boolean,
 postalService[nonPrior] => boolean,
 
+registered => 'boolean, optional, ignored',
+
 hook[uri] => 'string',
 hook[method] => 'string',
 
@@ -88,7 +89,7 @@ fallback_days => 'integer, optional, days to read the message before it falls ba
 customer_identifier => 'string, optional',
 
 correlation[costId] => 'string,optional',
-correlation[customerIdentifier] => 'string, optional, equal to customer_identifier when both are sent',
+correlation[customerIdentifier] => 'string, optional, equal to customer_identifier (ignoring case) when both are sent',
 correlation[lang] => 'required, nl, fr, de or en',
 correlation[returnAddress] => 'optional string, single line return address',
 
@@ -145,6 +146,10 @@ Each Multipart Intake request must contain exactly one recipient with the requir
 | address\[municipality]                | Municipality                                                            | YES                                                                         | string |         |
 | address\[countryIso2]                 | Country code, ISO 3611-2 format (2 characters)                          | YES                                                                         | string |         |
 
+The recipient's name (`address[fullname]`, or `address[firstname]` and `address[lastname]` joined by a space) and
+`address[company]` may each be at most 50 bytes long. An accented character such as `é` counts as 2 bytes. A longer
+value returns a 422 with key `addresseeTooLong`.
+
 ### Attachments (optional)
 Each Multipart Intake request may contain multiple attachments, using a consecutive numerical index.
 
@@ -194,6 +199,13 @@ Each Intake request may contain additional postal service instructions
 | postalService\[prior]      | Prior shipment                            | NO       | boolean | 0       |
 | postalService\[nonPrior]   | Non-prior (standard) shipment             | NO       | boolean | 1       |
 
+### Registered eBox message (not supported)
+eBox Enterprise messages cannot be sent registered. The `registered` field is accepted for compatibility with eBox
+Citizen, but ignored: the message is always sent unregistered. It is separate from `postalService[registered]`, the bpost
+registered shipment.
+
+Accepted values are `0`, `1`, `true`, `false`, `yes`, `no`, `on` and `off`, in any case. Any other value returns a 422.
+
 ### Hook (optional)
 Each Intake request may specify a webhook URL and method to send status updates to
 
@@ -229,7 +241,8 @@ has one. The deadline is returned as `must_be_read_by` in the `offered` webhook.
 
 ### Customer identifier (optional)
 Each Intake request may specify the [company customer](company_customers.md) the eBox message is sent for, with
-`customer_identifier`. It is the same as `correlation[customerIdentifier]`; when both are sent, they must be equal.
+`customer_identifier`. It is the same as `correlation[customerIdentifier]`; when both are sent, they must be equal
+apart from case (`ACME` and `acme` match).
 
 | Key                 | Description                                                     | Required | Type   | Default |
 |---------------------|-----------------------------------------------------------------|----------|--------|---------|

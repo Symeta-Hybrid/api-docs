@@ -157,6 +157,10 @@ Each Multipart Intake request must contain exactly one recipient with the requir
 | address\[municipality]                | Municipality                                                            | YES                                                                         | string |         |
 | address\[countryIso2]                 | Country code, ISO 3611-2 format (2 characters)                          | YES                                                                         | string |         |
 
+The recipient's name (`address[fullname]`, or `address[firstname]` and `address[lastname]` joined by a space) and
+`address[company]` may each be at most 50 bytes long. An accented character such as `é` counts as 2 bytes. A longer
+value returns a 422 with key `addresseeTooLong`.
+
 ### Postal service (optional, default bpost non-prior)
 Each Intake request may contain additional postal service instructions
 

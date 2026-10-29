@@ -25,10 +25,15 @@ available).
     "podBusinessKey": "miw2_",
     "requestDateTime": "2024-03-20T14:00:00+00:00",
     "barcode": "JJBEA000000000000012345",
-    "deliveryStates": [
+    "currentState": {
+        "stateCode": "PodDownloadRequestPodInfoSucceeded",
+        "stateDisplayText": "Pod download request, pod info succeeded",
+        "transitionDateTime": "2023-08-01T10:00:00+02:00"
+    },
+    "stateHistory": [
         {
             "stateCode": "PodDownloadRequestPodInfoSucceeded",
-            "stateDisplaytext": "Pod download request, pod info succeeded",
+            "stateDisplayText": "Pod download request, pod info succeeded",
             "transitionDateTime": "2023-08-01T10:00:00+02:00"
         }
     ],
@@ -57,6 +62,9 @@ The POD document will be returned as `binary`, with an `application/pdf` header.
 
 Both POD endpoints can return:
 
-| HTTP code | Description | Reason                                               |
-|-----------|-------------|------------------------------------------------------|
-| 403       | Forbidden   | The Intake does not belong to the authenticated user |
+| HTTP code | Description | Reason                                                                                                |
+|-----------|-------------|-------------------------------------------------------------------------------------------------------|
+| 403       | Forbidden   | The Intake does not belong to the authenticated user                                                  |
+| 400       | Bad Request | The Intake was not sent registered                                                                    |
+| 400       | Bad Request | Download only: the POD document could not be fetched from the archive (the API retries 3 times first) |
+| 404       | Not Found   | No POD information (information request) or no POD document (download) was found for the Intake       |
