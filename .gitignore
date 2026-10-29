@@ -1,1 +1,14 @@
-.idea
+# MkDocs build output (mkdocs build / gh-deploy)
+site/
+
+# Python virtual environments and caches
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Editors and OS files
+.idea/
+.vscode/
+*.swp
+.DS_Store
