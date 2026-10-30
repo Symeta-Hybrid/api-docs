@@ -714,6 +714,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-an-intake-can-be-deleted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When an Intake can be deleted
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#json-response" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1101,6 +1112,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-an-intake-can-be-deleted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When an Intake can be deleted
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#json-response" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1185,6 +1207,35 @@
 </tr>
 </tbody>
 </table>
+<h2 id="when-an-intake-can-be-deleted">When an Intake can be deleted</h2>
+<p>Only an Intake with status <code>printing</code> can be deleted, and never between 22:00 and 05:00 (Europe/Brussels time).
+Otherwise a 422 is returned, with the reason in <code>error</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Between 22:00 and 05:00 (Europe/Brussels)</td>
+<td><code>Intakes can not be deleted between 22:00 and 05:00 local time (Europe/Brussels)</code></td>
+</tr>
+<tr>
+<td>Sent to eBox and still waiting there</td>
+<td><code>Intake was sent to eBox and can only be deleted once it falls back to paper.</code></td>
+</tr>
+<tr>
+<td>Still being prepared: status <code>dispatched</code>, <code>pickedup</code> or <code>processed</code>, or <code>received</code> for a Bulk Intake whose bulk is not dispatched yet</td>
+<td><code>Intake is currently in pre-processing and cannot be deleted at this stage. Please try again in a few minutes.</code></td>
+</tr>
+<tr>
+<td>Any later status</td>
+<td><code>Intake has status {status} and can no longer be deleted.</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="json-response">JSON response</h2>
 <p>If the file is successfully deleted, the API will return the following response, along with an HTTP 200 status code:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
@@ -1205,7 +1256,7 @@
 <tr>
 <td>422</td>
 <td>Unprocessable Entity</td>
-<td>Request could not be fulfilled.<br/>Refer to error message for specifics.</td>
+<td>Intake cannot be deleted, see <a href="#when-an-intake-can-be-deleted">When an Intake can be deleted</a></td>
 </tr>
 <tr>
 <td>401</td>

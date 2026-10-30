@@ -1908,6 +1908,9 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tr>
 </tbody>
 </table>
+<p>The recipient's name (<code>address[fullname]</code>, or <code>address[firstname]</code> and <code>address[lastname]</code> joined by a space) and
+<code>address[company]</code> may each be at most 50 bytes long. An accented character such as <code>é</code> counts as 2 bytes. A longer
+value returns a 422 with key <code>addresseeTooLong</code>.</p>
 <h3 id="postal-service-optional-default-bpost-non-prior">Postal service (optional, default bpost non-prior)</h3>
 <p>Each Intake request may contain additional postal service instructions</p>
 <table>

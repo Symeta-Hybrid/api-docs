@@ -2284,6 +2284,9 @@ the address caused the failure. <code>parsed_text</code> will always contain the
 <code>messages.errorCodes</code> also holds a code per missing component: <code>housesRequired</code>, <code>roadRequired</code>, <code>house_numberRequired</code>,
 <code>cityRequired</code> or <code>postcodeRequired</code>. When no address could be read at all, <code>errors</code> is <code>["address"]</code>, <code>errorCodes</code> is
 <code>["addressRequired"]</code> and <code>parsed_text</code> is empty.</p>
+<p>The first line of the address (the recipient) may be at most 50 bytes long. An accented character such as <code>é</code> counts as
+2 bytes. A longer line gives error <code>house</code>, with the message <code>The addressee is limited to 50 characters.</code> and no code in
+<code>messages.errorCodes</code>.</p>
 <p>Note: for documents that fail address validation, we will <strong>not</strong> persist the Intake model to the database. These are
 only kept in memory at runtime to provide feedback.</p>
 <h3 id="possible-error-codes">Possible error codes</h3>

@@ -967,6 +967,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#registered-ebox-message-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registered eBox message (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#hook-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1435,6 +1446,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#registered-ebox-message-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registered eBox message (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#hook-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1619,60 +1641,61 @@ completed.</p>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>recipient_identification_number =&gt; 'string, length 11',
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>subject_nl =&gt; 'string',
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>subject_en =&gt; 'string',
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>subject_fr =&gt; 'string',
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>address[firstname] =&gt; 'string',
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>address[lastname] =&gt; 'string',
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>address[fullname] =&gt; 'string',
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>address[street] =&gt; 'string',
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>address[houseNumber] =&gt; integer,
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>address[houseNumberAlpha] =&gt; 'string',
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>address[box] =&gt; 'string',
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>address[unstructuredStreetNumberBox] =&gt; 'string',
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>address[zip] =&gt; 'string',
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>address[municipality] =&gt; 'string',
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>address[countryIso2] =&gt; 'string max 2',
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>address[company] =&gt; 'string'
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>attachments[0][name] =&gt; 'string',
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>attachments[0][mime-type] =&gt; 'mime-type',
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>attachments[0][contents] =&gt; file,
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>attachments[1][name] =&gt; ...,
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>background[name] =&gt; 'string',
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>background[mime-type] =&gt; 'mime-type',
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>background[contents] =&gt; file,
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>envelope[name] =&gt; 'string',
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>envelope[mime-type] =&gt; 'mime-type',
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>envelope[contents] =&gt; file,
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>carrier[name] =&gt; 'string',
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>carrier[mime-type] =&gt; 'mime-type',
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>carrier[contents] =&gt; file,
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>postalService[registered] =&gt; boolean,
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>postalService[prior] =&gt; boolean,
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>postalService[nonPrior] =&gt; boolean,
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>hook[uri] =&gt; 'string',
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>hook[method] =&gt; 'string',
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
-<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>hook_uri =&gt; 'Full webhook path for eBox updates',
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>hook_method =&gt; 'POST or GET for eBox updates',
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>fallback_days =&gt; 'integer, optional, days to read the message before it falls back to paper',
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
-<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>customer_identifier =&gt; 'string, optional',
-<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
-<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>correlation[costId] =&gt; 'string,optional',
-<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>correlation[customerIdentifier] =&gt; 'string, optional, equal to customer_identifier when both are sent',
-<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>correlation[lang] =&gt; 'required, nl, fr, de or en',
-<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>correlation[returnAddress] =&gt; 'optional string, single line return address',
-<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>
-<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>duplicityCheck =&gt; "string 'true', optional"
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>subject_fr =&gt; 'string',
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>address[firstname] =&gt; 'string',
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>address[lastname] =&gt; 'string',
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>address[fullname] =&gt; 'string',
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>address[street] =&gt; 'string',
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>address[houseNumber] =&gt; integer,
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>address[houseNumberAlpha] =&gt; 'string',
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>address[box] =&gt; 'string',
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>address[unstructuredStreetNumberBox] =&gt; 'string',
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>address[zip] =&gt; 'string',
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>address[municipality] =&gt; 'string',
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>address[countryIso2] =&gt; 'string max 2',
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>address[company] =&gt; 'string'
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>attachments[0][name] =&gt; 'string',
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>attachments[0][mime-type] =&gt; 'mime-type',
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>attachments[0][contents] =&gt; file,
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>attachments[1][name] =&gt; ...,
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>background[name] =&gt; 'string',
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>background[mime-type] =&gt; 'mime-type',
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>background[contents] =&gt; file,
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>envelope[name] =&gt; 'string',
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>envelope[mime-type] =&gt; 'mime-type',
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>envelope[contents] =&gt; file,
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>carrier[name] =&gt; 'string',
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>carrier[mime-type] =&gt; 'mime-type',
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>carrier[contents] =&gt; file,
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>postalService[registered] =&gt; boolean,
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>postalService[prior] =&gt; boolean,
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>postalService[nonPrior] =&gt; boolean,
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>registered =&gt; 'boolean, optional, registered eBox message',
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>hook[uri] =&gt; 'string',
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>hook[method] =&gt; 'string',
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>hook_uri =&gt; 'Full webhook path for eBox updates',
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>hook_method =&gt; 'POST or GET for eBox updates',
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>fallback_days =&gt; 'integer, optional, days to read the message before it falls back to paper',
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>customer_identifier =&gt; 'string, optional',
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>correlation[costId] =&gt; 'string,optional',
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>correlation[customerIdentifier] =&gt; 'string, optional, equal to customer_identifier (ignoring case) when both are sent',
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>correlation[lang] =&gt; 'required, nl, fr, de or en',
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>correlation[returnAddress] =&gt; 'optional string, single line return address',
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>duplicityCheck =&gt; "string 'true', optional"
 </code></pre></div>
 <h2 id="multipart-form-data-values">Multipart Form Data Values</h2>
 <h3 id="document-required">Document (required)</h3>
@@ -1879,6 +1902,9 @@ which one to display based on the recipient's eBox locale settings.</p>
 </tr>
 </tbody>
 </table>
+<p>The recipient's name (<code>address[fullname]</code>, or <code>address[firstname]</code> and <code>address[lastname]</code> joined by a space) and
+<code>address[company]</code> may each be at most 50 bytes long. An accented character such as <code>é</code> counts as 2 bytes. A longer
+value returns a 422 with key <code>addresseeTooLong</code>.</p>
 <h3 id="attachments-optional">Attachments (optional)</h3>
 <p>Each Multipart Intake request may contain multiple attachments, using a consecutive numerical index.</p>
 <table>
@@ -2062,6 +2088,32 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="registered-ebox-message-optional">Registered eBox message (optional)</h3>
+<p>Each Intake request may specify whether the eBox message is sent registered. This is separate from
+<code>postalService[registered]</code>, the bpost registered shipment.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>registered</td>
+<td>Send the eBox message registered, using your registered eBox configuration</td>
+<td>NO</td>
+<td>boolean</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Accepted values are <code>0</code>, <code>1</code>, <code>true</code>, <code>false</code>, <code>yes</code>, <code>no</code>, <code>on</code> and <code>off</code>, in any case. Any other value returns a 422.
+When omitted, the message is sent unregistered. If no registered eBox configuration is found, a 400 <code>No eBox
+configuration could be found</code> is returned.</p>
 <h3 id="hook-optional">Hook (optional)</h3>
 <p>Each Intake request may specify a webhook URL and method to send status updates to</p>
 <table>
@@ -2152,7 +2204,8 @@ and never falls back for not being read. <code>0</code> turns the deadline off f
 has one. The deadline is returned as <code>must_be_read_by</code> in the <code>offered</code> webhook.</p>
 <h3 id="customer-identifier-optional">Customer identifier (optional)</h3>
 <p>Each Intake request may specify the <a href="../company_customers/">company customer</a> the eBox message is sent for, with
-<code>customer_identifier</code>. It is the same as <code>correlation[customerIdentifier]</code>; when both are sent, they must be equal.</p>
+<code>customer_identifier</code>. It is the same as <code>correlation[customerIdentifier]</code>; when both are sent, they must be equal
+apart from case (<code>ACME</code> and <code>acme</code> match).</p>
 <table>
 <thead>
 <tr>

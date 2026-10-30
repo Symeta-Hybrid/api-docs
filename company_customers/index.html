@@ -1284,7 +1284,8 @@ every Intake created from it. When omitted, the Intake is sent for your company 
 <p>eBox messages are sent with an eBox configuration that we set up for you. If you send eBox messages on behalf of your
 customers, each customer can have its own eBox configuration, which we link to the customer once it is approved.</p>
 <p>The eBox requests also accept the identifier as <code>customer_identifier</code>. It is the same as
-<code>correlation[customerIdentifier]</code>, and either one may be used. When both are sent, they must be equal.</p>
+<code>correlation[customerIdentifier]</code>, and either one may be used. When both are sent, they must be equal apart from case
+(<code>ACME</code> and <code>acme</code> match).</p>
 <p>When a customer is specified, the eBox configuration linked to that customer is used. When no customer is specified,
 your company's own eBox configuration is used, never one linked to a customer.</p>
 <p>A customer whose identifier or name was changed keeps its eBox configuration while the change awaits approval, so its
@@ -1304,7 +1305,7 @@ in <code>customer_identifier</code>.</p>
 <tr>
 <td>422</td>
 <td>Unprocessable Entity</td>
-<td><code>correlation.customerIdentifier</code> is not one of your company's customers, or differs from <code>customer_identifier</code></td>
+<td><code>correlation.customerIdentifier</code> is not one of your company's customers, or differs from <code>customer_identifier</code> apart from case</td>
 </tr>
 <tr>
 <td>400</td>
