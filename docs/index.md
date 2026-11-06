@@ -22,7 +22,8 @@ are linked to one specific user.
 
 Upon expiration, the API will return an "Unauthenticated" error upon subsequent requests with said token.
 
-An implementation for refreshing tokens/retrieving a new access token via the API itself is under construction.
+Tokens cannot be refreshed or renewed through the API. Use the [Token lifetime request](token_lifetime.md) to check when
+your token expires.
 
 ## Components
 

@@ -24,15 +24,19 @@
 | Authorization | `Bearer [token]`   |
 
 ## When an Intake can be deleted
-Only an Intake with status `printing` can be deleted, and never between 22:00 and 05:00 (Europe/Brussels time).
+Only an Intake with status `printing` can be deleted, and never from 22:00 until 05:00 (Europe/Brussels time).
 Otherwise a 422 is returned, with the reason in `error`:
 
-| Situation                                                                                                                                         | Error                                                                                                          |
-|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| Between 22:00 and 05:00 (Europe/Brussels)                                                                                                         | `Intakes can not be deleted between 22:00 and 05:00 local time (Europe/Brussels)`                              |
-| Sent to eBox and still waiting there                                                                                                              | `Intake was sent to eBox and can only be deleted once it falls back to paper.`                                 |
-| Still being prepared: status `dispatched`, `pickedup` or `processed`, or `received` for a Bulk Intake whose bulk is not dispatched yet            | `Intake is currently in pre-processing and cannot be deleted at this stage. Please try again in a few minutes.` |
-| Any later status                                                                                                                                  | `Intake has status {status} and can no longer be deleted.`                                                     |
+| Situation                                | Error                                                                                                           |
+|------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| From 22:00 until 05:00 (Europe/Brussels) | `Intakes can not be deleted between 22:00 and 04:00 local time (Europe/Brussels)`                               |
+| Any status other than `printing`         | `Intake is currently in pre-processing and cannot be deleted at this stage. Please try again in a few minutes.` |
+| The print file could not be removed      | `Intake file could not be removed. Please try again or contact support@mailitwize.be.`                          |
+
+The error message says 04:00, but deleting is only possible again from 05:00.
+
+If the print file is no longer on our print server (for example because it is already being printed), a 404 `Intake file
+not found on the fileserver.` is returned.
 
 ## JSON response
 If the file is successfully deleted, the API will return the following response, along with an HTTP 200 status code:
@@ -43,6 +47,9 @@ If the file is successfully deleted, the API will return the following response,
 }
 ```
 
+For an Intake sent through eBox, the Intake is kept with status `cancelled` and the message is `Intake with ID {id} was
+cancelled and will not be printed.`
+
 ## Possible errors
 
 | HTTP code | Description          | Reason                                                                                        |
@@ -51,3 +58,4 @@ If the file is successfully deleted, the API will return the following response,
 | 401       | Unauthorized         | Access token is not valid or expired - refer to the web portal                                |
 | 403       | Forbidden            | The Intake does not belong to the authenticated user                                          |
 | 400       | Bad Request          | Confirmation hash does not match                                                              |
+| 404       | Not Found            | The Intake does not exist, or its print file is no longer on our print server                 |

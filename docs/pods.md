@@ -5,6 +5,13 @@
 For registered mail, we have implemented bpost's Proof of Delivery (POD) API. This allows you to track your registered
 mail, and optionally download the POD PDF document.
 
+## Request header
+
+| Header        | Value              |
+|---------------|--------------------|
+| Accept        | `application/json` |
+| Authorization | `Bearer [token]`   |
+
 ## Endpoint and method
 
 There are 2 endpoints available for the POD's: retrieving POD information and downloading the POD document (if
@@ -56,15 +63,16 @@ available).
 
 #### Response
 
-The POD document will be returned as `binary`, with an `application/pdf` header.
+The POD document will be returned as `binary`, with an `application/pdf` header, as a download
+(`Content-Disposition: attachment`).
 
 ## Possible errors
 
 Both POD endpoints can return:
 
-| HTTP code | Description | Reason                                                                                                |
-|-----------|-------------|-------------------------------------------------------------------------------------------------------|
-| 403       | Forbidden   | The Intake does not belong to the authenticated user                                                  |
-| 400       | Bad Request | The Intake was not sent registered                                                                    |
-| 400       | Bad Request | Download only: the POD document could not be fetched from the archive (the API retries 3 times first) |
-| 404       | Not Found   | No POD information (information request) or no POD document (download) was found for the Intake       |
+| HTTP code | Description | Reason                                                                                          |
+|-----------|-------------|-------------------------------------------------------------------------------------------------|
+| 403       | Forbidden   | The Intake does not belong to the authenticated user                                            |
+| 400       | Bad Request | The Intake was not sent registered                                                              |
+| 400       | Bad Request | Download only: the POD document could not be fetched from the archive                           |
+| 404       | Not Found   | No POD information (information request) or no POD document (download) was found for the Intake |

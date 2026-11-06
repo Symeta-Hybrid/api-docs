@@ -40,12 +40,13 @@ document[multiplex] => boolean (default 1),
 recipient_identification_number => 'string, length 10',
 subject_nl => 'string',
 subject_fr => 'string',
+subject_de => 'string',
 
 address[firstname] => 'string',
 address[lastname] => 'string',
 address[fullname] => 'string',
 address[street] => 'string',
-address[houseNumber] => integer,
+address[houseNumber] => 'string',
 address[houseNumberAlpha] => 'string',
 address[box] => 'string',
 address[unstructuredStreetNumberBox] => 'string',
@@ -86,10 +87,12 @@ hook_method => 'POST or GET for eBox updates',
 
 fallback_days => 'integer, optional, days to read the message before it falls back to paper',
 
+guid => 'uuid, optional, your own identifier for the eBox message',
+
 customer_identifier => 'string, optional',
 
 correlation[costId] => 'string,optional',
-correlation[customerIdentifier] => 'string, optional, equal to customer_identifier (ignoring case) when both are sent',
+correlation[customerIdentifier] => 'string, optional, equal to customer_identifier when both are sent',
 correlation[lang] => 'required, nl, fr, de or en',
 correlation[returnAddress] => 'optional string, single line return address',
 
@@ -103,7 +106,7 @@ Each Multipart Intake request must contain exactly one main document.
 
 | Key                  | Description                                                             | Required | Type        | Default |
 |----------------------|-------------------------------------------------------------------------|----------|-------------|---------|
-| document\[name]      | Name of the original document, including extension                      | YES      | string      |         |
+| document\[name]      | Name of the original document, ending in `.pdf` (any case)              | YES      | string      |         |
 | document\[mime-type] | MIME type of the document. Currently only "application/pdf" is accepted | YES      | string      |         |
 | document\[contents]  | Document PDF file                                                       | YES      | file/binary |         |
 | document\[multiplex] | Print setting of the document. 0 = recto, 1 = recto/verso               | NO       | boolean     | 1       |
@@ -111,7 +114,8 @@ Each Multipart Intake request must contain exactly one main document.
 ### Recipient identification number (required)
 Each Intake request must contain exactly one identification number. This is the company registration number of the
 recipient enterprise. The string provided must be exactly 10 characters, contain only numeric characters and starts with
-either a 0 or 1. This is not to be confused with the VAT number.
+either a 0 or 1, with a valid mod-97 checksum. Otherwise a 422 is returned. This is not to be confused with the VAT
+number.
 
 | Key                             | Description                                             | Required | Type   | Default |
 |---------------------------------|---------------------------------------------------------|----------|--------|---------|
@@ -131,24 +135,28 @@ If multiple localisations are provided, the first one present will be chosen in 
 ### Address (required)
 Each Multipart Intake request must contain exactly one recipient with the required address parts.
 
-| Key                                   | Description                                                             | Required                                                                    | Type   | Default |
-|---------------------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------|--------|---------|
-| address\[firstname]                   | Recipient's first name                                                  | YES, if address\[fullname] and address\[company] absent                     | string |         |
-| address\[lastname]                    | Recipient's last name                                                   | YES, if address\[fullname] and address\[company] absent                     | string |         |
-| address\[fullname]                    | Recipient's full name                                                   | YES, if address\[firstname], address.lastname and address\[company] absent  | string |         |
-| address\[company]                     | Company name                                                            | YES, if address\[firstname], address.lastname and address\[fullname] absent | string |         |
-| address\[street]                      | Street name without number                                              | YES, if address\[unstructuredStreetNumberBox] absent                        | string |         |
-| address\[houseNumber]                 | House number                                                            | YES, if address\[unstructuredStreetNumberBox] absent                        | string |         |
-| address\[houseNumberAlpha]            | House number alphanumeric, will be placed after houseNumber on envelope | NO                                                                          | string |         |
-| address\[box]                         | Box number                                                              | NO                                                                          | string |         |
-| address\[unstructuredStreetNumberBox] | Unstructured street, house number and box                               | YES, if address\[street] and address\[houseNumber] absent                   | string |         |
-| address\[zip]                         | Zip code                                                                | YES                                                                         | string |         |
-| address\[municipality]                | Municipality                                                            | YES                                                                         | string |         |
-| address\[countryIso2]                 | Country code, ISO 3611-2 format (2 characters)                          | YES                                                                         | string |         |
+| Key                                   | Description                                                            | Required                                                                      | Type   | Default |
+|---------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------------|--------|---------|
+| address\[firstname]                   | Recipient's first name                                                 | YES, if address\[fullname] and address\[company] absent                       | string |         |
+| address\[lastname]                    | Recipient's last name                                                  | YES, if address\[fullname] and address\[company] absent                       | string |         |
+| address\[fullname]                    | Recipient's full name                                                  | YES, if address\[firstname], address\[lastname] and address\[company] absent  | string |         |
+| address\[company]                     | Company name                                                           | YES, if address\[firstname], address\[lastname] and address\[fullname] absent | string |         |
+| address\[street]                      | Street name without number                                             | YES, if address\[unstructuredStreetNumberBox] absent                          | string |         |
+| address\[houseNumber]                 | House number                                                           | YES, if address\[unstructuredStreetNumberBox] absent                          | string |         |
+| address\[houseNumberAlpha]            | House number suffix, letters and digits only, placed after houseNumber | NO                                                                            | string |         |
+| address\[box]                         | Box number                                                             | NO                                                                            | string |         |
+| address\[unstructuredStreetNumberBox] | Unstructured street, house number and box                              | YES, if address\[street] and address\[houseNumber] absent                     | string |         |
+| address\[zip]                         | Zip code                                                               | YES                                                                           | string |         |
+| address\[municipality]                | Municipality                                                           | YES                                                                           | string |         |
+| address\[countryIso2]                 | Country code, ISO 3166-1 alpha-2 format (2 letters)                    | YES                                                                           | string |         |
 
-The recipient's name (`address[fullname]`, or `address[firstname]` and `address[lastname]` joined by a space) and
-`address[company]` may each be at most 50 bytes long. An accented character such as `é` counts as 2 bytes. A longer
-value returns a 422 with key `addresseeTooLong`.
+The recipient's name (`address[fullname]`, or `address[firstname]` and `address[lastname]` joined by a space) may be at
+most 50 bytes long. An accented character such as `é` counts as 2 bytes. A longer name returns a 422 with key
+`addresseeTooLong`.
+
+For a Belgian address (`address[countryIso2]` is `BE`), `address[zip]` must be a zip code that exists in Belgium: 4
+digits, otherwise a 422 is returned (`A Belgian zip code must only contain numbers.`, `A Belgian zip code must be 4
+characters exactly.` or `This zip code does not exist in Belgium.`).
 
 ### Attachments (optional)
 Each Multipart Intake request may contain multiple attachments, using a consecutive numerical index.
@@ -204,8 +212,6 @@ eBox Enterprise messages cannot be sent registered. The `registered` field is ac
 Citizen, but ignored: the message is always sent unregistered. It is separate from `postalService[registered]`, the bpost
 registered shipment.
 
-Accepted values are `0`, `1`, `true`, `false`, `yes`, `no`, `on` and `off`, in any case. Any other value returns a 422.
-
 ### Hook (optional)
 Each Intake request may specify a webhook URL and method to send status updates to
 
@@ -239,10 +245,20 @@ When omitted, the deadline from your eBox configuration is used; if that has non
 and never falls back for not being read. `0` turns the deadline off for this message, even when your eBox configuration
 has one. The deadline is returned as `must_be_read_by` in the `offered` webhook.
 
+### Message identifier (optional)
+Each Intake request may specify its own identifier for the eBox message. When omitted, one is generated. It is returned
+as `message` in the response and in the [eBox webhooks](webhooks.md#ebox-status-updates).
+
+| Key  | Description                      | Required | Type | Default   |
+|------|----------------------------------|----------|------|-----------|
+| guid | Unique identifier of the message | NO       | uuid | generated |
+
+A value that is not a UUID, or that was already used for another eBox message, returns a 422.
+
 ### Customer identifier (optional)
 Each Intake request may specify the [company customer](company_customers.md) the eBox message is sent for, with
-`customer_identifier`. It is the same as `correlation[customerIdentifier]`; when both are sent, they must be equal
-apart from case (`ACME` and `acme` match).
+`customer_identifier`. It is the same as `correlation[customerIdentifier]`; when both are sent, they must be exactly
+equal, including case.
 
 | Key                 | Description                                                     | Required | Type   | Default |
 |---------------------|-----------------------------------------------------------------|----------|--------|---------|
@@ -275,17 +291,19 @@ duplicate(s).
 |----------------|-------------------------------------------------|----------|---------------|---------|
 | duplicityCheck | Whether or not a duplicity check should be done | NO       | string 'true' |         |
 
-## Multipart Intake Request Response
+## eBox Intake Request Response
 
 ### Success
 
-| Key              | Value                                                      |
-|------------------|------------------------------------------------------------|
-| HTTP status code | 200 OK                                                     |
-| JSON body        | `{ "intake": integer, "cost": string, "message": string }` |
+| Key              | Value                                                                         |
+|------------------|-------------------------------------------------------------------------------|
+| HTTP status code | 200 OK                                                                        |
+| JSON body        | `{ "intake": integer, "cost": string, "pricing": object, "message": string }` |
 
 `cost` is the cost of the Intake as a decimal string (e.g. `"1.25"`), and `message` is the unique identifier (GUID) of
-the eBox message.
+the eBox message: the `guid` you sent, or one we generate. `pricing` is the cost breakdown, with the keys listed in the
+[Multipart Intake response](intake_multipart.md#multipart-intake-request-response). Partner companies also receive
+`partner_pricing`, the same breakdown at partner rates.
 
 ### Possible error codes
 

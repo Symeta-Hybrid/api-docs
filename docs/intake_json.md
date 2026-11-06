@@ -88,7 +88,7 @@ Examples for achieving the correct format:
         "lastname": "string",
         "fullname": "string",
         "street": "string",
-        "houseNumber": integer,
+        "houseNumber": "string",
         "houseNumberAlpha": "string",
         "box": "string",
         "unstructuredStreetNumberBox": "string",
@@ -100,7 +100,7 @@ Examples for achieving the correct format:
     "postalService": {
         "registered": boolean default 0,
         "prior": boolean default 0,
-        "nonPrior": boolean default 0
+        "nonPrior": boolean default 1
     },
     "hook": {
         "uri": "Full webhook path",
@@ -167,27 +167,41 @@ use a separate sheet of paper to print the address on.
 | carrier.contents  | Base64-encoded contents of the carrier                                 | YES                   | string |         |
 
 
+### PDF requirements
+Every file must be a valid PDF. The JSON Intake request also checks the page size of each file, and returns a 422 when
+a file does not meet these requirements:
+
+| File                  | Maximum page size           | Other requirements                |
+|-----------------------|-----------------------------|-----------------------------------|
+| document, attachments | 600 × 847 pt (about A4)     |                                   |
+| background, carrier   | 595 × 842 pt (A4)           | exactly 1 page, PDF version ≥ 1.3 |
+| envelope              | 621 × 295 pt (219 × 104 mm) |                                   |
+
 ### Address (required)
 Each Intake request must contain exactly one recipient with the required address parts.
 
-| Key                                 | Description                                                             | Required                                                                | Type   | Default |
-|-------------------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------|--------|---------|
-| address.firstname                   | Recipient's first name                                                  | YES, if address.fullname and address.company absent                     | string |         |
-| address.lastname                    | Recipient's last name                                                   | YES, if address.fullname and address.company absent                     | string |         |
-| address.fullname                    | Recipient's full name                                                   | YES, if address.firstname, address.lastname and address.company absent  | string |         |
-| address.company                     | Company name                                                            | YES, if address.firstname, address.lastname and address.fullname absent | string |         |
-| address.street                      | Street name without number                                              | YES, if address.unstructuredStreetNumberBox absent                      | string |         |
-| address.houseNumber                 | House number                                                            | YES, if address.unstructuredStreetNumberBox absent                      | string |         |
-| address.houseNumberAlpha            | House number alphanumeric, will be placed after houseNumber on envelope | NO                                                                      | string |         |
-| address.box                         | Box number                                                              | NO                                                                      | string |         |
-| address.unstructuredStreetNumberBox | Unstructured street, house number and box                               | YES, if address.street and address.houseNumber absent                   | string |         |
-| address.zip                         | Zip code                                                                | YES                                                                     | string |         |
-| address.municipality                | Municipality                                                            | YES                                                                     | string |         |
-| address.countryIso2                 | Country code, ISO 3611-2 format (2 characters)                          | YES                                                                     | string |         |
+| Key                                 | Description                                                            | Required                                                                | Type   | Default |
+|-------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------|--------|---------|
+| address.firstname                   | Recipient's first name                                                 | YES, if address.fullname and address.company absent                     | string |         |
+| address.lastname                    | Recipient's last name                                                  | YES, if address.fullname and address.company absent                     | string |         |
+| address.fullname                    | Recipient's full name                                                  | YES, if address.firstname, address.lastname and address.company absent  | string |         |
+| address.company                     | Company name                                                           | YES, if address.firstname, address.lastname and address.fullname absent | string |         |
+| address.street                      | Street name without number                                             | YES, if address.unstructuredStreetNumberBox absent                      | string |         |
+| address.houseNumber                 | House number                                                           | YES, if address.unstructuredStreetNumberBox absent                      | string |         |
+| address.houseNumberAlpha            | House number suffix, letters and digits only, placed after houseNumber | NO                                                                      | string |         |
+| address.box                         | Box number                                                             | NO                                                                      | string |         |
+| address.unstructuredStreetNumberBox | Unstructured street, house number and box                              | YES, if address.street and address.houseNumber absent                   | string |         |
+| address.zip                         | Zip code                                                               | YES                                                                     | string |         |
+| address.municipality                | Municipality                                                           | YES                                                                     | string |         |
+| address.countryIso2                 | Country code, ISO 3166-1 alpha-2 format (2 letters)                    | YES                                                                     | string |         |
 
-The recipient's name (`address.fullname`, or `address.firstname` and `address.lastname` joined by a space) and
-`address.company` may each be at most 50 bytes long. An accented character such as `é` counts as 2 bytes. A longer value
-returns a 422 with key `addresseeTooLong`.
+The recipient's name (`address.fullname`, or `address.firstname` and `address.lastname` joined by a space) may be at
+most 50 bytes long. An accented character such as `é` counts as 2 bytes. A longer name returns a 422 with key
+`addresseeTooLong`.
+
+For a Belgian address (`address.countryIso2` is `BE`), `address.zip` must be a zip code that exists in Belgium: 4
+digits, otherwise a 422 is returned (`A Belgian zip code must only contain numbers.`, `A Belgian zip code must be 4
+characters exactly.` or `This zip code does not exist in Belgium.`).
 
 ### Postal service (optional, default bpost non-prior)
 Each Intake request may contain additional postal service instructions
@@ -197,6 +211,8 @@ Each Intake request may contain additional postal service instructions
 | postalService.registered | Registered shipment with tracking (bpost) | NO       | boolean | 0       |
 | postalService.prior      | Prior shipment                            | NO       | boolean | 0       |
 | postalService.nonPrior   | Non-prior (standard) shipment             | NO       | boolean | 1       |
+
+Non-prior is used whenever prior is not set: `postalService.nonPrior` is accepted but has no effect.
 
 ### Hook (optional)
 Each Intake request may specify a webhook URL and method to send status updates to
@@ -235,10 +251,33 @@ duplicate(s).
 
 ### Success
 
-| Key              | Value                                    |
-|------------------|------------------------------------------|
-| HTTP status code | 202 ACCEPTED                             |
-| JSON body        | `{ "intake": integer, "cost": integer }` |
+| Key              | Value                                                      |
+|------------------|------------------------------------------------------------|
+| HTTP status code | 202 ACCEPTED                                               |
+| JSON body        | `{ "intake": integer, "cost": string, "pricing": object }` |
+
+`cost` is the total cost of the Intake, as a string with 4 decimals (e.g. `"1.2345"`). `pricing` is the breakdown it is
+calculated from:
+
+| Key                  | Type   | Description                                       |
+|----------------------|--------|---------------------------------------------------|
+| recto_pages          | number | Printed sheet fronts                              |
+| verso_pages          | number | Printed sheet backs                               |
+| total_pages          | number | recto_pages + verso_pages                         |
+| total_sheets         | number | Sheets of paper                                   |
+| envelope_type        | string | `US`, `C5` or `C4`                                |
+| recto_cost           | number | Cost of the fronts                                |
+| verso_cost           | number | Cost of the backs                                 |
+| print_cost           | number | recto_cost + verso_cost                           |
+| send_cost            | number | Postage                                           |
+| prior_cost           | number | Prior surcharge (registered mail is always prior) |
+| registered_cost      | number | Registered surcharge                              |
+| envelope_cost        | number | Custom envelope                                   |
+| address_carrier_cost | number | Address carrier (C4)                              |
+| international        | string | `yes` or `no`                                     |
+| total_cost           | number | Total, `cost` before rounding                     |
+
+Partner companies also receive `partner_pricing`, the same breakdown at partner rates.
 
 ### Possible error codes
 

@@ -73,7 +73,7 @@ recipients.
 | document\[name]      | Name of the original document, including extension                      | YES      | string      |         |
 | document\[mime-type] | MIME type of the document. Currently only "application/pdf" is accepted | YES      | string      |         |
 | document\[contents]  | Document PDF file                                                       | YES      | file/binary |         |
-| document\[multiplex] | Print setting of the document. 0 = recto, 1 = recto/verso               | NO       | boolean     | 1       |
+| document\[multiplex] | Ignored: the documents of a Bulk Intake are always printed recto/verso  | NO       | boolean     | 1       |
 
 ### Address (required)
 Each Bulk Intake request must contain exactly one address location. Coordinates must be specified in points (pts). An
@@ -296,9 +296,8 @@ the address caused the failure. `parsed_text` will always contain the raw text t
 `cityRequired` or `postcodeRequired`. When no address could be read at all, `errors` is `["address"]`, `errorCodes` is
 `["addressRequired"]` and `parsed_text` is empty.
 
-The first line of the address (the recipient) may be at most 50 bytes long. An accented character such as `é` counts as
-2 bytes. A longer line gives error `house`, with the message `The addressee is limited to 50 characters.` and no code in
-`messages.errorCodes`.
+The first line of the address (the recipient) may be at most 50 characters long. A longer line gives error `house`, with
+the message `The addressee is limited to 50 characters.` and no code in `messages.errorCodes`.
 
 Note: for documents that fail address validation, we will **not** persist the Intake model to the database. These are
 only kept in memory at runtime to provide feedback.
