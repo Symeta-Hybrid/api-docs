@@ -125,9 +125,9 @@ envelopes, which use a separate sheet of paper to print the address on.
 | carrier\[contents]  | Address carrier PDF file                                               | YES                   | file/binary |         |
 
 ### PDF requirements
-Every file must be a valid PDF, and the envelope may be at most 219 × 104 mm (621 × 295 pt). Otherwise a 422 is
-returned. Page sizes of the other files are not checked by the Multipart Intake request; see the [JSON Intake
-request](intake_json.md#pdf-requirements) for the sizes we print.
+The document, attachments, background and envelope must be valid PDFs, and the envelope may be at most 219 × 104 mm
+(621 × 295 pt). Otherwise a 422 is returned. The carrier and the page sizes of the other files are not checked by the
+Multipart Intake request; see the [JSON Intake request](intake_json.md#pdf-requirements) for the sizes we print.
 
 ### Address (required)
 Each Multipart Intake request must contain exactly one recipient with the required address parts.
