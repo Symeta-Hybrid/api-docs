@@ -1223,9 +1223,9 @@
 <h3 id="intake-resource">Intake Resource</h3>
 <p>With the Intake ID received when submitting an Intake, you can retrieve all information related to that Intake.</p>
 <ul>
-<li>Endpoint: BASE_URI/intake/show/{intake_id}</li>
+<li>Endpoint: <code>base_url/api_version/intake/show/{intake_id}</code></li>
 <li>Method: GET</li>
-<li>Example: https://api.mailitwize.be/intake/show/678</li>
+<li>Example: <code>https://api.mailitwize.be/api/v1/intake/show/678</code></li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -1242,32 +1242,37 @@
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9000"</span><span class="p">,</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="nt">"municipality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gent"</span><span class="p">,</span>
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="nt">"country_iso2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE"</span><span class="p">,</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="nt">"cost_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Printing"</span><span class="p">,</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-08T13:16:15.827000Z"</span><span class="p">,</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-08T13:18:05.407000Z"</span><span class="p">,</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="nt">"mailpack"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">88715</span><span class="p">,</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">            </span><span class="nt">"intake_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"78754"</span><span class="p">,</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"miw2_78754_231ec460-b7bd-4da4-9bd5-ed54bc08cff0_mailpack.pdf"</span><span class="p">,</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">            </span><span class="nt">"pages"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">            </span><span class="nt">"envelope_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-08T13:17:08.150000Z"</span><span class="p">,</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-08T13:17:08.150000Z"</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">        </span><span class="p">},</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">        </span><span class="nt">"envelope"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17147</span><span class="p">,</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">            </span><span class="nt">"intake_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"78754"</span><span class="p">,</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"miw2_78754_231ec460-b7bd-4da4-9bd5-ed54bc08cff0_envelope.pdf"</span><span class="p">,</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">            </span><span class="nt">"original_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"miw2_78754_231ec460-b7bd-4da4-9bd5-ed54bc08cff0_envelope.pdf"</span><span class="p">,</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-08T13:16:15.857000Z"</span><span class="p">,</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-08T13:16:15.857000Z"</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">        </span><span class="p">},</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">        </span><span class="nt">"shipping_barcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">        </span><span class="nt">"shipping_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="p">}</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="nt">"country_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="nt">"cost_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"printing"</span><span class="p">,</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-08T13:16:15.827000Z"</span><span class="p">,</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-08T13:18:05.407000Z"</span><span class="p">,</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">        </span><span class="nt">"mailpack"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">88715</span><span class="p">,</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">            </span><span class="nt">"intake_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">78754</span><span class="p">,</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"miw2_78754_231ec460-b7bd-4da4-9bd5-ed54bc08cff0_mailpack.pdf"</span><span class="p">,</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">            </span><span class="nt">"pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">            </span><span class="nt">"envelope_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-08T13:17:08.150000Z"</span><span class="p">,</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-08T13:17:08.150000Z"</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">        </span><span class="nt">"envelope"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17147</span><span class="p">,</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">            </span><span class="nt">"intake_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">78754</span><span class="p">,</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"miw2_78754_231ec460-b7bd-4da4-9bd5-ed54bc08cff0_envelope.pdf"</span><span class="p">,</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">            </span><span class="nt">"original_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"miw2_78754_231ec460-b7bd-4da4-9bd5-ed54bc08cff0_envelope.pdf"</span><span class="p">,</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-08T13:16:15.857000Z"</span><span class="p">,</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-08T13:16:15.857000Z"</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">        </span><span class="nt">"shipping_barcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">        </span><span class="nt">"shipping_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="p">}</span>
 </code></pre></div>
+<p><code>status</code> is one of <code>received</code> (Bulk Intakes only, before they are dispatched), <code>dispatched</code>, <code>pickedup</code>, <code>processed</code>,
+<code>printing</code>, <code>shipped</code>, <code>rejected</code>, <code>returned</code> or <code>cancelled</code>. Older Intakes may have a capitalised status, such as
+<code>Printing</code>. <code>shipping_barcode</code> and <code>shipping_date</code> are <code>false</code> until the Intake has shipped. <code>mailpack</code> is <code>null</code> until
+the Intake is processed, and <code>envelope</code> is <code>null</code> when no envelope was sent.</p>
 <h4 id="possible-errors">Possible errors</h4>
 <table>
 <thead>
@@ -1282,6 +1287,11 @@
 <td>403</td>
 <td>Forbidden</td>
 <td>The Intake does not belong to the authenticated user</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>No Intake exists with this ID</td>
 </tr>
 </tbody>
 </table>

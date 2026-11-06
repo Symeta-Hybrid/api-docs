@@ -1208,7 +1208,7 @@
 </tbody>
 </table>
 <h2 id="when-an-intake-can-be-deleted">When an Intake can be deleted</h2>
-<p>Only an Intake with status <code>printing</code> can be deleted, and never between 22:00 and 05:00 (Europe/Brussels time).
+<p>Only an Intake with status <code>printing</code> can be deleted, and never from 22:00 until 05:00 (Europe/Brussels time).
 Otherwise a 422 is returned, with the reason in <code>error</code>:</p>
 <table>
 <thead>
@@ -1219,23 +1219,22 @@ Otherwise a 422 is returned, with the reason in <code>error</code>:</p>
 </thead>
 <tbody>
 <tr>
-<td>Between 22:00 and 05:00 (Europe/Brussels)</td>
-<td><code>Intakes can not be deleted between 22:00 and 05:00 local time (Europe/Brussels)</code></td>
+<td>From 22:00 until 05:00 (Europe/Brussels)</td>
+<td><code>Intakes can not be deleted between 22:00 and 04:00 local time (Europe/Brussels)</code></td>
 </tr>
 <tr>
-<td>Sent to eBox and still waiting there</td>
-<td><code>Intake was sent to eBox and can only be deleted once it falls back to paper.</code></td>
-</tr>
-<tr>
-<td>Still being prepared: status <code>dispatched</code>, <code>pickedup</code> or <code>processed</code>, or <code>received</code> for a Bulk Intake whose bulk is not dispatched yet</td>
+<td>Any status other than <code>printing</code></td>
 <td><code>Intake is currently in pre-processing and cannot be deleted at this stage. Please try again in a few minutes.</code></td>
 </tr>
 <tr>
-<td>Any later status</td>
-<td><code>Intake has status {status} and can no longer be deleted.</code></td>
+<td>The print file could not be removed</td>
+<td><code>Intake file could not be removed. Please try again or contact support@mailitwize.be.</code></td>
 </tr>
 </tbody>
 </table>
+<p>The error message says 04:00, but deleting is only possible again from 05:00.</p>
+<p>If the print file is no longer on our print server (for example because it is already being printed), a 404 <code>Intake file
+not found on the fileserver.</code> is returned.</p>
 <h2 id="json-response">JSON response</h2>
 <p>If the file is successfully deleted, the API will return the following response, along with an HTTP 200 status code:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
@@ -1243,6 +1242,8 @@ Otherwise a 422 is returned, with the reason in <code>error</code>:</p>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Intake with ID {id} was deleted and will not be printed."</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
 </code></pre></div></p>
+<p>For an Intake sent through eBox, the Intake is kept with status <code>cancelled</code> and the message is <code>Intake with ID {id} was
+cancelled and will not be printed.</code></p>
 <h2 id="possible-errors">Possible errors</h2>
 <table>
 <thead>
@@ -1272,6 +1273,11 @@ Otherwise a 422 is returned, with the reason in <code>error</code>:</p>
 <td>400</td>
 <td>Bad Request</td>
 <td>Confirmation hash does not match</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>The Intake does not exist, or its print file is no longer on our print server</td>
 </tr>
 </tbody>
 </table>

@@ -1262,7 +1262,8 @@ token in the <code>Authorization: Bearer [token]</code> header of every request.
 <p>Access tokens are managed by the users, via the API's web portal. These tokens always have a lifetime of 365 days, and
 are linked to one specific user.</p>
 <p>Upon expiration, the API will return an "Unauthenticated" error upon subsequent requests with said token.</p>
-<p>An implementation for refreshing tokens/retrieving a new access token via the API itself is under construction.</p>
+<p>Tokens cannot be refreshed or renewed through the API. Use the <a href="token_lifetime/">Token lifetime request</a> to check when
+your token expires.</p>
 <h2 id="components">Components</h2>
 <h3 id="intake-request">Intake request</h3>
 <p>Contains the main document, background (optional), envelope (optional), attachments (optional) together with all

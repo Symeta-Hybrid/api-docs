@@ -602,17 +602,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#request-type-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Request type (required)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#document-required" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -661,6 +650,17 @@
     <span class="md-ellipsis">
       
         Carrier (optional) for C4 envelopes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdf-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDF requirements
       
     </span>
   </a>
@@ -1314,17 +1314,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#request-type-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Request type (required)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#document-required" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1373,6 +1362,17 @@
     <span class="md-ellipsis">
       
         Carrier (optional) for C4 envelopes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdf-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDF requirements
       
     </span>
   </a>
@@ -1566,7 +1566,7 @@ very similar.</p>
 <a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>address[lastname] =&gt; 'string',
 <a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>address[fullname] =&gt; 'string',
 <a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>address[street] =&gt; 'string',
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>address[houseNumber] =&gt; integer,
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>address[houseNumber] =&gt; 'string',
 <a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>address[houseNumberAlpha] =&gt; 'string',
 <a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>address[box] =&gt; 'string',
 <a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>address[unstructuredStreetNumberBox] =&gt; 'string',
@@ -1588,36 +1588,8 @@ very similar.</p>
 <a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>correlation[returnAddress] =&gt; 'optional string, single line return address',
 <a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
 <a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>duplicityCheck =&gt; "string 'true', optional"
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>requestType =&gt; 'multipart'
 </code></pre></div>
 <h2 id="multipart-form-data-values">Multipart Form Data Values</h2>
-<h3 id="request-type-required">Request type (required)</h3>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This parameter cannot be omitted. It is mandatory for multipart intakes.</p>
-</div>
-<p>Add parameter requestType and set value as 'multipart' to indicate it is a multipart form.</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>requestType</td>
-<td>Type of Intake request being sent</td>
-<td>YES</td>
-<td>string</td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h3 id="document-required">Document (required)</h3>
 <p>Each Multipart Intake request must contain exactly one main document.</p>
 <table>
@@ -1809,6 +1781,10 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="pdf-requirements">PDF requirements</h3>
+<p>The document, attachments, background and envelope must be valid PDFs, and the envelope may be at most 219 × 104 mm
+(621 × 295 pt). Otherwise a 422 is returned. The carrier and the page sizes of the other files are not checked by the
+Multipart Intake request; see the <a href="../intake_json/#pdf-requirements">JSON Intake request</a> for the sizes we print.</p>
 <h3 id="address-required">Address (required)</h3>
 <p>Each Multipart Intake request must contain exactly one recipient with the required address parts.</p>
 <table>
@@ -1839,14 +1815,14 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 <tr>
 <td>address[fullname]</td>
 <td>Recipient's full name</td>
-<td>YES, if address[firstname], address.lastname and address[company] absent</td>
+<td>YES, if address[firstname], address[lastname] and address[company] absent</td>
 <td>string</td>
 <td></td>
 </tr>
 <tr>
 <td>address[company]</td>
 <td>Company name</td>
-<td>YES, if address[firstname], address.lastname and address[fullname] absent</td>
+<td>YES, if address[firstname], address[lastname] and address[fullname] absent</td>
 <td>string</td>
 <td></td>
 </tr>
@@ -1866,7 +1842,7 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tr>
 <tr>
 <td>address[houseNumberAlpha]</td>
-<td>House number alphanumeric, will be placed after houseNumber on envelope</td>
+<td>House number suffix, letters and digits only, placed after houseNumber</td>
 <td>NO</td>
 <td>string</td>
 <td></td>
@@ -1901,16 +1877,19 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tr>
 <tr>
 <td>address[countryIso2]</td>
-<td>Country code, ISO 3611-2 format (2 characters)</td>
+<td>Country code, ISO 3166-1 alpha-2 format (2 letters)</td>
 <td>YES</td>
 <td>string</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p>The recipient's name (<code>address[fullname]</code>, or <code>address[firstname]</code> and <code>address[lastname]</code> joined by a space) and
-<code>address[company]</code> may each be at most 50 bytes long. An accented character such as <code>é</code> counts as 2 bytes. A longer
-value returns a 422 with key <code>addresseeTooLong</code>.</p>
+<p>The recipient's name (<code>address[fullname]</code>, or <code>address[firstname]</code> and <code>address[lastname]</code> joined by a space) may be at
+most 50 bytes long. An accented character such as <code>é</code> counts as 2 bytes. A longer name returns a 422 with key
+<code>addresseeTooLong</code>.</p>
+<p>For a Belgian address (<code>address[countryIso2]</code> is <code>BE</code>), <code>address[zip]</code> must be a zip code that exists in Belgium: 4
+digits, otherwise a 422 is returned (<code>A Belgian zip code must only contain numbers.</code>, <code>A Belgian zip code must be 4
+characters exactly.</code> or <code>This zip code does not exist in Belgium.</code>).</p>
 <h3 id="postal-service-optional-default-bpost-non-prior">Postal service (optional, default bpost non-prior)</h3>
 <p>Each Intake request may contain additional postal service instructions</p>
 <table>
@@ -1947,6 +1926,7 @@ value returns a 422 with key <code>addresseeTooLong</code>.</p>
 </tr>
 </tbody>
 </table>
+<p>Non-prior is used whenever prior is not set: <code>postalService[nonPrior]</code> is accepted but has no effect.</p>
 <h3 id="hook-optional">Hook (optional)</h3>
 <p>Each Intake request may specify a webhook URL and method to send status updates to</p>
 <table>
@@ -2061,10 +2041,99 @@ duplicate(s).</p>
 </tr>
 <tr>
 <td>JSON body</td>
-<td><code>{ "intake": integer, "cost": integer }</code></td>
+<td><code>{ "intake": integer, "cost": string, "pricing": object }</code></td>
 </tr>
 </tbody>
 </table>
+<p><code>cost</code> is the total cost of the Intake, as a string with 2 decimals (e.g. <code>"1.23"</code>). <code>pricing</code> is the breakdown it is
+calculated from:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>recto_pages</td>
+<td>number</td>
+<td>Printed sheet fronts</td>
+</tr>
+<tr>
+<td>verso_pages</td>
+<td>number</td>
+<td>Printed sheet backs</td>
+</tr>
+<tr>
+<td>total_pages</td>
+<td>number</td>
+<td>recto_pages + verso_pages</td>
+</tr>
+<tr>
+<td>total_sheets</td>
+<td>number</td>
+<td>Sheets of paper</td>
+</tr>
+<tr>
+<td>envelope_type</td>
+<td>string</td>
+<td><code>US</code>, <code>C5</code> or <code>C4</code></td>
+</tr>
+<tr>
+<td>recto_cost</td>
+<td>number</td>
+<td>Cost of the fronts</td>
+</tr>
+<tr>
+<td>verso_cost</td>
+<td>number</td>
+<td>Cost of the backs</td>
+</tr>
+<tr>
+<td>print_cost</td>
+<td>number</td>
+<td>recto_cost + verso_cost</td>
+</tr>
+<tr>
+<td>send_cost</td>
+<td>number</td>
+<td>Postage</td>
+</tr>
+<tr>
+<td>prior_cost</td>
+<td>number</td>
+<td>Prior surcharge (registered mail is always prior)</td>
+</tr>
+<tr>
+<td>registered_cost</td>
+<td>number</td>
+<td>Registered surcharge</td>
+</tr>
+<tr>
+<td>envelope_cost</td>
+<td>number</td>
+<td>Custom envelope</td>
+</tr>
+<tr>
+<td>address_carrier_cost</td>
+<td>number</td>
+<td>Address carrier (C4)</td>
+</tr>
+<tr>
+<td>international</td>
+<td>string</td>
+<td><code>yes</code> or <code>no</code></td>
+</tr>
+<tr>
+<td>total_cost</td>
+<td>number</td>
+<td>Total, <code>cost</code> before rounding</td>
+</tr>
+</tbody>
+</table>
+<p>Partner companies also receive <code>partner_pricing</code>, the same breakdown at partner rates.</p>
 <h3 id="possible-error-codes">Possible error codes</h3>
 <table>
 <thead>

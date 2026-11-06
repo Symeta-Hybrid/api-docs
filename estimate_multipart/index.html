@@ -467,6 +467,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possible-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Possible errors
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1102,6 +1124,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possible-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Possible errors
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1161,6 +1205,51 @@
 <h2 id="request-body-and-document-format">Request body and document format</h2>
 <p>The request body and format for an Estimate request are the exact same as the Multipart Intake Request.</p>
 <p>Please refer to the <a href="../intake_multipart/">Multipart Intake documentation</a>.</p>
+<p>The request is validated exactly like the Intake request, including the PDF checks, <code>duplicityCheck</code>, the webhook and
+<code>correlation[customerIdentifier]</code>, so an Estimate can return the same 422 errors. Nothing is stored or sent.</p>
+<h2 id="response">Response</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP status code</td>
+<td>200 OK</td>
+</tr>
+<tr>
+<td>JSON body</td>
+<td><code>{ "estimate": string }</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>estimate</code> is the total cost, as a string with 2 decimals (e.g. <code>"1.23"</code>).</p>
+<p>Partner companies receive HTTP status code 202 ACCEPTED and also <code>estimate_partner</code>, the total at partner rates.</p>
+<h2 id="possible-errors">Possible errors</h2>
+<table>
+<thead>
+<tr>
+<th>HTTP code</th>
+<th>Description</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>422</td>
+<td>Unprocessable Entity</td>
+<td>Request is invalid - either missing or incorrectly formatted parameters</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>Access token is not valid or expired - refer to the web portal</td>
+</tr>
+</tbody>
+</table>
 
 
 

@@ -1008,6 +1008,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#request-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request header
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#endpoint-and-method" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1137,6 +1148,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#request-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request header
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#endpoint-and-method" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1241,6 +1263,25 @@
 <h2 id="introduction">Introduction</h2>
 <p>For registered mail, we have implemented bpost's Proof of Delivery (POD) API. This allows you to track your registered
 mail, and optionally download the POD PDF document.</p>
+<h2 id="request-header">Request header</h2>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accept</td>
+<td><code>application/json</code></td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td><code>Bearer [token]</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="endpoint-and-method">Endpoint and method</h2>
 <p>There are 2 endpoints available for the POD's: retrieving POD information and downloading the POD document (if
 available).</p>
@@ -1311,7 +1352,8 @@ available).</p>
 </tbody>
 </table>
 <h4 id="response_1">Response</h4>
-<p>The POD document will be returned as <code>binary</code>, with an <code>application/pdf</code> header.</p>
+<p>The POD document will be returned as <code>binary</code>, with an <code>application/pdf</code> header, as a download
+(<code>Content-Disposition: attachment</code>).</p>
 <h2 id="possible-errors">Possible errors</h2>
 <p>Both POD endpoints can return:</p>
 <table>
@@ -1336,7 +1378,7 @@ available).</p>
 <tr>
 <td>400</td>
 <td>Bad Request</td>
-<td>Download only: the POD document could not be fetched from the archive (the API retries 3 times first)</td>
+<td>Download only: the POD document could not be fetched from the archive</td>
 </tr>
 <tr>
 <td>404</td>
