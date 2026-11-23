@@ -196,6 +196,10 @@ envelopes, which use a separate sheet of paper to print the address on.
 | carrier\[mime-type] | MIME type of the carrier. Currently only "application/pdf" is accepted | YES                   | string      |         |
 | carrier\[contents]  | Address carrier PDF file                                               | YES                   | file/binary |         |
 
+### PDF requirements
+Every file must be a valid PDF, and must meet the [PDF requirements](intake_multipart.md#pdf-requirements) of the
+Multipart Intake request. Otherwise a 422 is returned.
+
 ### Postal service (optional, default bpost non-prior)
 Each Intake request may contain additional postal service instructions
 
@@ -213,27 +217,27 @@ Each Intake request may specify whether the eBox message is sent registered. Thi
 |------------|----------------------------------------------------------------------------|----------|---------|---------|
 | registered | Send the eBox message registered, using your registered eBox configuration | NO       | boolean | 0       |
 
-Accepted values are `0`, `1`, `true` and `false`, in any case. Do not send any other value.
+In a multipart request, send the boolean as `0`, `1`, `true`, `false`, `True` or `False`. Any other value returns a 422.
 When omitted, the message is sent unregistered. If no registered eBox configuration is found, a 400 `No eBox
 configuration could be found` is returned.
 
 ### Hook (optional)
 Each Intake request may specify a webhook URL and method to send status updates to
 
-| Key           | Description                                                                                                                                                                                               | Required                   | Type   | Default |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|--------|---------|
-| hook\[uri]    | URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
-| hook\[method] | HTTP method to be used for the webhook: `get`, `post`, `GET` or `POST`                                                                                                                                    | NO                         | string | POST    |
+| Key           | Description                                                                                                                                                                                                                                                                | Required                   | Type   | Default |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|--------|---------|
+| hook\[uri]    | URI where the webhook should be sent to. Must be an `https` URL on a public host (see [Webhook URI](webhooks.md#webhook-uri)). Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
+| hook\[method] | HTTP method to be used for the webhook: `get`, `post`, `GET` or `POST`                                                                                                                                                                                                     | NO                         | string | POST    |
 
 ### eBox Hook (optional)
 Each Intake request may specify an eBox webhook URL and method to send eBox status updates to: whether the message was
 offered, delivered and read, or fell back to paper. These are separate from the Intake status updates sent to
 `hook[uri]`, which only start once a message falls back to paper and its Intake is printed.
 
-| Key         | Description                                                                                                                                                                                               | Required                   | Type   | Default |
-|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|--------|---------|
-| hook_uri    | URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
-| hook_method | HTTP method to be used for the webhook: `get`, `post`, `GET` or `POST`                                                                                                                                    | NO                         | string | POST    |
+| Key         | Description                                                                                                                                                                                                                                                                | Required                   | Type   | Default |
+|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|--------|---------|
+| hook_uri    | URI where the webhook should be sent to. Must be an `https` URL on a public host (see [Webhook URI](webhooks.md#webhook-uri)). Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
+| hook_method | HTTP method to be used for the webhook: `get`, `post`, `GET` or `POST`                                                                                                                                                                                                     | NO                         | string | POST    |
 
 For more detailed information on eBox status updates, refer to the [Webhooks](webhooks.md#ebox-status-updates) page.
 
@@ -286,8 +290,8 @@ Customers](company_customers.md#ebox) for details.
 ### Duplicity check (optional)
 Each Intake request may specify whether a duplicity check should be run.
 
-The check will determine if another Intake exists with the same document name. If attachments are present, the names of
-these will also be considered in the check.
+The check will determine if another Intake of your company exists with the same document name. If attachments are
+present, the names of these will also be considered in the check.
 
 If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the
 duplicate(s).

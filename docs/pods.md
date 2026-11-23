@@ -75,4 +75,7 @@ Both POD endpoints can return:
 | 403       | Forbidden   | The Intake does not belong to the authenticated user                                            |
 | 400       | Bad Request | The Intake was not sent registered                                                              |
 | 400       | Bad Request | Download only: the POD document could not be fetched from the archive                           |
+| 404       | Not Found   | The Intake has not been shipped yet, so it has no bpost barcode                                 |
 | 404       | Not Found   | No POD information (information request) or no POD document (download) was found for the Intake |
+
+The 403 body is described in [Errors](index.md#errors). The 404 body is a JSON string: `"Could not get EPOD for Intake with ID: {id}"`.

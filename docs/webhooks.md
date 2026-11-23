@@ -11,10 +11,23 @@ Once a request has been accepted by the API, status updates can be sent to you v
 Webhooks are only sent when you specify a URI in the request. The method is `POST` unless you specify `GET` (`get`,
 `post`, `GET` or `POST` are accepted).
 
+## Webhook URI
+The webhook URI must be an `https` URL on a public host: every address its host name resolves to must be a public
+internet address. Otherwise the request is rejected with a 422, for example `The hook.uri must be an https URL on a
+public host.` The host is checked again each time a webhook is sent: if it no longer resolves to public addresses
+only, that attempt fails.
+
+Redirects are not followed: a `3xx` response counts as a failed attempt (see
+[Delivery and retries](#delivery-and-retries)). Use the final URL as your webhook URI.
+
 ## Webhook key
 To make use of webhooks, you will need to generate a webhook key in the web portal first, under *Webhook*. Every webhook
 is signed with this key. A request that specifies a webhook URI while your company has no webhook key is rejected with a
 422 `No webhook key found, please set one in your dashboard.`
+
+!!! warning
+    Deleting the webhook key stops all webhooks, including those still to be sent for Intakes and eBox messages that
+    were already accepted. They are not sent later, even after you generate a new key.
 
 On the same page you can optionally set an API key. When set, it is sent along with every webhook in an `X-API-Key`
 header, for receivers that require one.
@@ -56,9 +69,9 @@ if (hash_equals($hash, $_SERVER['HTTP_SIGNATURE'])) {
     which you would have to reconstruct from the query string. Use `POST` if you want to verify webhooks.
 
 ### Delivery and retries
-A webhook counts as delivered when your endpoint responds with an HTTP 2xx status code within 3 seconds. Otherwise it is
-retried, up to 3 attempts in total: the second attempt follows after about 10 seconds, the third after about 100
-seconds. After the third failed attempt the webhook is dropped and not sent again.
+A webhook counts as delivered when your endpoint responds with an HTTP 2xx status code within 3 seconds. Any other
+response, including a redirect, or no response in time, counts as a failed attempt, and the webhook is retried, up to
+3 attempts in total: the second attempt follows after about 10 seconds, the third after about 100 seconds. After the third failed attempt the webhook is dropped and not sent again.
 
 A webhook can arrive more than once (for example when your endpoint processed it but responded too late), and webhooks
 are not guaranteed to arrive in the order they were sent. Respond quickly and process the payload afterwards, and make

@@ -57,6 +57,9 @@ postalService[registered] => boolean,
 postalService[prior] => boolean,
 postalService[nonPrior] => boolean,
 
+hook[uri] => 'string',
+hook[method] => 'string',
+
 correlation[costId] => 'string,optional',
 correlation[customerIdentifier] => 'string,optional',
 correlation[lang] => 'required, nl, fr, de or en',
@@ -151,6 +154,10 @@ which use a separate sheet of paper to print the address on.
 | carrier\[mime-type] | MIME type of the carrier. Currently only "application/pdf" is accepted | YES                   | string      |         |
 | carrier\[contents]  | Address carrier PDF file                                               | YES                   | file/binary |         |
 
+### PDF requirements
+Every file must be a valid PDF, and must meet the [PDF requirements](intake_multipart.md#pdf-requirements) of the
+Multipart Intake request. Otherwise a 422 is returned.
+
 ### Postal service
 Each Bulk Intake request may contain additional postal service instructions
 
@@ -164,10 +171,10 @@ Each Bulk Intake request may contain additional postal service instructions
 Each Bulk Intake request must specify a webhook URL and method to send status updates and possible address validation
 errors to
 
-| Key           | Description                                                                                                                                                                                               | Required | Type   | Default |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|--------|---------|
-| hook\[uri]    | URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES      | string |         |
-| hook\[method] | HTTP method to be used for the webhook: `get`, `post`, `GET` or `POST`                                                                                                                                    | YES      | string |         |
+| Key           | Description                                                                                                                                                                                                                                                                | Required | Type   | Default |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|--------|---------|
+| hook\[uri]    | URI where the webhook should be sent to. Must be an `https` URL on a public host (see [Webhook URI](webhooks.md#webhook-uri)). Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES      | string |         |
+| hook\[method] | HTTP method to be used for the webhook: `get`, `post`, `GET` or `POST`                                                                                                                                                                                                     | YES      | string |         |
 
 For more detailed information on the webhook functionality, refer to the [Webhooks](webhooks.md) page.
 

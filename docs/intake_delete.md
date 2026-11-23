@@ -29,11 +29,9 @@ Otherwise a 422 is returned, with the reason in `error`:
 
 | Situation                                | Error                                                                                                           |
 |------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| From 22:00 until 05:00 (Europe/Brussels) | `Intakes can not be deleted between 22:00 and 04:00 local time (Europe/Brussels)`                               |
+| From 22:00 until 05:00 (Europe/Brussels) | `Intakes can not be deleted between 22:00 and 05:00 local time (Europe/Brussels)`                               |
 | Any status other than `printing`         | `Intake is currently in pre-processing and cannot be deleted at this stage. Please try again in a few minutes.` |
 | The print file could not be removed      | `Intake file could not be removed. Please try again or contact support@mailitwize.be.`                          |
-
-The error message says 04:00, but deleting is only possible again from 05:00.
 
 If the print file is no longer on our print server (for example because it is already being printed), a 404 `Intake file
 not found on the fileserver.` is returned.

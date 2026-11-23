@@ -125,9 +125,17 @@ envelopes, which use a separate sheet of paper to print the address on.
 | carrier\[contents]  | Address carrier PDF file                                               | YES                   | file/binary |         |
 
 ### PDF requirements
-The document, attachments, background and envelope must be valid PDFs, and the envelope may be at most 219 × 104 mm
-(621 × 295 pt). Otherwise a 422 is returned. The carrier and the page sizes of the other files are not checked by the
-Multipart Intake request; see the [JSON Intake request](intake_json.md#pdf-requirements) for the sizes we print.
+Every file must be a valid PDF. The page size of each file is checked on its first page, and a 422 is returned when a
+file does not meet these requirements:
+
+| File                  | Maximum page size           | Other requirements                |
+|-----------------------|-----------------------------|-----------------------------------|
+| document, attachments | 600 × 847 pt (about A4)     |                                   |
+| background, carrier   | 595 × 842 pt (A4)           | exactly 1 page, PDF version ≥ 1.3 |
+| envelope              | 621 × 295 pt (219 × 104 mm) |                                   |
+
+These checks only run once the rest of the request is valid. A request with other errors returns those first, and any
+PDF errors only on the next attempt.
 
 ### Address (required)
 Each Multipart Intake request must contain exactly one recipient with the required address parts.
@@ -169,10 +177,10 @@ Non-prior is used whenever prior is not set: `postalService[nonPrior]` is accept
 ### Hook (optional)
 Each Intake request may specify a webhook URL and method to send status updates to
 
-| Key           | Description                                                                                                                                                                                               | Required                   | Type   | Default |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|--------|---------|
-| hook\[uri]    | URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
-| hook\[method] | HTTP method to be used for the webhook: `get`, `post`, `GET` or `POST`                                                                                                                                    | NO                         | string | POST    |
+| Key           | Description                                                                                                                                                                                                                                                                | Required                   | Type   | Default |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|--------|---------|
+| hook\[uri]    | URI where the webhook should be sent to. Must be an `https` URL on a public host (see [Webhook URI](webhooks.md#webhook-uri)). Requires a webhook key (see [Webhooks](webhooks.md)), otherwise a 422 `No webhook key found, please set one in your dashboard.` is returned | YES, if webhook is desired | string |         |
+| hook\[method] | HTTP method to be used for the webhook: `get`, `post`, `GET` or `POST`                                                                                                                                                                                                     | NO                         | string | POST    |
 
 For more detailed information on the webhook functionality, refer to the [Webhooks](webhooks.md) page.
 
@@ -188,8 +196,8 @@ For more detailed information on the webhook functionality, refer to the [Webhoo
 ### Duplicity check (optional)
 Each Intake request may specify whether a duplicity check should be run.
 
-The check will determine if another Intake exists with the same document name. If attachments are present, the names of
-these will also be considered in the check.
+The check will determine if another Intake of your company exists with the same document name. If attachments are
+present, the names of these will also be considered in the check.
 
 If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the
 duplicate(s).

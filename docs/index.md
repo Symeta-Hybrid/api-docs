@@ -45,7 +45,30 @@ notified of new releases.
 
 Base URL for PROD: `https://api.mailitwize.be/api/v1`
 
-Base URL for UAT: `https://api-test.mailitwize.be/api/v1`
+Base URL for UAT: `https://api-acc.mailitwize.be/api/v1`
+
+## Errors
+Every response is JSON, also for errors. The error bodies most endpoints share are:
+
+| HTTP code | Description          | Body                                                                                                 |
+|-----------|----------------------|------------------------------------------------------------------------------------------------------|
+| 401       | Unauthorized         | `{"message": "Unauthenticated.", "error": "Token is invalid or expired."}`                           |
+| 403       | Forbidden            | `{"code": "FORBIDDEN", "message": "You are not allowed to perform this action."}`                    |
+| 422       | Unprocessable Entity | An object with one key per invalid field, each holding a list of messages                            |
+| 429       | Too Many Requests    | `{"code": "THROTTLED", "message": "Too many requests. Please try again in 30 seconds."}`             |
+
+An endpoint that answers an error differently says so on its own page.
+
+The API accepts at most 6000 requests per minute. Above that it returns the 429, with a `Retry-After` header giving the
+number of seconds to wait.
+
+Example of a 422 body:
+```json
+{
+    "address.zip": ["This zip code does not exist in Belgium."],
+    "correlation.lang": ["The selected correlation.lang is invalid."]
+}
+```
 
 ## Technical specification
 

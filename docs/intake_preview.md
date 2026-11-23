@@ -29,7 +29,8 @@ composed PDF file's contents, in a base-64 encoded format.
     "totalPages": "18"
 }
 ```
-`attachmentPages` and `documentPages` are integers. `totalPages` is returned as a string.
+`attachmentPages` and `documentPages` are integers. `totalPages` is returned as a string, or `null` when the page count
+cannot be read from the file.
 
 ## PDF response
 If the request was sent with an `Accept: application/pdf` header, the API returns the composed PDF file directly, along
@@ -43,3 +44,5 @@ of the JSON response above.
 | 401       | Unauthorized | Access token is not valid or expired - refer to the web portal  |
 | 403       | Forbidden    | The Intake does not belong to the authenticated user            |
 | 404       | Not Found    | The Intake file could not be found - it may still be processing |
+
+The 403 body is described in [Errors](index.md#errors).
