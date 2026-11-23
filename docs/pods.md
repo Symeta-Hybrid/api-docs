@@ -70,12 +70,20 @@ The POD document will be returned as `binary`, with an `application/pdf` header,
 
 Both POD endpoints can return:
 
-| HTTP code | Description | Reason                                                                                          |
-|-----------|-------------|-------------------------------------------------------------------------------------------------|
-| 403       | Forbidden   | The Intake does not belong to the authenticated user                                            |
-| 400       | Bad Request | The Intake was not sent registered                                                              |
-| 400       | Bad Request | Download only: the POD document could not be fetched from the archive                           |
-| 404       | Not Found   | The Intake has not been shipped yet, so it has no bpost barcode                                 |
-| 404       | Not Found   | No POD information (information request) or no POD document (download) was found for the Intake |
+| HTTP code | Description | Code                       | Reason                                                                                                     |
+|-----------|-------------|----------------------------|------------------------------------------------------------------------------------------------------------|
+| 403       | Forbidden   | `FORBIDDEN`                | The Intake does not belong to the authenticated user                                                       |
+| 404       | Not Found   | `EPOD_NOT_REGISTERED`      | The Intake was not sent registered, so it will never have a POD                                            |
+| 404       | Not Found   | `EPOD_NOT_YET_AVAILABLE`   | No POD yet: the Intake has not been shipped (no bpost barcode), or bpost has not provided the POD information (information request) or the POD document (download) yet |
+| 502       | Bad Gateway | `EPOD_ARCHIVE_UNAVAILABLE` | Download only: the POD document could not be fetched from the archive. Try again later                     |
 
-The 403 body is described in [Errors](index.md#errors). The 404 body is a JSON string: `"Could not get EPOD for Intake with ID: {id}"`.
+Every error body is `{"code": "...", "message": "..."}`, for example:
+
+``` json
+{
+    "code": "EPOD_NOT_YET_AVAILABLE",
+    "message": "The proof of delivery for this shipment is not available yet. Please try again later."
+}
+```
+
+An Intake id that does not exist also answers 404, but with a `message` only and no `code`.
