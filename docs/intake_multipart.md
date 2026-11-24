@@ -128,11 +128,11 @@ envelopes, which use a separate sheet of paper to print the address on.
 Every file must be a valid PDF. The page size of each file is checked on its first page, and a 422 is returned when a
 file does not meet these requirements:
 
-| File                  | Maximum page size           | Other requirements                |
-|-----------------------|-----------------------------|-----------------------------------|
-| document, attachments | 600 × 847 pt (about A4)     |                                   |
-| background, carrier   | 595 × 842 pt (A4)           | exactly 1 page, PDF version ≥ 1.3 |
-| envelope              | 621 × 295 pt (219 × 104 mm) |                                   |
+| File                  | Page size                                                         | Other requirements                |
+|-----------------------|-------------------------------------------------------------------|-----------------------------------|
+| document, attachments | A4 or US Letter, portrait or landscape (or 595 × 845.5 pt)        | printed scaled to fit A4          |
+| background, carrier   | at most 595 × 842 pt (A4)                                         | exactly 1 page, PDF version ≥ 1.3 |
+| envelope              | at most 621 × 295 pt (219 × 104 mm)                               |                                   |
 
 These checks only run once the rest of the request is valid. A request with other errors returns those first, and any
 PDF errors only on the next attempt.
