@@ -1220,7 +1220,7 @@ Otherwise a 422 is returned, with the reason in <code>error</code>:</p>
 <tbody>
 <tr>
 <td>From 22:00 until 05:00 (Europe/Brussels)</td>
-<td><code>Intakes can not be deleted between 22:00 and 04:00 local time (Europe/Brussels)</code></td>
+<td><code>Intakes can not be deleted between 22:00 and 05:00 local time (Europe/Brussels)</code></td>
 </tr>
 <tr>
 <td>Any status other than <code>printing</code></td>
@@ -1232,7 +1232,6 @@ Otherwise a 422 is returned, with the reason in <code>error</code>:</p>
 </tr>
 </tbody>
 </table>
-<p>The error message says 04:00, but deleting is only possible again from 05:00.</p>
 <p>If the print file is no longer on our print server (for example because it is already being printed), a 404 <code>Intake file
 not found on the fileserver.</code> is returned.</p>
 <h2 id="json-response">JSON response</h2>

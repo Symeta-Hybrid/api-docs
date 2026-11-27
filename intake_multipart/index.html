@@ -1782,9 +1782,36 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tbody>
 </table>
 <h3 id="pdf-requirements">PDF requirements</h3>
-<p>The document, attachments, background and envelope must be valid PDFs, and the envelope may be at most 219 × 104 mm
-(621 × 295 pt). Otherwise a 422 is returned. The carrier and the page sizes of the other files are not checked by the
-Multipart Intake request; see the <a href="../intake_json/#pdf-requirements">JSON Intake request</a> for the sizes we print.</p>
+<p>Every file must be a valid PDF. The page size of each file is checked on its first page, and a 422 is returned when a
+file does not meet these requirements:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Page size</th>
+<th>Other requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>document, attachments</td>
+<td>A4 or US Letter, portrait or landscape (or 595 × 845.5 pt)</td>
+<td>printed scaled to fit A4</td>
+</tr>
+<tr>
+<td>background, carrier</td>
+<td>at most 595 × 842 pt (A4)</td>
+<td>exactly 1 page, PDF version ≥ 1.3</td>
+</tr>
+<tr>
+<td>envelope</td>
+<td>at most 621 × 295 pt (219 × 104 mm)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>These checks only run once the rest of the request is valid. A request with other errors returns those first, and any
+PDF errors only on the next attempt.</p>
 <h3 id="address-required">Address (required)</h3>
 <p>Each Multipart Intake request must contain exactly one recipient with the required address parts.</p>
 <table>
@@ -1942,7 +1969,7 @@ characters exactly.</code> or <code>This zip code does not exist in Belgium.</co
 <tbody>
 <tr>
 <td>hook[uri]</td>
-<td>URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see <a href="../webhooks/">Webhooks</a>), otherwise a 422 <code>No webhook key found, please set one in your dashboard.</code> is returned</td>
+<td>URI where the webhook should be sent to. Must be an <code>https</code> URL on a public host (see <a href="../webhooks/#webhook-uri">Webhook URI</a>). Requires a webhook key (see <a href="../webhooks/">Webhooks</a>), otherwise a 422 <code>No webhook key found, please set one in your dashboard.</code> is returned</td>
 <td>YES, if webhook is desired</td>
 <td>string</td>
 <td></td>
@@ -2001,8 +2028,8 @@ characters exactly.</code> or <code>This zip code does not exist in Belgium.</co
 </table>
 <h3 id="duplicity-check-optional">Duplicity check (optional)</h3>
 <p>Each Intake request may specify whether a duplicity check should be run.</p>
-<p>The check will determine if another Intake exists with the same document name. If attachments are present, the names of
-these will also be considered in the check.</p>
+<p>The check will determine if another Intake of your company exists with the same document name. If attachments are
+present, the names of these will also be considered in the check.</p>
 <p>If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the
 duplicate(s).</p>
 <table>

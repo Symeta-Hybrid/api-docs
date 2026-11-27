@@ -1039,6 +1039,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#pdf-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDF requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#postal-service-optional-default-bpost-non-prior" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1439,6 +1450,17 @@
     <span class="md-ellipsis">
       
         Carrier (optional) for C4 envelopes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdf-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDF requirements
       
     </span>
   </a>
@@ -2081,6 +2103,9 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="pdf-requirements">PDF requirements</h3>
+<p>Every file must be a valid PDF, and must meet the <a href="../intake_multipart/#pdf-requirements">PDF requirements</a> of the
+Multipart Intake request. Otherwise a 422 is returned.</p>
 <h3 id="postal-service-optional-default-bpost-non-prior">Postal service (optional, default bpost non-prior)</h3>
 <p>Each Intake request may contain additional postal service instructions</p>
 <table>
@@ -2119,8 +2144,9 @@ envelopes, which use a separate sheet of paper to print the address on.</p>
 </table>
 <h3 id="registered-ebox-message-not-supported">Registered eBox message (not supported)</h3>
 <p>eBox Enterprise messages cannot be sent registered. The <code>registered</code> field is accepted for compatibility with eBox
-Citizen, but ignored: the message is always sent unregistered. It is separate from <code>postalService[registered]</code>, the bpost
-registered shipment.</p>
+Citizen, but ignored: the message is always sent unregistered. It must still be a boolean, sent as <code>0</code>, <code>1</code>, <code>true</code>,
+<code>false</code>, <code>True</code> or <code>False</code>; any other value returns a 422. It is separate from <code>postalService[registered]</code>, the bpost registered
+shipment.</p>
 <h3 id="hook-optional">Hook (optional)</h3>
 <p>Each Intake request may specify a webhook URL and method to send status updates to</p>
 <table>
@@ -2136,7 +2162,7 @@ registered shipment.</p>
 <tbody>
 <tr>
 <td>hook[uri]</td>
-<td>URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see <a href="../webhooks/">Webhooks</a>), otherwise a 422 <code>No webhook key found, please set one in your dashboard.</code> is returned</td>
+<td>URI where the webhook should be sent to. Must be an <code>https</code> URL on a public host (see <a href="../webhooks/#webhook-uri">Webhook URI</a>). Requires a webhook key (see <a href="../webhooks/">Webhooks</a>), otherwise a 422 <code>No webhook key found, please set one in your dashboard.</code> is returned</td>
 <td>YES, if webhook is desired</td>
 <td>string</td>
 <td></td>
@@ -2167,7 +2193,7 @@ offered, delivered and read, or fell back to paper. These are separate from the 
 <tbody>
 <tr>
 <td>hook_uri</td>
-<td>URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see <a href="../webhooks/">Webhooks</a>), otherwise a 422 <code>No webhook key found, please set one in your dashboard.</code> is returned</td>
+<td>URI where the webhook should be sent to. Must be an <code>https</code> URL on a public host (see <a href="../webhooks/#webhook-uri">Webhook URI</a>). Requires a webhook key (see <a href="../webhooks/">Webhooks</a>), otherwise a 422 <code>No webhook key found, please set one in your dashboard.</code> is returned</td>
 <td>YES, if webhook is desired</td>
 <td>string</td>
 <td></td>
@@ -2305,8 +2331,8 @@ Customers</a> for details.</p>
 </table>
 <h3 id="duplicity-check-optional">Duplicity check (optional)</h3>
 <p>Each Intake request may specify whether a duplicity check should be run.</p>
-<p>The check will determine if another Intake exists with the same document name. If attachments are present, the names of
-these will also be considered in the check.</p>
+<p>The check will determine if another Intake of your company exists with the same document name. If attachments are
+present, the names of these will also be considered in the check.</p>
 <p>If any duplicates are found, a validation error will be returned with a message containing the Intake ID('s) of the
 duplicate(s).</p>
 <table>

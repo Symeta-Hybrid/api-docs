@@ -343,6 +343,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#technical-specification" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1220,6 +1231,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#technical-specification" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1277,7 +1299,49 @@ in a single request, use the <a href="intake_bulk/">Bulk Intake</a> request.</em
 <p>If a new version is introduced, the previous one will remain active for backwards compatibility. All API users will be
 notified of new releases.</p>
 <p>Base URL for PROD: <code>https://api.mailitwize.be/api/v1</code></p>
-<p>Base URL for UAT: <code>https://api-test.mailitwize.be/api/v1</code></p>
+<p>Base URL for UAT: <code>https://api-acc.mailitwize.be/api/v1</code></p>
+<h2 id="errors">Errors</h2>
+<p>Every response is JSON, also for errors. The error bodies most endpoints share are:</p>
+<table>
+<thead>
+<tr>
+<th>HTTP code</th>
+<th>Description</th>
+<th>Body</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td><code>{"message": "Unauthenticated.", "error": "Token is invalid or expired."}</code></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td><code>{"code": "FORBIDDEN", "message": "You are not allowed to perform this action."}</code></td>
+</tr>
+<tr>
+<td>422</td>
+<td>Unprocessable Entity</td>
+<td>An object with one key per invalid field, each holding a list of messages</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+<td><code>{"code": "THROTTLED", "message": "Too many requests. Please try again in 30 seconds."}</code></td>
+</tr>
+</tbody>
+</table>
+<p>An endpoint that answers an error differently says so on its own page.</p>
+<p>The API accepts at most 6000 requests per minute. Above that it returns the 429, with a <code>Retry-After</code> header giving the
+number of seconds to wait.</p>
+<p>Example of a 422 body:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">"address.zip"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"This zip code does not exist in Belgium."</span><span class="p">],</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">"correlation.lang"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"The selected correlation.lang is invalid."</span><span class="p">]</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
+</code></pre></div></p>
 <h2 id="technical-specification">Technical specification</h2>
 <p>These docs serve as a general introduction and manual for usage of the API.</p>
 <p>For more detailed specs on all available API functionality, we suggest also taking a look at our

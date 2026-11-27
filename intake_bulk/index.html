@@ -735,6 +735,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#pdf-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDF requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#postal-service" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1480,6 +1491,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#pdf-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDF requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#postal-service" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1753,10 +1775,13 @@
 <a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>postalService[prior] =&gt; boolean,
 <a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>postalService[nonPrior] =&gt; boolean,
 <a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>correlation[costId] =&gt; 'string,optional',
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>correlation[customerIdentifier] =&gt; 'string,optional',
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>correlation[lang] =&gt; 'required, nl, fr, de or en',
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>correlation[returnAddress] =&gt; 'optional string, single line return address',
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>hook[uri] =&gt; 'string',
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>hook[method] =&gt; 'string',
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>correlation[costId] =&gt; 'string,optional',
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>correlation[customerIdentifier] =&gt; 'string,optional',
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>correlation[lang] =&gt; 'required, nl, fr, de or en',
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>correlation[returnAddress] =&gt; 'optional string, single line return address',
 </code></pre></div>
 <h2 id="multipart-form-data-values">Multipart Form Data Values</h2>
 <h3 id="document-required">Document (required)</h3>
@@ -2073,6 +2098,9 @@ which use a separate sheet of paper to print the address on.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="pdf-requirements">PDF requirements</h3>
+<p>Every file must be a valid PDF, and must meet the <a href="../intake_multipart/#pdf-requirements">PDF requirements</a> of the
+Multipart Intake request. Otherwise a 422 is returned.</p>
 <h3 id="postal-service">Postal service</h3>
 <p>Each Bulk Intake request may contain additional postal service instructions</p>
 <table>
@@ -2125,7 +2153,7 @@ errors to</p>
 <tbody>
 <tr>
 <td>hook[uri]</td>
-<td>URI where the webhook should be sent to. Must be a valid URL. Requires a webhook key (see <a href="../webhooks/">Webhooks</a>), otherwise a 422 <code>No webhook key found, please set one in your dashboard.</code> is returned</td>
+<td>URI where the webhook should be sent to. Must be an <code>https</code> URL on a public host (see <a href="../webhooks/#webhook-uri">Webhook URI</a>). Requires a webhook key (see <a href="../webhooks/">Webhooks</a>), otherwise a 422 <code>No webhook key found, please set one in your dashboard.</code> is returned</td>
 <td>YES</td>
 <td>string</td>
 <td></td>

@@ -1361,6 +1361,7 @@ available).</p>
 <tr>
 <th>HTTP code</th>
 <th>Description</th>
+<th>Code</th>
 <th>Reason</th>
 </tr>
 </thead>
@@ -1368,25 +1369,36 @@ available).</p>
 <tr>
 <td>403</td>
 <td>Forbidden</td>
+<td><code>FORBIDDEN</code></td>
 <td>The Intake does not belong to the authenticated user</td>
-</tr>
-<tr>
-<td>400</td>
-<td>Bad Request</td>
-<td>The Intake was not sent registered</td>
-</tr>
-<tr>
-<td>400</td>
-<td>Bad Request</td>
-<td>Download only: the POD document could not be fetched from the archive</td>
 </tr>
 <tr>
 <td>404</td>
 <td>Not Found</td>
-<td>No POD information (information request) or no POD document (download) was found for the Intake</td>
+<td><code>EPOD_NOT_REGISTERED</code></td>
+<td>The Intake was not sent registered, so it will never have a POD</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td><code>EPOD_NOT_YET_AVAILABLE</code></td>
+<td>No POD yet: the Intake has not been shipped (no bpost barcode), or bpost has not provided the POD information (information request) or the POD document (download) yet</td>
+</tr>
+<tr>
+<td>502</td>
+<td>Bad Gateway</td>
+<td><code>EPOD_ARCHIVE_UNAVAILABLE</code></td>
+<td>Download only: the POD document could not be fetched from the archive. Try again later</td>
 </tr>
 </tbody>
 </table>
+<p>Every error body is <code>{"code": "...", "message": "..."}</code>, for example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EPOD_NOT_YET_AVAILABLE"</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The proof of delivery for this shipment is not available yet. Please try again later."</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">}</span>
+</code></pre></div>
+<p>An Intake id that does not exist also answers 404, but with a <code>message</code> only and no <code>code</code>.</p>
 
 
 

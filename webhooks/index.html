@@ -983,6 +983,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#webhook-uri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Webhook URI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#webhook-key" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1277,6 +1288,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#webhook-uri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Webhook URI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#webhook-key" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1546,10 +1568,22 @@
 </table>
 <p>Webhooks are only sent when you specify a URI in the request. The method is <code>POST</code> unless you specify <code>GET</code> (<code>get</code>,
 <code>post</code>, <code>GET</code> or <code>POST</code> are accepted).</p>
+<h2 id="webhook-uri">Webhook URI</h2>
+<p>The webhook URI must be an <code>https</code> URL on a public host: every address its host name resolves to must be a public
+internet address. Otherwise the request is rejected with a 422, for example <code>The hook.uri must be an https URL on a
+public host.</code> The host is checked again each time a webhook is sent: if it no longer resolves to public addresses
+only, that attempt fails.</p>
+<p>Redirects are not followed: a <code>3xx</code> response counts as a failed attempt (see
+<a href="#delivery-and-retries">Delivery and retries</a>). Use the final URL as your webhook URI.</p>
 <h2 id="webhook-key">Webhook key</h2>
 <p>To make use of webhooks, you will need to generate a webhook key in the web portal first, under <em>Webhook</em>. Every webhook
 is signed with this key. A request that specifies a webhook URI while your company has no webhook key is rejected with a
 422 <code>No webhook key found, please set one in your dashboard.</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Deleting the webhook key stops all webhooks, including those still to be sent for Intakes and eBox messages that
+were already accepted. They are not sent later, even after you generate a new key.</p>
+</div>
 <p>On the same page you can optionally set an API key. When set, it is sent along with every webhook in an <code>X-API-Key</code>
 header, for receivers that require one.</p>
 <h2 id="structure">Structure</h2>
@@ -1599,9 +1633,9 @@ will usually give a different result: slashes are sent escaped (<code>\/</code>)
 which you would have to reconstruct from the query string. Use <code>POST</code> if you want to verify webhooks.</p>
 </div>
 <h3 id="delivery-and-retries">Delivery and retries</h3>
-<p>A webhook counts as delivered when your endpoint responds with an HTTP 2xx status code within 3 seconds. Otherwise it is
-retried, up to 3 attempts in total: the second attempt follows after about 10 seconds, the third after about 100
-seconds. After the third failed attempt the webhook is dropped and not sent again.</p>
+<p>A webhook counts as delivered when your endpoint responds with an HTTP 2xx status code within 3 seconds. Any other
+response, including a redirect, or no response in time, counts as a failed attempt, and the webhook is retried, up to
+3 attempts in total: the second attempt follows after about 10 seconds, the third after about 100 seconds. After the third failed attempt the webhook is dropped and not sent again.</p>
 <p>A webhook can arrive more than once (for example when your endpoint processed it but responded too late), and webhooks
 are not guaranteed to arrive in the order they were sent. Respond quickly and process the payload afterwards, and make
 your processing safe to repeat.</p>

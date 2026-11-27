@@ -1213,7 +1213,8 @@ composed PDF file's contents, in a base-64 encoded format.
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">"totalPages"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18"</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
 </code></pre></div>
-<code>attachmentPages</code> and <code>documentPages</code> are integers. <code>totalPages</code> is returned as a string.</p>
+<code>attachmentPages</code> and <code>documentPages</code> are integers. <code>totalPages</code> is returned as a string, or <code>null</code> when the page count
+cannot be read from the file.</p>
 <h2 id="pdf-response">PDF response</h2>
 <p>If the request was sent with an <code>Accept: application/pdf</code> header, the API returns the composed PDF file directly, along
 with a <code>Content-Type: application/pdf</code> header and a <code>Content-Disposition: inline; filename="{id}.pdf"</code> header, instead
@@ -1245,6 +1246,7 @@ of the JSON response above.</p>
 </tr>
 </tbody>
 </table>
+<p>The 403 body is described in <a href="../#errors">Errors</a>.</p>
 
 
 
