@@ -48,7 +48,8 @@ Base URL for PROD: `https://api.mailitwize.be/api/v1`
 Base URL for UAT: `https://api-acc.mailitwize.be/api/v1`
 
 ## Errors
-Every response is JSON, also for errors. The error bodies most endpoints share are:
+Every response is JSON, also for errors, with one exception: the [Preview](intake_preview.md) answers its errors
+in JSON only when the request carries `Accept: application/json`. The error bodies most endpoints share are:
 
 | HTTP code | Description          | Body                                                                                                 |
 |-----------|----------------------|------------------------------------------------------------------------------------------------------|

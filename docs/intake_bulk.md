@@ -20,7 +20,7 @@
 document[name] => 'string',
 document[mime-type] => 'mime-type',
 document[contents] => file,
-document[multiplex] => boolean (default 1),
+document[multiplex] => boolean (ignored: always recto/verso),
 
 address[coordinates][startX] => number,
 address[coordinates][startY] => number,

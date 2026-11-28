@@ -46,3 +46,8 @@ of the JSON response above.
 | 404       | Not Found    | The Intake file could not be found - it may still be processing |
 
 The 403 body is described in [Errors](index.md#errors).
+
+The 403 and the 404 above are always JSON. Other errors are JSON only when the request carries
+`Accept: application/json`; with any other `Accept` header (such as `application/pdf` or `*/*`) or none, an invalid or
+expired token is answered with a `302` redirect to the web portal's login page, an unknown Intake id with an HTML `404`
+page, and too many requests with an HTML `429` page.
