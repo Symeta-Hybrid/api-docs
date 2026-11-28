@@ -1247,6 +1247,10 @@ of the JSON response above.</p>
 </tbody>
 </table>
 <p>The 403 body is described in <a href="../#errors">Errors</a>.</p>
+<p>The 403 and the 404 above are always JSON. Other errors are JSON only when the request carries
+<code>Accept: application/json</code>; with any other <code>Accept</code> header (such as <code>application/pdf</code> or <code>*/*</code>) or none, an invalid or
+expired token is answered with a <code>302</code> redirect to the web portal's login page, an unknown Intake id with an HTML <code>404</code>
+page, and too many requests with an HTML <code>429</code> page.</p>
 
 
 

@@ -1301,7 +1301,8 @@ notified of new releases.</p>
 <p>Base URL for PROD: <code>https://api.mailitwize.be/api/v1</code></p>
 <p>Base URL for UAT: <code>https://api-acc.mailitwize.be/api/v1</code></p>
 <h2 id="errors">Errors</h2>
-<p>Every response is JSON, also for errors. The error bodies most endpoints share are:</p>
+<p>Every response is JSON, also for errors, with one exception: the <a href="intake_preview/">Preview</a> answers its errors
+in JSON only when the request carries <code>Accept: application/json</code>. The error bodies most endpoints share are:</p>
 <table>
 <thead>
 <tr>
